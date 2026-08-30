@@ -440,14 +440,14 @@ new Chart(document.getElementById('dailyChart'), {
   }
 });
 
-// 2. Campaign-type bar (clicks & impressions)
+// 2. Campaign-type bar (clicks & impressions, dual axis with real values)
 new Chart(document.getElementById('groupChart'), {
   type: 'bar',
   data: {
     labels: [['플레이스 광고','(새로필라테스)'],['파워링크 광고','(노원역필라테스)']],
     datasets: [
-      {label:'노출수', data:[942,433], backgroundColor: mint, borderRadius:6, barThickness: 26},
-      {label:'클릭수 ×10', data:[240,50], backgroundColor: ink, borderRadius:6, barThickness: 26}
+      {label:'노출수', data:[942,433], backgroundColor: mint, borderRadius:6, barThickness: 22, xAxisID:'x'},
+      {label:'클릭수', data:[24,5], backgroundColor: ink, borderRadius:6, barThickness: 22, xAxisID:'x1'}
     ]
   },
   options: {
@@ -455,9 +455,13 @@ new Chart(document.getElementById('groupChart'), {
     responsive:true,
     plugins:{
       legend:{position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
-      title:{display:true, text:'광고 유형별 노출 · 클릭(×10) 비교', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+      title:{display:true, text:'광고 유형별 노출 · 클릭 비교', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
     },
-    scales:{ x:{grid:{color:grid}}, y:{grid:{display:false}, ticks:{font:{size:11}}} }
+    scales:{
+      x:{position:'bottom', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:10.5}}},
+      x1:{position:'top', grid:{display:false}, title:{display:true,text:'클릭수',font:{size:10.5}}},
+      y:{grid:{display:false}, ticks:{font:{size:11}}}
+    }
   }
 });
 
