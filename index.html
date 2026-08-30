@@ -30,18 +30,28 @@
     color:var(--ink);
     font-family: "Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px;position:relative;}
 
   /* Header */
   .masthead{
     display:flex;justify-content:space-between;align-items:flex-end;
     border-bottom:3px solid var(--ink);
-    padding-bottom:18px;margin-bottom:6px;
+    padding-bottom:18px;margin-bottom:6px;position:relative;
   }
-  .brand{font-size:13px;letter-spacing:.14em;color:var(--mint-dark);font-weight:700;text-transform:uppercase;}
-  .title{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;}
-  .period{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .header-blob{
+    position:absolute;top:-30px;right:-40px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--mint-pale) 0%, rgba(232,249,245,0) 70%);
+    pointer-events:none;z-index:0;
+  }
+  .brand{font-size:13px;letter-spacing:.14em;color:var(--mint-dark);font-weight:700;text-transform:uppercase;position:relative;z-index:1;}
+  .title{
+    font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;position:relative;z-index:1;
+    background:linear-gradient(90deg, var(--ink) 35%, #1a5c4d 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .period{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.6;position:relative;z-index:1;}
   .period b{color:var(--ink);font-size:15px;display:block;}
 
   /* KPI row */
@@ -164,6 +174,7 @@
 <div class="wrap">
 
   <div class="masthead">
+    <div class="header-blob"></div>
     <div>
       <div class="brand">SAERO PILATES · 새로필라테스</div>
       <div class="title">네이버 검색광고 주간 리포트</div>
