@@ -54,12 +54,22 @@
     padding:18px 16px;position:relative;overflow:hidden;
   }
   .kpi::before{
-    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--mint);
+    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent, var(--mint));
   }
-  .kpi .label{font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
-  .kpi .value{font-size:26px;font-weight:800;letter-spacing:-0.01em;}
+  .kpi::after{
+    content:"";position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;
+    background:var(--accent, var(--mint));opacity:0.08;
+  }
+  .kpi .icon{
+    position:absolute;top:14px;right:14px;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent, var(--mint-dark));opacity:0.85;
+  }
+  .kpi .icon svg{width:18px;height:18px;}
+  .kpi .label{font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;position:relative;}
+  .kpi .value{font-size:26px;font-weight:800;letter-spacing:-0.01em;position:relative;}
   .kpi .unit{font-size:13px;font-weight:600;color:var(--ink-soft);margin-left:2px;}
-  .kpi .sub{font-size:11.5px;color:var(--mint-dark);margin-top:6px;font-weight:600;}
+  .kpi .sub{font-size:11.5px;color:var(--accent, var(--mint-dark));margin-top:6px;font-weight:600;position:relative;}
 
   /* Section */
   .section{margin-bottom:34px;}
@@ -165,22 +175,26 @@
 
   <!-- KPI -->
   <div class="kpi-row">
-    <div class="kpi">
+    <div class="kpi" style="--accent:#45ceb3;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
       <div class="label">총 노출수</div>
       <div class="value">1,375<span class="unit">회</span></div>
       <div class="sub">일 평균 344회</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:#2ea88f;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9l10.5-3-3 10.5L13 13l-4 4-3-3 4-4z"/></svg></div>
       <div class="label">총 클릭수</div>
       <div class="value">29<span class="unit">회</span></div>
       <div class="sub">일 평균 7.3회</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:#1a5c4d;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 5-6"/></svg></div>
       <div class="label">평균 클릭률</div>
       <div class="value">2.11<span class="unit">%</span></div>
       <div class="sub">업종 평균 수준</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:#1c2b2a;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5.9 2.5 2.2c0 2.8-5 1.6-5 4.4 0 1.3 1.1 2.4 2.5 2.4s2.5-1.1 2.5-2.5"/></svg></div>
       <div class="label">총 광고비</div>
       <div class="value">18,648<span class="unit">원</span></div>
       <div class="sub">클릭당 평균 643원</div>
