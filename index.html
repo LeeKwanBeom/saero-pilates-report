@@ -586,15 +586,25 @@ new Chart(document.getElementById('placementChart'), {
     labels: ['검색 지면','콘텐츠 지면'],
     datasets: [
       {label:'노출수', data:[1153, 222], backgroundColor: mint, borderRadius:6, maxBarThickness: 34},
-      {label:'클릭수 ×10', data:[290, 0], backgroundColor: ink, borderRadius:6, maxBarThickness: 34}
+      {label:'클릭수', data:[29, 0], backgroundColor: ink, borderRadius:6, maxBarThickness: 34}
     ]
   },
   options: {
     indexAxis:'y',
     responsive:true,
     maintainAspectRatio:false,
+    layout:{ padding:{right:36} },
     plugins:{
       legend:{position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
+      datalabels:{
+        display:true,
+        anchor:'end',
+        align:'end',
+        clip:false,
+        color: ink,
+        font:{size:11, weight:'600'},
+        formatter:(v)=> v.toLocaleString()
+      }
     },
     scales:{
       x:{grid:{color:grid}},
