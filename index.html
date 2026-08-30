@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>새로필라테스 네이버 광고 리포트</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --mint:#45ceb3;
+    --mint-dark:#2ea88f;
+    --mint-pale:#e8f9f5;
+    --ink:#1c2b2a;
+    --ink-soft:#5b6b6a;
+    --paper:#fbfaf7;
+    --card:#ffffff;
+    --line:#e7e2d8;
+    --warn:#e8935a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family: "Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px;}
+
+  /* Header */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:3px solid var(--ink);
+    padding-bottom:18px;margin-bottom:6px;
+  }
+  .brand{font-size:13px;letter-spacing:.14em;color:var(--mint-dark);font-weight:700;text-transform:uppercase;}
+  .title{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;}
+  .period{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .period b{color:var(--ink);font-size:15px;display:block;}
+
+  /* KPI row */
+  .kpi-row{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+    margin:28px 0 32px;
+  }
+  .kpi{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 16px;position:relative;overflow:hidden;
+  }
+  .kpi::before{
+    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--mint);
+  }
+  .kpi .label{font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
+  .kpi .value{font-size:26px;font-weight:800;letter-spacing:-0.01em;}
+  .kpi .unit{font-size:13px;font-weight:600;color:var(--ink-soft);margin-left:2px;}
+  .kpi .sub{font-size:11.5px;color:var(--mint-dark);margin-top:6px;font-weight:600;}
+
+  /* Section */
+  .section{margin-bottom:34px;}
+  .section-head{
+    display:flex;align-items:baseline;gap:8px;margin-bottom:14px;
+  }
+  .section-num{
+    font-size:12px;font-weight:800;color:var(--mint-dark);
+    background:var(--mint-pale);padding:3px 8px;border-radius:999px;
+  }
+  .section-title{font-size:17px;font-weight:800;}
+  .section-desc{font-size:12.5px;color:var(--ink-soft);margin-left:auto;}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 20px 8px;
+  }
+  .grid-2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;}
+
+  canvas{max-width:100%;}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{
+    text-align:left;font-size:11.5px;color:var(--ink-soft);font-weight:700;
+    padding:8px 10px;border-bottom:2px solid var(--ink);text-transform:uppercase;letter-spacing:.03em;
+  }
+  td{padding:10px 10px;border-bottom:1px solid var(--line);}
+  tr:last-child td{border-bottom:none;}
+  .tag{
+    display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:700;
+  }
+  .tag-mint{background:var(--mint-pale);color:var(--mint-dark);}
+  .tag-warn{background:#fdf0e6;color:#b9622b;}
+  .tag-ink{background:#eceeed;color:#3a4a49;}
+  .num{font-variant-numeric:tabular-nums;text-align:right;}
+  .name-cell{font-weight:700;}
+
+  /* Insight callout */
+  .insight{
+    background:var(--ink);color:#fff;border-radius:16px;padding:22px 24px;
+    display:flex;gap:16px;
+  }
+  .insight .mark{font-size:22px;}
+  .insight h3{margin:0 0 8px;font-size:14px;color:var(--mint);letter-spacing:.02em;}
+  .insight ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.85;color:#e8ece9;}
+  .insight li b{color:#fff;}
+
+  .footer{
+    margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:11.5px;color:var(--ink-soft);display:flex;justify-content:space-between;
+  }
+
+  /* ===== Responsive: mobile ===== */
+  @media (max-width: 640px){
+    .wrap{padding:24px 16px 60px;}
+    .masthead{flex-direction:column;align-items:flex-start;gap:10px;}
+    .period{text-align:left;}
+    .title{font-size:24px;}
+
+    .kpi-row{grid-template-columns:repeat(2,1fr);gap:10px;}
+    .kpi{padding:14px 12px;}
+    .kpi .value{font-size:21px;}
+
+    .grid-2{grid-template-columns:1fr;}
+
+    .section-head{flex-wrap:wrap;row-gap:4px;}
+    .section-desc{margin-left:0;flex-basis:100%;order:3;}
+
+    .card{padding:16px 14px 6px;}
+
+    table{font-size:12px;}
+    th, td{padding:8px 6px;}
+    .insight{flex-direction:column;padding:18px 16px;}
+
+    .footer{flex-direction:column;gap:4px;}
+  }
+
+  /* horizontal scroll safety for wide tables on very small screens */
+  @media (max-width: 420px){
+    .card table{display:block;overflow-x:auto;white-space:nowrap;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div>
+      <div class="brand">SAERO PILATES · 새로필라테스</div>
+      <div class="title">네이버 검색광고 주간 리포트</div>
+    </div>
+    <div class="period">
+      집계 기간<b>2026.08.26 — 08.29 (4일)</b>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">총 노출수</div>
+      <div class="value">1,375<span class="unit">회</span></div>
+      <div class="sub">일 평균 344회</div>
+    </div>
+    <div class="kpi">
+      <div class="label">총 클릭수</div>
+      <div class="value">29<span class="unit">회</span></div>
+      <div class="sub">일 평균 7.3회</div>
+    </div>
+    <div class="kpi">
+      <div class="label">평균 클릭률</div>
+      <div class="value">2.11<span class="unit">%</span></div>
+      <div class="sub">업종 평균 수준</div>
+    </div>
+    <div class="kpi">
+      <div class="label">총 광고비</div>
+      <div class="value">18,648<span class="unit">원</span></div>
+      <div class="sub">클릭당 평균 643원</div>
+    </div>
+  </div>
+
+  <!-- Section 1: Daily trend -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <span class="section-title">일별 추이</span>
+      <span class="section-desc">노출·클릭·비용이 8/28에 가장 높음</span>
+    </div>
+    <div class="card">
+      <canvas id="dailyChart" height="90"></canvas>
+    </div>
+  </div>
+
+  <!-- Section 2: campaign type breakdown -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">광고 유형별 성과 — 파워링크 vs 플레이스</span>
+      <span class="section-desc">플레이스 광고가 예산의 90% 사용</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <canvas id="groupChart" height="200"></canvas>
+      </div>
+      <div class="card">
+        <canvas id="costPie" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: table -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">캠페인 상세 지표</span>
+      <span class="section-desc">노원필라테스(파워링크) 그룹은 8/26 하루만 집행 후 중단 — 데이터 제외</span>
+    </div>
+    <div class="card" style="padding-bottom:20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>광고 유형</th>
+            <th>광고그룹(키워드)</th>
+            <th class="num">노출수</th>
+            <th class="num">클릭수</th>
+            <th class="num">클릭률</th>
+            <th class="num">총비용</th>
+            <th class="num">평균CPC</th>
+            <th class="num">평균순위</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-mint">플레이스 광고</span></td>
+            <td class="name-cell">새로필라테스</td>
+            <td class="num">942</td>
+            <td class="num">24</td>
+            <td class="num">2.55%</td>
+            <td class="num">16,786원</td>
+            <td class="num">699원</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-ink">파워링크 광고</span></td>
+            <td class="name-cell">노원역필라테스</td>
+            <td class="num">433</td>
+            <td class="num">5</td>
+            <td class="num">1.15%</td>
+            <td class="num">1,862원</td>
+            <td class="num">372원</td>
+            <td class="num">2.79위</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:10px;">※ 평균순위는 파워링크 광고에만 적용되는 지표입니다. 플레이스 광고는 별도의 노출 순위 개념을 사용하지 않습니다.</div>
+    </div>
+  </div>
+
+  <!-- Section 4: media -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">매체 · 기기별 분포</span>
+      <span class="section-desc">모바일이 노출의 87% 차지 (노원필라테스 제외)</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <canvas id="mediaChart" height="200"></canvas>
+      </div>
+      <div class="card">
+        <canvas id="deviceChart" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: rank trend + keyword matching -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-title">파워링크 노출순위 추이</span>
+      <span class="section-desc">평균 2.79위 · 낮을수록 상단 노출</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <canvas id="rankChart" height="200"></canvas>
+      </div>
+      <div class="card" style="padding-bottom:14px;">
+        <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;">키워드 매칭 방식별 비교 (파워링크)</div>
+        <table>
+          <thead>
+            <tr>
+              <th>매칭 방식</th>
+              <th class="num">노출수</th>
+              <th class="num">클릭수</th>
+              <th class="num">평균순위</th>
+              <th class="num">총비용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name-cell">노원역필라테스<br><span style="font-weight:400;color:var(--ink-soft);font-size:11.5px;">직접 등록 키워드</span></td>
+              <td class="num">285</td>
+              <td class="num">2</td>
+              <td class="num">3.0위</td>
+              <td class="num">973원</td>
+            </tr>
+            <tr>
+              <td class="name-cell">자동매칭( - )<br><span style="font-weight:400;color:var(--ink-soft);font-size:11.5px;">네이버가 유사어로 노출</span></td>
+              <td class="num">148</td>
+              <td class="num">3</td>
+              <td class="num">2.4위</td>
+              <td class="num">889원</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin-top:12px;">
+          → 자동매칭 쪽이 오히려 순위·클릭 모두 더 좋음
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: search vs content placement -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-title">검색 지면 vs 콘텐츠 지면</span>
+      <span class="section-desc">콘텐츠 지면은 노출만 있고 클릭 0건</span>
+    </div>
+    <div class="card">
+      <canvas id="placementChart" height="80"></canvas>
+    </div>
+  </div>
+
+  <!-- Insight -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <span class="section-title">핵심 요약</span>
+    </div>
+    <div class="insight">
+      <div>
+        <ul>
+          <li><b>플레이스 광고(새로필라테스)가 예산의 90%를 사용 중</b> — 노출 942회·클릭 24회·비용 16,786원으로 두 유형 중 압도적 비중. 매장명을 직접 검색하는 사람이 많다는 뜻으로, 오프라인 전단·간판 효과가 온라인 검색으로 이어지고 있는 것으로 보임.</li>
+          <li><b>파워링크 광고(노원역필라테스)는 평균 2.79위 노출</b> — 상위권이긴 하나 1위는 아님. 클릭률은 1.15%로 플레이스 광고(2.55%) 대비 낮은 편.</li>
+          <li><b>자동매칭 키워드가 직접 등록 키워드보다 성과가 더 좋음</b> — 자동매칭(2.4위·클릭 3회)이 직접 등록한 "노원역필라테스"(3.0위·클릭 2회)보다 순위·클릭 모두 앞섬. 확장검색 활용을 늘려볼 여지가 있음.</li>
+          <li><b>콘텐츠 지면 노출 222회는 전부 클릭 0건</b> — 비용은 발생하지 않았지만(클릭당 과금), 콘텐츠 지면 노출이 실제 유입으로 이어지지 않고 있음.</li>
+          <li>노원필라테스(파워링크) 그룹은 <b>8/26 하루만 집행 후 중단</b>되어 이번 리포트에서 제외함.</li>
+          <li><b>모바일 비중 87%</b> — PC 광고 노출은 상대적으로 미미. 모바일 우선 전략이 맞는 방향.</li>
+          <li>8/28(금)에 노출·클릭·비용이 모두 최고치 — 요일별 패턴 축적되면 입찰 시간대 조정에 참고 가능.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 8: Action items -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <span class="section-title">다음 액션</span>
+      <span class="section-desc">이번 주 데이터 기준 확인·검토 항목</span>
+    </div>
+    <div class="card" style="padding:6px 0 6px;">
+      <table>
+        <tbody>
+          <tr>
+            <td style="width:36px;"><span class="tag tag-mint">1</span></td>
+            <td>파워링크(노원역필라테스) 평균순위 2.79위 — 입찰가를 소폭 올려 1~2위 진입 시도해볼지 검토</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-mint">2</span></td>
+            <td>자동매칭 키워드가 직접 등록 키워드보다 성과 좋음 — 관련 확장 키워드(노원역리포머필라테스 등) 추가 등록 검토</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-mint">3</span></td>
+            <td>콘텐츠 지면 노출 222회·클릭 0건 — 노출 지면에서 콘텐츠 매체 제외 옵션 확인</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-mint">4</span></td>
+            <td>8/28(금) 피크 요일 — 다음 주 데이터로 요일 패턴 재확인 후 요일별 입찰가 조정 검토</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>새로필라테스 · 노원구 노해로 492, 5층 503호</span>
+    <span>네이버 검색광고 다운로드 기준 · 관범 정리</span>
+  </div>
+
+</div>
+
+<script>
+const mint = '#45ceb3';
+const mintDark = '#2ea88f';
+const ink = '#1c2b2a';
+const warn = '#e8935a';
+const grid = '#eee9de';
+
+Chart.defaults.font.family = "Pretendard, 'Apple SD Gothic Neo', sans-serif";
+Chart.defaults.color = '#5b6b6a';
+
+// 1. Daily trend - combo
+new Chart(document.getElementById('dailyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)'],
+    datasets: [
+      {
+        type: 'bar',
+        label: '노출수',
+        data: [150, 315, 526, 384],
+        backgroundColor: '#cdeee7',
+        borderRadius: 6,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: '총비용(원)',
+        data: [497, 4559, 8500, 5092],
+        borderColor: mintDark,
+        backgroundColor: mintDark,
+        borderWidth: 3,
+        tension: 0.35,
+        pointRadius: 5,
+        pointBackgroundColor: mintDark,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    interaction: {mode:'index', intersect:false},
+    plugins: {
+      legend: {position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
+    },
+    scales: {
+      y: {position:'left', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:11}}},
+      y1:{position:'right', grid:{display:false}, title:{display:true,text:'비용(원)',font:{size:11}}}
+    }
+  }
+});
+
+// 2. Campaign-type bar (clicks & impressions)
+new Chart(document.getElementById('groupChart'), {
+  type: 'bar',
+  data: {
+    labels: [['플레이스 광고','(새로필라테스)'],['파워링크 광고','(노원역필라테스)']],
+    datasets: [
+      {label:'노출수', data:[942,433], backgroundColor: mint, borderRadius:6, barThickness: 26},
+      {label:'클릭수 ×10', data:[240,50], backgroundColor: ink, borderRadius:6, barThickness: 26}
+    ]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true,
+    plugins:{
+      legend:{position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
+      title:{display:true, text:'광고 유형별 노출 · 클릭(×10) 비교', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    scales:{ x:{grid:{color:grid}}, y:{grid:{display:false}, ticks:{font:{size:11}}} }
+  }
+});
+
+// 3. Cost share pie
+new Chart(document.getElementById('costPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['플레이스 광고','파워링크 광고'],
+    datasets: [{
+      data: [16786, 1862],
+      backgroundColor: [mint, ink],
+      borderWidth: 3,
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive:true,
+    plugins:{
+      legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
+      title:{display:true, text:'광고비 비중 (총 18,648원)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    cutout:'62%'
+  }
+});
+
+// 4. Media breakdown
+new Chart(document.getElementById('mediaChart'), {
+  type: 'bar',
+  data: {
+    labels: ['네이버 플레이스\n모바일','네이버 통합검색\n모바일','MLB파크\n모바일','네이버 플레이스\nPC','네이버 통합검색\nPC'],
+    datasets: [{
+      label:'노출수',
+      data:[620, 378, 141, 92, 50],
+      backgroundColor: mint,
+      borderRadius:6,
+      barThickness: 20
+    }]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true,
+    plugins:{
+      legend:{display:false},
+      title:{display:true, text:'노출수 상위 매체', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    scales:{ x:{grid:{color:grid}}, y:{grid:{display:false}, ticks:{font:{size:10.5}}} }
+  }
+});
+
+// 5. Device pie
+new Chart(document.getElementById('deviceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['모바일','PC'],
+    datasets: [{
+      data: [1191, 184],
+      backgroundColor: [mint, ink],
+      borderWidth: 3,
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive:true,
+    plugins:{
+      legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
+      title:{display:true, text:'기기별 노출 비중', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    cutout:'62%'
+  }
+});
+
+// 6. Rank trend (lower = better, so reverse y axis)
+new Chart(document.getElementById('rankChart'), {
+  type: 'line',
+  data: {
+    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)'],
+    datasets: [{
+      label: '평균노출순위',
+      data: [2.49, 2.88, 3.11, 2.84],
+      borderColor: mintDark,
+      backgroundColor: 'rgba(69,206,179,0.12)',
+      borderWidth: 3,
+      tension: 0.35,
+      pointRadius: 5,
+      pointBackgroundColor: mintDark,
+      fill: true
+    }]
+  },
+  options: {
+    responsive:true,
+    plugins:{
+      legend:{display:false},
+      title:{display:true, text:'파워링크(노원역필라테스) 일별 평균순위 · 낮을수록 상단', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    scales:{
+      y:{reverse:true, min:1, grid:{color:grid}, title:{display:true,text:'순위',font:{size:11}}, ticks:{stepSize:1}},
+      x:{grid:{display:false}}
+    }
+  }
+});
+
+// 7. Search vs content placement
+new Chart(document.getElementById('placementChart'), {
+  type: 'bar',
+  data: {
+    labels: ['검색 지면','콘텐츠 지면'],
+    datasets: [
+      {label:'노출수', data:[1153, 222], backgroundColor: mint, borderRadius:6, barThickness: 36},
+      {label:'클릭수 ×10', data:[290, 0], backgroundColor: ink, borderRadius:6, barThickness: 36}
+    ]
+  },
+  options: {
+    indexAxis:'y',
+    responsive:true,
+    plugins:{
+      legend:{position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
+    },
+    scales:{ x:{grid:{color:grid}}, y:{grid:{display:false}} }
+  }
+});
+</script>
+</body>
+</html>
