@@ -526,7 +526,8 @@ new Chart(document.getElementById('dailyChart'), {
         data: [150, 315, 526, 384],
         backgroundColor: '#cdeee7',
         borderRadius: 6,
-        yAxisID: 'y'
+        yAxisID: 'y',
+        order: 1
       },
       {
         type: 'line',
@@ -539,6 +540,7 @@ new Chart(document.getElementById('dailyChart'), {
         pointRadius: 5,
         pointBackgroundColor: mintDark,
         yAxisID: 'y1',
+        order: 0,
         datalabels: {
           display: true,
           align: 'top',
