@@ -262,6 +262,10 @@
     </div>
     <div class="grid-2">
       <div class="card">
+        <div style="display:flex;gap:16px;font-size:11.5px;color:var(--ink-soft);margin-bottom:2px;">
+          <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#45ceb3;display:inline-block;"></span>플레이스 광고</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#1c2b2a;display:inline-block;"></span>파워링크 광고</span>
+        </div>
         <canvas id="mediaChart" height="200"></canvas>
       </div>
       <div class="card">
@@ -507,7 +511,7 @@ new Chart(document.getElementById('mediaChart'), {
     datasets: [{
       label:'노출수',
       data:[620, 378, 141, 92, 50],
-      backgroundColor: mint,
+      backgroundColor: [mint, ink, mint, mint, ink],
       borderRadius:6,
       barThickness: 20
     }]
