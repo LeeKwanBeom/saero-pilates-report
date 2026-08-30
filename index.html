@@ -15,6 +15,9 @@
   :root{
     --mint:#45ceb3;
     --mint-dark:#2ea88f;
+    --mint-deep:#1a5c4d;
+    --mint-mid:#7fe0cb;
+    --mint-light:#bdf0e4;
     --mint-pale:#e8f9f5;
     --ink:#1c2b2a;
     --ink-soft:#5b6b6a;
@@ -22,6 +25,8 @@
     --card:#ffffff;
     --line:#e7e2d8;
     --warn:#e8935a;
+    --shadow-sm: 0 1px 3px rgba(28,43,42,0.05), 0 1px 2px rgba(28,43,42,0.04);
+    --shadow-md: 0 8px 24px rgba(28,43,42,0.06), 0 2px 6px rgba(28,43,42,0.04);
   }
   *{box-sizing:border-box;}
   body{
@@ -30,18 +35,33 @@
     color:var(--ink);
     font-family: "Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px;position:relative;}
 
   /* Header */
   .masthead{
     display:flex;justify-content:space-between;align-items:flex-end;
-    border-bottom:3px solid var(--ink);
-    padding-bottom:18px;margin-bottom:6px;
+    padding-bottom:20px;margin-bottom:6px;position:relative;
+    border-bottom:none;
   }
-  .brand{font-size:13px;letter-spacing:.14em;color:var(--mint-dark);font-weight:700;text-transform:uppercase;}
-  .title{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;}
-  .period{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .masthead::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+    background:linear-gradient(90deg, var(--mint-deep) 0%, var(--mint) 45%, var(--mint-light) 100%);
+    border-radius:3px;
+  }
+  .header-blob{
+    position:absolute;top:-30px;right:-40px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--mint-pale) 0%, rgba(232,249,245,0) 70%);
+    pointer-events:none;z-index:0;
+  }
+  .brand{font-size:13px;letter-spacing:.14em;color:var(--mint-dark);font-weight:700;text-transform:uppercase;position:relative;z-index:1;}
+  .title{
+    font-size:31px;font-weight:800;letter-spacing:-0.02em;margin-top:4px;position:relative;z-index:1;
+    background:linear-gradient(90deg, var(--ink) 35%, var(--mint-deep) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .period{text-align:right;font-size:13px;color:var(--ink-soft);line-height:1.6;position:relative;z-index:1;}
   .period b{color:var(--ink);font-size:15px;display:block;}
 
   /* KPI row */
@@ -50,16 +70,27 @@
     margin:28px 0 32px;
   }
   .kpi{
-    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
     padding:18px 16px;position:relative;overflow:hidden;
+    box-shadow:var(--shadow-sm);
   }
   .kpi::before{
-    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--mint);
+    content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent, var(--mint));
   }
-  .kpi .label{font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
-  .kpi .value{font-size:26px;font-weight:800;letter-spacing:-0.01em;}
+  .kpi::after{
+    content:"";position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;
+    background:var(--accent, var(--mint));opacity:0.08;
+  }
+  .kpi .icon{
+    position:absolute;top:14px;right:14px;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent, var(--mint-dark));opacity:0.85;
+  }
+  .kpi .icon svg{width:18px;height:18px;}
+  .kpi .label{font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;position:relative;}
+  .kpi .value{font-size:27px;font-weight:800;letter-spacing:-0.01em;position:relative;}
   .kpi .unit{font-size:13px;font-weight:600;color:var(--ink-soft);margin-left:2px;}
-  .kpi .sub{font-size:11.5px;color:var(--mint-dark);margin-top:6px;font-weight:600;}
+  .kpi .sub{font-size:11.5px;color:var(--accent, var(--mint-dark));margin-top:6px;font-weight:700;position:relative;}
 
   /* Section */
   .section{margin-bottom:34px;}
@@ -68,14 +99,17 @@
   }
   .section-num{
     font-size:12px;font-weight:800;color:var(--mint-dark);
-    background:var(--mint-pale);padding:3px 8px;border-radius:999px;
+    background:var(--mint-pale);padding:3px 9px;border-radius:999px;
   }
+  .section-num.n2{color:var(--mint-deep);background:var(--mint-light);}
+  .section-num.n3{color:#fff;background:var(--mint);}
+  .section-num.n4{color:#fff;background:var(--mint-dark);}
   .section-title{font-size:17px;font-weight:800;}
   .section-desc{font-size:12.5px;color:var(--ink-soft);margin-left:auto;}
 
   .card{
-    background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:20px 20px 8px;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px 20px 8px;box-shadow:var(--shadow-sm);
   }
   .grid-2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;}
 
@@ -100,17 +134,28 @@
 
   /* Insight callout */
   .insight{
-    background:var(--ink);color:#fff;border-radius:16px;padding:22px 24px;
-    display:flex;gap:16px;
+    background:linear-gradient(135deg, var(--ink) 0%, var(--mint-deep) 130%);
+    color:#fff;border-radius:18px;padding:22px 24px;
+    display:flex;gap:16px;box-shadow:var(--shadow-md);
   }
   .insight .mark{font-size:22px;}
-  .insight h3{margin:0 0 8px;font-size:14px;color:var(--mint);letter-spacing:.02em;}
-  .insight ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.85;color:#e8ece9;}
+  .insight h3{margin:0 0 8px;font-size:14px;color:var(--mint-light);letter-spacing:.02em;}
+  .insight ul{margin:0;padding-left:4px;font-size:13.5px;line-height:1.85;color:#e8ece9;list-style:none;}
+  .insight li{position:relative;padding-left:20px;margin-bottom:2px;}
+  .insight li::before{
+    content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;
+    background:var(--mint-mid);
+  }
   .insight li b{color:#fff;}
 
   .footer{
-    margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
+    margin-top:40px;padding-top:16px;position:relative;
     font-size:11.5px;color:var(--ink-soft);display:flex;justify-content:space-between;
+  }
+  .footer::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, var(--mint-light) 0%, var(--mint) 50%, var(--mint-deep) 100%);
+    opacity:0.6;
   }
 
   /* ===== Responsive: mobile ===== */
@@ -148,6 +193,7 @@
 <div class="wrap">
 
   <div class="masthead">
+    <div class="header-blob"></div>
     <div>
       <div class="brand">SAERO PILATES · 새로필라테스</div>
       <div class="title">네이버 검색광고 주간 리포트</div>
@@ -159,22 +205,26 @@
 
   <!-- KPI -->
   <div class="kpi-row">
-    <div class="kpi">
+    <div class="kpi" style="--accent:var(--mint);">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
       <div class="label">총 노출수</div>
       <div class="value">1,375<span class="unit">회</span></div>
       <div class="sub">일 평균 344회</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:var(--mint-dark);">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9l10.5-3-3 10.5L13 13l-4 4-3-3 4-4z"/></svg></div>
       <div class="label">총 클릭수</div>
       <div class="value">29<span class="unit">회</span></div>
       <div class="sub">일 평균 7.3회</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:var(--mint-deep);">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 5-6"/></svg></div>
       <div class="label">평균 클릭률</div>
       <div class="value">2.11<span class="unit">%</span></div>
       <div class="sub">업종 평균 수준</div>
     </div>
-    <div class="kpi">
+    <div class="kpi" style="--accent:var(--ink);">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5.9 2.5 2.2c0 2.8-5 1.6-5 4.4 0 1.3 1.1 2.4 2.5 2.4s2.5-1.1 2.5-2.5"/></svg></div>
       <div class="label">총 광고비</div>
       <div class="value">18,648<span class="unit">원</span></div>
       <div class="sub">클릭당 평균 643원</div>
@@ -196,7 +246,7 @@
   <!-- Section 2: campaign type breakdown -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">02</span>
+      <span class="section-num n2">02</span>
       <span class="section-title">광고 유형별 성과 — 파워링크 vs 플레이스</span>
       <span class="section-desc">플레이스 광고가 예산의 90% 사용</span>
     </div>
@@ -213,7 +263,7 @@
   <!-- Section 3: table -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">03</span>
+      <span class="section-num n3">03</span>
       <span class="section-title">캠페인 상세 지표</span>
       <span class="section-desc">노원필라테스(파워링크) 그룹은 8/26 하루만 집행 후 중단 — 데이터 제외</span>
     </div>
@@ -261,7 +311,7 @@
   <!-- Section 4: media -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">04</span>
+      <span class="section-num n4">04</span>
       <span class="section-title">매체 · 기기별 분포</span>
       <span class="section-desc">모바일이 노출의 87% 차지 (노원필라테스 제외)</span>
     </div>
@@ -329,7 +379,7 @@
   <!-- Section 6: search vs content placement -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">06</span>
+      <span class="section-num n2">06</span>
       <span class="section-title">검색 지면 vs 콘텐츠 지면</span>
       <span class="section-desc">콘텐츠 지면은 노출만 있고 클릭 0건</span>
     </div>
@@ -343,7 +393,7 @@
   <!-- Insight -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">07</span>
+      <span class="section-num n3">07</span>
       <span class="section-title">핵심 요약</span>
     </div>
     <div class="insight">
@@ -364,7 +414,7 @@
   <!-- Section 8: Action items -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">08</span>
+      <span class="section-num n4">08</span>
       <span class="section-title">다음 액션</span>
       <span class="section-desc">이번 주 데이터 기준 확인·검토 항목</span>
     </div>
