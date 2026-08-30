@@ -527,7 +527,16 @@ new Chart(document.getElementById('dailyChart'), {
         backgroundColor: '#cdeee7',
         borderRadius: 6,
         yAxisID: 'y',
-        order: 1
+        order: 1,
+        datalabels: {
+          display: true,
+          anchor: 'end',
+          align: 'bottom',
+          offset: 6,
+          color: ink,
+          font: {size:11, weight:'700'},
+          formatter: (v) => v.toLocaleString()
+        }
       },
       {
         type: 'line',
