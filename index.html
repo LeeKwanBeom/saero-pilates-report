@@ -324,7 +324,9 @@
       <span class="section-desc">콘텐츠 지면은 노출만 있고 클릭 0건</span>
     </div>
     <div class="card">
-      <canvas id="placementChart" height="80"></canvas>
+      <div style="height:180px;">
+        <canvas id="placementChart"></canvas>
+      </div>
     </div>
   </div>
 
@@ -570,6 +572,7 @@ new Chart(document.getElementById('placementChart'), {
   options: {
     indexAxis:'y',
     responsive:true,
+    maintainAspectRatio:false,
     plugins:{
       legend:{position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
     },
