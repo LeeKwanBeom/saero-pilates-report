@@ -563,10 +563,115 @@
     </div>
   </div>
 
-  <!-- Section 8: search vs content placement -->
+  <!-- Section 8: detailed region analysis -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">08</span>
+      <span class="section-num n4">08</span>
+      <span class="section-title">상세지역 분석</span>
+      <span class="section-desc">타겟 지역(노원·도봉·강북·중랑·성북) 비중 53%</span>
+    </div>
+    <div class="card" style="padding-bottom:20px;">
+      <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>상세지역</th>
+            <th class="num">노출수</th>
+            <th class="num">클릭수</th>
+            <th class="num">총비용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-cell">서울특별시 노원구</td>
+            <td class="num">740</td>
+            <td class="num">18</td>
+            <td class="num">11,709원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">서울특별시 도봉구</td>
+            <td class="num">162</td>
+            <td class="num">2</td>
+            <td class="num">2,135원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">국내 - 상세 위치 확인불가</td>
+            <td class="num">89</td>
+            <td class="num">7</td>
+            <td class="num">5,717원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">서울특별시 강남구</td>
+            <td class="num">62</td>
+            <td class="num">0</td>
+            <td class="num">0원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">서울특별시 성북구</td>
+            <td class="num">54</td>
+            <td class="num">2</td>
+            <td class="num">697원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">경기도 성남시 수정구</td>
+            <td class="num">44</td>
+            <td class="num">1</td>
+            <td class="num">805원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">서울특별시 강북구</td>
+            <td class="num">35</td>
+            <td class="num">0</td>
+            <td class="num">0원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">경기도 성남시 분당구</td>
+            <td class="num">32</td>
+            <td class="num">0</td>
+            <td class="num">0원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">경기도 남양주시</td>
+            <td class="num">30</td>
+            <td class="num">1</td>
+            <td class="num">537원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">서울특별시 중구</td>
+            <td class="num">26</td>
+            <td class="num">2</td>
+            <td class="num">1,434원</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin-top:12px;">
+        → 노원구 단독으로 전체 노출의 39%·클릭의 45% 차지 — 상권 핵심 지역에 정확히 도달 중
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 9: hourly analysis -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num n4">09</span>
+      <span class="section-title">시간대별 분석</span>
+      <span class="section-desc">22시대 클릭 최다 — 상시 문의 대응 전략과 부합</span>
+    </div>
+    <div class="card">
+      <div style="height:280px;">
+        <canvas id="hourlyChart"></canvas>
+      </div>
+      <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin:12px 0;">
+        → 심야(22시~09시)에도 노출 433회·클릭 15회(전체 클릭의 37.5%)·비용 8,875원 발생. 매장 운영시간 외에도 카카오톡·네이버톡톡으로 상시 문의 대응이 가능해, 24시간 유입을 놓치지 않는 전략과 맞아떨어짐.
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 10: search vs content placement -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">10</span>
       <span class="section-title">검색 지면 vs 콘텐츠 지면</span>
       <span class="section-desc">콘텐츠 지면은 노출만 있고 클릭 0건</span>
     </div>
@@ -580,7 +685,7 @@
   <!-- Insight -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">09</span>
+      <span class="section-num">11</span>
       <span class="section-title">핵심 요약</span>
     </div>
     <div class="insight">
@@ -593,15 +698,17 @@
           <li>노원필라테스(파워링크) 그룹은 <b>8/26 하루만 집행 후 중단</b>되어 이번 리포트에서 제외함.</li>
           <li><b>모바일 비중 87%</b> — PC 광고 노출은 상대적으로 미미. 모바일 우선 전략이 맞는 방향.</li>
           <li><b>노출·클릭은 8/28(금)에 최고치</b>였으나, <b>광고비는 8/30(일)에 8,576원으로 새로 최고치를 경신</b> — 주말 클릭당 단가가 상대적으로 높아지는 패턴이 이어지는지 다음 주에 확인 필요.</li>
+          <li><b>노원구 상권 도달률 양호</b> — 전체 노출의 39%·클릭의 45%가 노원구 자체에서 발생. 타겟 지역(노원·도봉·강북·중랑·성북) 합산으로는 53%.</li>
+          <li><b>심야 시간대(22시~09시)에도 전체 클릭의 37.5%가 발생</b> — 매장 운영시간 외 문의는 카카오톡·네이버톡톡으로 상시 대응 가능해, 24시간 유입 전략이 실제로 작동 중임을 데이터로 확인.</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Section 10: Action items -->
+  <!-- Section 12: Action items -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">10</span>
+      <span class="section-num">12</span>
       <span class="section-title">다음 액션</span>
       <span class="section-desc">이번 주 데이터 기준 확인·검토 항목</span>
     </div>
@@ -624,6 +731,10 @@
           <tr>
             <td><span class="tag tag-mint">3</span></td>
             <td>8/30(일) 광고비 최고치(8,576원) — 주말 단가 상승이 반복 패턴인지 다음 주 데이터로 재확인 후 요일별 입찰가 조정 검토</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-mint">4</span></td>
+            <td>"위치 확인불가" 지역에서 5,717원 집행(클릭 7건) — 위치 정보 없는 기기 노출 비중이 계속 크면 지역 타겟팅 범위 재검토</td>
           </tr>
         </tbody>
       </table>
@@ -842,6 +953,35 @@ new Chart(document.getElementById('rankChart'), {
     scales:{
       y:{reverse:true, min:1, grid:{color:grid}, title:{display:true,text:'순위',font:{size:11}}, ticks:{stepSize:1}},
       x:{grid:{display:false}}
+    }
+  }
+});
+
+// 7b. Hourly click pattern (night hours highlighted)
+new Chart(document.getElementById('hourlyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['0시','1시','2시','3시','4시','5시','6시','7시','8시','9시','10시','11시','12시','13시','14시','15시','16시','17시','18시','19시','20시','21시','22시','23시'],
+    datasets: [{
+      label: '클릭수',
+      data: [2,2,0,0,0,0,0,0,2,3,1,2,1,1,2,4,3,2,1,2,2,1,6,3],
+      backgroundColor: ['ink','ink','ink','ink','ink','ink','ink','ink','ink',
+        'mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint',
+        'ink','ink'].map(c => c==='ink' ? ink : mint),
+      borderRadius: 5,
+      maxBarThickness: 22
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {display:false},
+      title: {display:true, text:'시간대별 클릭수 (진한색 = 영업시간 외)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+    },
+    scales: {
+      x: {grid:{display:false}, ticks:{font:{size:9.5}, maxRotation:0, autoSkip:true, maxTicksLimit:12}},
+      y: {grid:{color:grid}, ticks:{stepSize:1}}
     }
   }
 });
