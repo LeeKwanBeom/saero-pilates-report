@@ -211,7 +211,9 @@
       <span class="section-desc">노출·클릭 8/28 최고, 비용은 8/30 최고</span>
     </div>
     <div class="card">
-      <canvas id="dailyChart" height="90"></canvas>
+      <div style="height:280px;">
+        <canvas id="dailyChart"></canvas>
+      </div>
     </div>
   </div>
 
@@ -699,8 +701,9 @@ new Chart(document.getElementById('dailyChart'), {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     interaction: {mode:'index', intersect:false},
-    layout: { padding: {top: 10} },
+    layout: { padding: {top: 24} },
     plugins: {
       legend: {position:'top', align:'end', labels:{usePointStyle:true, boxWidth:8}},
     },
