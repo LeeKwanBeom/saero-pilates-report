@@ -995,7 +995,7 @@ new Chart(document.getElementById('hourlyChart'), {
         yAxisID: 'y1',
         order: 0,
         datalabels: {
-          display: true,
+          display: (ctx) => ctx.dataset.data[ctx.dataIndex] !== 0,
           align: 'top',
           anchor: 'end',
           offset: 6,
