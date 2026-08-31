@@ -967,12 +967,23 @@ new Chart(document.getElementById('hourlyChart'), {
       data: [2,2,0,0,0,0,0,0,2,3,1,2,1,1,2,4,3,2,1,2,2,1,6,3],
       backgroundColor: mint,
       borderRadius: 5,
-      maxBarThickness: 22
+      maxBarThickness: 22,
+      datalabels: {
+        display: true,
+        anchor: 'end',
+        align: 'top',
+        offset: 2,
+        clip: false,
+        color: ink,
+        font: {size:9.5, weight:'700'},
+        formatter: (v) => v
+      }
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    layout: { padding: {top: 18} },
     plugins: {
       legend: {display:false},
       title: {display:true, text:'시간대별 클릭수', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
