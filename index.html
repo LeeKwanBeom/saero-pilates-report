@@ -909,23 +909,32 @@ new Chart(document.getElementById('mediaChart'), {
 
 // 5. Device pie
 new Chart(document.getElementById('deviceChart'), {
-  type: 'doughnut',
+  type: 'bar',
   data: {
-    labels: ['모바일','PC'],
-    datasets: [{
-      data: [1634, 234],
-      backgroundColor: [mint, ink],
-      borderWidth: 3,
-      borderColor: '#fff'
-    }]
+    labels: ['PC','모바일'],
+    datasets: [
+      {label:'플레이스', data:[180, 1166], backgroundColor: mint, borderRadius:6, maxBarThickness: 34},
+      {label:'파워링크', data:[54, 468], backgroundColor: ink, borderRadius:6, maxBarThickness: 34}
+    ]
   },
   options: {
     responsive:true,
     plugins:{
       legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
-      title:{display:true, text:'기기별 노출 비중', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+      title:{display:true, text:'기기별 노출수 — 플레이스 vs 파워링크', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}},
+      datalabels:{
+        display:true,
+        anchor:'end',
+        align:'top',
+        color: ink,
+        font:{size:10.5, weight:'600'},
+        formatter:(v)=> v.toLocaleString()
+      }
     },
-    cutout:'62%'
+    scales:{
+      x:{grid:{display:false}},
+      y:{grid:{color:grid}}
+    }
   }
 });
 
