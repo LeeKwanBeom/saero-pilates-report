@@ -965,9 +965,7 @@ new Chart(document.getElementById('hourlyChart'), {
     datasets: [{
       label: '클릭수',
       data: [2,2,0,0,0,0,0,0,2,3,1,2,1,1,2,4,3,2,1,2,2,1,6,3],
-      backgroundColor: ['ink','ink','ink','ink','ink','ink','ink','ink','ink',
-        'mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint','mint',
-        'ink','ink'].map(c => c==='ink' ? ink : mint),
+      backgroundColor: mint,
       borderRadius: 5,
       maxBarThickness: 22
     }]
@@ -977,7 +975,7 @@ new Chart(document.getElementById('hourlyChart'), {
     maintainAspectRatio: false,
     plugins: {
       legend: {display:false},
-      title: {display:true, text:'시간대별 클릭수 (진한색 = 영업시간 외)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+      title: {display:true, text:'시간대별 클릭수', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
     },
     scales: {
       x: {grid:{display:false}, ticks:{font:{size:9.5}, maxRotation:0, autoSkip:true, maxTicksLimit:12}},
