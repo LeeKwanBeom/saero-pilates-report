@@ -962,35 +962,64 @@ new Chart(document.getElementById('hourlyChart'), {
   type: 'bar',
   data: {
     labels: ['0시','1시','2시','3시','4시','5시','6시','7시','8시','9시','10시','11시','12시','13시','14시','15시','16시','17시','18시','19시','20시','21시','22시','23시'],
-    datasets: [{
-      label: '클릭수',
-      data: [2,2,0,0,0,0,0,0,2,3,1,2,1,1,2,4,3,2,1,2,2,1,6,3],
-      backgroundColor: mint,
-      borderRadius: 5,
-      maxBarThickness: 22,
-      datalabels: {
-        display: true,
-        anchor: 'end',
-        align: 'top',
-        offset: 2,
-        clip: false,
-        color: ink,
-        font: {size:9.5, weight:'700'},
-        formatter: (v) => v
+    datasets: [
+      {
+        type: 'bar',
+        label: '노출수',
+        data: [27,7,3,1,2,6,20,29,76,65,87,100,94,119,126,113,103,122,128,104,118,161,158,104],
+        backgroundColor: '#cdeee7',
+        borderRadius: 5,
+        yAxisID: 'y',
+        order: 1,
+        maxBarThickness: 22,
+        datalabels: {
+          display: true,
+          anchor: 'start',
+          align: 'top',
+          offset: 4,
+          color: ink,
+          font: {size:8.5, weight:'700'},
+          formatter: (v) => v
+        }
+      },
+      {
+        type: 'line',
+        label: '클릭수',
+        data: [2,2,0,0,0,0,0,0,2,3,1,2,1,1,2,4,3,2,1,2,2,1,6,3],
+        borderColor: mintDark,
+        backgroundColor: mintDark,
+        borderWidth: 2.5,
+        tension: 0.35,
+        pointRadius: 3,
+        pointBackgroundColor: mintDark,
+        yAxisID: 'y1',
+        order: 0,
+        datalabels: {
+          display: true,
+          align: 'top',
+          anchor: 'end',
+          offset: 6,
+          clip: false,
+          color: ink,
+          font: {size:9, weight:'700'},
+          formatter: (v) => v
+        }
       }
-    }]
+    ]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {mode:'index', intersect:false},
     layout: { padding: {top: 18} },
     plugins: {
-      legend: {display:false},
-      title: {display:true, text:'시간대별 클릭수', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+      legend: {position:'bottom', labels:{usePointStyle:true, boxWidth:8}},
+      title: {display:true, text:'시간대별 노출·클릭수', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
     },
     scales: {
       x: {grid:{display:false}, ticks:{font:{size:9.5}, maxRotation:0, autoSkip:true, maxTicksLimit:12}},
-      y: {grid:{color:grid}, ticks:{stepSize:1}}
+      y: {position:'left', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:10.5}}},
+      y1:{position:'right', grid:{display:false}, title:{display:true,text:'클릭수',font:{size:10.5}}, ticks:{stepSize:1}}
     }
   }
 });
