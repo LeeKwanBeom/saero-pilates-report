@@ -1038,7 +1038,7 @@ new Chart(document.getElementById('costPie'), {
         formatter:(v, ctx) => {
           const total = ctx.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
           const pct = Math.round(v/total*100);
-          return [v.toLocaleString() + '원', pct + '%'];
+          return [v.toLocaleString() + '원', '(' + pct + '%)'];
         }
       }
     },
