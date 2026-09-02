@@ -879,7 +879,13 @@ new Chart(document.getElementById('costPie'), {
     responsive:true,
     plugins:{
       legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
-      title:{display:true, text:'광고비 비중 (총 27,224원)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
+      title:{display:true, text:'광고비 비중 (총 27,224원)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}},
+      datalabels:{
+        display:true,
+        color:'#fff',
+        font:{size:10.5, weight:'700'},
+        formatter:(v)=> v.toLocaleString() + '원'
+      }
     },
     cutout:'62%'
   }
