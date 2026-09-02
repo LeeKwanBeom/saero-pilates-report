@@ -1034,7 +1034,12 @@ new Chart(document.getElementById('costPie'), {
         display:true,
         color:'#fff',
         font:{size:10.5, weight:'700'},
-        formatter:(v)=> v.toLocaleString() + '원'
+        textAlign:'center',
+        formatter:(v, ctx) => {
+          const total = ctx.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+          const pct = Math.round(v/total*100);
+          return [v.toLocaleString() + '원', pct + '%'];
+        }
       }
     },
     cutout:'62%'
