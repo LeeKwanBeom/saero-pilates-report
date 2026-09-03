@@ -214,8 +214,10 @@
       <span class="section-desc">노출 8/28 최고, 비용은 9/3 최고치 경신</span>
     </div>
     <div class="card">
-      <div style="height:280px;">
-        <canvas id="dailyChart"></canvas>
+      <div style="overflow-x:auto;">
+        <div style="height:280px; min-width:720px;">
+          <canvas id="dailyChart"></canvas>
+        </div>
       </div>
     </div>
     <div class="card" style="margin-top:12px; padding-bottom:20px;">
@@ -1219,6 +1221,7 @@ new Chart(document.getElementById('dailyChart'), {
       legend: {position:'bottom', labels:{usePointStyle:true, boxWidth:8}},
     },
     scales: {
+      x: {grid:{display:false}, ticks:{font:{size:10.5}, maxRotation:0, autoSkip:false}},
       y: {position:'left', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:11}}},
       y1:{position:'right', grid:{display:false}, title:{display:true,text:'비용(원)',font:{size:11}}}
     }
