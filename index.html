@@ -132,7 +132,6 @@
   /* 가로 스크롤 차트 wrapper + 힌트 */
   .scroll-x{overflow-x:auto;}
   .scroll-hint{font-size:11px;color:var(--ink-soft);margin-bottom:6px;}
-  @media (min-width:901px){ .scroll-hint{display:none;} }
 
   /* Insight callout */
   .insight{
@@ -242,8 +241,7 @@
       <span class="section-desc">노출 8/28 최고, 비용은 9/3 최고치</span>
     </div>
     <div class="card">
-      <div class="scroll-hint">← 좌우로 밀어서 전체 날짜 보기</div>
-      <div style="overflow-x:auto;">
+      <div class="scroll-x" style="overflow-x:auto;">
         <div style="height:280px; min-width:800px;">
           <canvas id="dailyChart"></canvas>
         </div>
@@ -1052,8 +1050,7 @@
       <span class="section-desc">13~14시대 클릭 최다 — 상시 문의 대응 전략과 부합</span>
     </div>
     <div class="card">
-      <div class="scroll-hint">← 좌우로 밀어서 전체 시간대 보기</div>
-      <div style="overflow-x:auto;">
+      <div class="scroll-x" style="overflow-x:auto;">
         <div style="height:280px; min-width:650px;">
           <canvas id="hourlyChart"></canvas>
         </div>
@@ -1529,6 +1526,31 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').catch(() => {});
   });
 }
+</script>
+<script>
+// 가로 스크롤이 실제로 필요한 영역에만 안내 문구를 자동으로 붙임.
+// 표에 컬럼이 늘거나 화면 크기가 바뀌어도 알아서 맞춰지므로,
+// 새 표를 추가할 때 안내 문구를 수동으로 넣을 필요 없음 (wrapper에 .wide-table 또는 .scroll-x만 주면 됨)
+(function(){
+  function sync(){
+    document.querySelectorAll('.wide-table, .scroll-x').forEach(function(box){
+      var needs = box.scrollWidth > box.clientWidth + 4;
+      var prev = box.previousElementSibling;
+      var has = prev && prev.classList && prev.classList.contains('scroll-hint');
+      if (needs && !has) {
+        var hint = document.createElement('div');
+        hint.className = 'scroll-hint';
+        hint.textContent = '← 좌우로 밀어서 전체 보기';
+        box.parentNode.insertBefore(hint, box);
+      } else if (!needs && has) {
+        prev.remove();
+      }
+    });
+  }
+  window.addEventListener('load', sync);
+  var t;
+  window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(sync, 200); });
+})();
 </script>
 </body>
 </html>
