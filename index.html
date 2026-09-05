@@ -31,7 +31,6 @@
     --paper:#fbfaf7;
     --card:#ffffff;
     --line:#e7e2d8;
-    --warn:#e8935a;
   }
   *{box-sizing:border-box;}
   body{
@@ -117,10 +116,23 @@
     display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:700;
   }
   .tag-mint{background:var(--mint-pale);color:var(--mint-dark);}
-  .tag-warn{background:#fdf0e6;color:#b9622b;}
   .tag-ink{background:#eceeed;color:#3a4a49;}
   .num{font-variant-numeric:tabular-nums;text-align:right;}
   .name-cell{font-weight:700;}
+  /* 클릭률 4% 이상 강조 — 인라인 스타일 대신 이 클래스만 사용할 것 */
+  .ctr-high{color:var(--mint-dark);font-weight:800;}
+  /* 반복되는 보조 설명 문단 */
+  .note{font-size:11.5px;color:var(--ink-soft);line-height:1.7;}
+  .note-mint{font-size:11.5px;color:var(--mint-dark);font-weight:600;line-height:1.7;}
+  .sub-head{font-size:11.5px;font-weight:700;color:var(--ink);margin:18px 0 8px;}
+  /* 요약카드 숫자 그리드 */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .stat-grid .k{font-size:11px;color:var(--ink-soft);margin-bottom:4px;}
+  .stat-grid .v{font-size:19px;font-weight:800;}
+  /* 가로 스크롤 차트 wrapper + 힌트 */
+  .scroll-x{overflow-x:auto;}
+  .scroll-hint{font-size:11px;color:var(--ink-soft);margin-bottom:6px;}
+  @media (min-width:901px){ .scroll-hint{display:none;} }
 
   /* Insight callout */
   .insight{
@@ -128,7 +140,6 @@
     color:#fff;border-radius:16px;padding:22px 24px;
     display:flex;gap:16px;
   }
-  .insight .mark{font-size:22px;}
   .insight h3{margin:0 0 8px;font-size:14px;color:var(--mint);letter-spacing:.02em;}
   .insight ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.85;color:#e8ece9;}
   .insight li b{color:#fff;}
@@ -141,6 +152,13 @@
     content:"";position:absolute;top:0;left:0;right:0;height:2px;
     background:linear-gradient(90deg, #bdf0e4 0%, var(--mint) 50%, #1a5c4d 100%);
     opacity:0.6;
+  }
+
+  /* ===== Responsive: tablet ===== */
+  @media (max-width: 900px) and (min-width: 641px){
+    .wrap{padding:32px 20px 70px;}
+    .grid-2{grid-template-columns:1fr;}
+    .grid-2-07{grid-template-columns:1fr;}
   }
 
   /* ===== Responsive: mobile ===== */
@@ -171,7 +189,7 @@
 
   /* horizontal scroll safety for wide tables on very small screens */
   @media (max-width: 420px){
-    table{white-space:nowrap;}
+    .wide-table table{white-space:nowrap;}
   }
 </style>
 </head>
@@ -224,6 +242,7 @@
       <span class="section-desc">노출 8/28 최고, 비용은 9/3 최고치</span>
     </div>
     <div class="card">
+      <div class="scroll-hint">← 좌우로 밀어서 전체 날짜 보기</div>
       <div style="overflow-x:auto;">
         <div style="height:280px; min-width:800px;">
           <canvas id="dailyChart"></canvas>
@@ -234,15 +253,16 @@
       <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:4px;">노출 감소 관찰 — 9/1~9/4 패턴 업데이트</div>
       <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;">노출은 9/1 이후 521 → 334 → 230까지 줄었다가, 9/4엔 297로 소폭 반등함. 완전히 원래 수준으로 돌아온 건 아니지만, 지난주 관찰했던 "계속 줄어드는" 패턴이 9/4엔 일단 멈춘 모습. 클릭 수·비용은 이 구간 내내 유지·증가 추세를 유지 중.</div>
 
-      <div style="font-size:11.5px;font-weight:700;color:var(--ink);margin-bottom:8px;">① 일별 CTR·CPC</div>
-      <div style="overflow-x:auto;">
+      <div class="sub-head" style="margin-top:0;">① 일별 지표 — 노출 감소 구간의 CTR·지면 변화</div>
+      <div style="overflow-x:auto;" class="wide-table">
       <table>
         <thead>
           <tr>
             <th>날짜</th>
             <th class="num">노출</th>
+            <th class="num">검색</th>
+            <th class="num">콘텐츠</th>
             <th class="num">클릭</th>
-            <th class="num">비용</th>
             <th class="num">CTR</th>
             <th class="num">CPC</th>
           </tr>
@@ -251,83 +271,56 @@
           <tr>
             <td class="name-cell">8/31(월)</td>
             <td class="num">489</td>
+            <td class="num">342</td>
+            <td class="num">147</td>
             <td class="num">10</td>
-            <td class="num">9,173원</td>
             <td class="num">2.04%</td>
             <td class="num">917원</td>
           </tr>
           <tr>
             <td class="name-cell">9/1(화)</td>
             <td class="num">521</td>
+            <td class="num">333</td>
+            <td class="num">188</td>
             <td class="num">11</td>
-            <td class="num">10,782원</td>
             <td class="num">2.11%</td>
             <td class="num">980원</td>
           </tr>
           <tr>
             <td class="name-cell">9/2(수)</td>
             <td class="num">334</td>
+            <td class="num">248</td>
+            <td class="num">86</td>
             <td class="num">9</td>
-            <td class="num">10,341원</td>
             <td class="num">2.69%</td>
             <td class="num">1,149원</td>
           </tr>
           <tr>
             <td class="name-cell">9/3(목)</td>
             <td class="num">230</td>
+            <td class="num">174</td>
+            <td class="num">56</td>
             <td class="num">12</td>
-            <td class="num">11,334원</td>
-            <td class="num" style="color:var(--mint-dark);font-weight:800;">5.22%</td>
+            <td class="num ctr-high">5.22%</td>
             <td class="num">944원</td>
           </tr>
           <tr>
             <td class="name-cell">9/4(금)</td>
             <td class="num">297</td>
+            <td class="num">170</td>
+            <td class="num ctr-high">127</td>
             <td class="num">10</td>
-            <td class="num">10,475원</td>
             <td class="num">3.37%</td>
             <td class="num">1,048원</td>
           </tr>
         </tbody>
       </table>
       </div>
-
-      <div style="font-size:11.5px;font-weight:700;color:var(--ink);margin:18px 0 8px;">② 지면별 노출 변화 — 9/4엔 콘텐츠 지면 위주로 반등</div>
-      <div style="overflow-x:auto;">
-      <table>
-        <thead>
-          <tr>
-            <th>지면</th>
-            <th class="num">8/31</th>
-            <th class="num">9/1</th>
-            <th class="num">9/2</th>
-            <th class="num">9/3</th>
-            <th class="num">9/4</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="name-cell">검색 지면</td>
-            <td class="num">342</td>
-            <td class="num">333</td>
-            <td class="num">248</td>
-            <td class="num">174</td>
-            <td class="num">170</td>
-          </tr>
-          <tr>
-            <td class="name-cell">콘텐츠 지면</td>
-            <td class="num">147</td>
-            <td class="num">188</td>
-            <td class="num">86</td>
-            <td class="num">56</td>
-            <td class="num" style="color:var(--mint-dark);font-weight:800;">127</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="note" style="margin-top:8px;">
+        노출이 줄어드는 동안 CTR은 오히려 올랐고(2.04% → 5.22%), 9/4 반등은 검색 지면(174→170, 거의 그대로)이 아니라 콘텐츠 지면(56→127)이 끌어올림.
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-top:8px;">검색 지면은 9/3~9/4 사이 거의 그대로(174→170)인데, 콘텐츠 지면(MLB파크 등)이 56→127로 반등하며 9/4 전체 노출 회복을 이끈 것으로 보임.</div>
 
-      <div style="font-size:11.5px;font-weight:700;color:var(--ink);margin:18px 0 8px;">③ 플레이스 광고 평균노출순위</div>
+      <div class="sub-head">② 플레이스 광고 평균노출순위 <span style="font-weight:400;color:var(--ink-soft);">(06번의 파워링크 키워드 순위와는 다른 지표)</span></div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px;">
         <div>
           <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">8/31</div>
@@ -367,103 +360,23 @@
     </div>
     <div class="grid-2">
       <div class="card">
-        <canvas id="groupChart" height="200"></canvas>
+        <div style="height:240px;"><canvas id="groupChart"></canvas></div>
       </div>
       <div class="card">
-        <canvas id="costPie" height="200"></canvas>
+        <div style="height:240px;"><canvas id="costPie"></canvas></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 3: table -->
+  <!-- Section 3: daily spend by campaign type -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
-      <span class="section-title">캠페인 상세 지표</span>
-      <span class="section-desc">신규 키워드 3개 등록 후 관찰 지속 중</span>
-    </div>
-    <div class="card" style="padding-bottom:20px;">
-      <div style="overflow-x:auto;">
-      <table>
-        <thead>
-          <tr>
-            <th>광고 유형</th>
-            <th>광고그룹(키워드)</th>
-            <th class="num">노출수</th>
-            <th class="num">클릭수</th>
-            <th class="num">클릭률</th>
-            <th class="num">총비용</th>
-            <th class="num">평균CPC</th>
-            <th class="num">평균순위</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tag tag-mint">플레이스 광고</span></td>
-            <td class="name-cell">새로필라테스</td>
-            <td class="num">2,755</td>
-            <td class="num">74</td>
-            <td class="num">2.69%</td>
-            <td class="num">71,788원</td>
-            <td class="num">970원</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-ink">파워링크 광고</span></td>
-            <td class="name-cell">노원역필라테스</td>
-            <td class="num">781</td>
-            <td class="num">15</td>
-            <td class="num">1.92%</td>
-            <td class="num">5,615원</td>
-            <td class="num">374원</td>
-            <td class="num">2.78위</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-ink">파워링크 광고</span></td>
-            <td class="name-cell">상계동필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(8/31 신규)</span></td>
-            <td class="num">97</td>
-            <td class="num">2</td>
-            <td class="num">2.06%</td>
-            <td class="num">1,243원</td>
-            <td class="num">622원</td>
-            <td class="num">2.24위</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-ink">파워링크 광고</span></td>
-            <td class="name-cell">노원키즈필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/2 신규)</span></td>
-            <td class="num">55</td>
-            <td class="num">0</td>
-            <td class="num">0.00%</td>
-            <td class="num">0원</td>
-            <td class="num">—</td>
-            <td class="num">2.04위</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-ink">파워링크 광고</span></td>
-            <td class="name-cell">노원산전필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/2 신규)</span></td>
-            <td class="num">51</td>
-            <td class="num">1</td>
-            <td class="num">1.96%</td>
-            <td class="num">683원</td>
-            <td class="num">683원</td>
-            <td class="num">1.90위</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <div style="font-size:11px;color:var(--ink-soft);margin-top:10px;">※ 평균순위는 파워링크 광고에만 적용되는 지표입니다. 플레이스 광고는 별도의 노출 순위 개념을 사용하지 않습니다. 노원필라테스(파워링크) 그룹은 8/26 이후 노출이 미미(클릭 0)하여 데이터에서 제외했습니다.</div>
-    </div>
-  </div>
-
-  <!-- Section 4: daily spend by campaign type -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-num">04</span>
       <span class="section-title">일별 광고비 — 파워링크 vs 플레이스</span>
       <span class="section-desc">9/3(목) 광고비 최고치</span>
     </div>
     <div class="card" style="padding-bottom:20px;">
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" class="wide-table">
       <table>
         <thead>
           <tr>
@@ -598,12 +511,152 @@
     </div>
   </div>
 
+  <!-- Section 4: campaign detail table -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">캠페인 상세 지표</span>
+      <span class="section-desc">신규 키워드 3개 등록 후 관찰 지속 중</span>
+    </div>
+    <div class="card" style="padding-bottom:20px;">
+      <div style="overflow-x:auto;" class="wide-table">
+      <table>
+        <thead>
+          <tr>
+            <th>광고 유형</th>
+            <th>광고그룹(키워드)</th>
+            <th class="num">노출수</th>
+            <th class="num">클릭수</th>
+            <th class="num">클릭률</th>
+            <th class="num">총비용</th>
+            <th class="num">평균CPC</th>
+            <th class="num">평균순위</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-mint">플레이스 광고</span></td>
+            <td class="name-cell">새로필라테스</td>
+            <td class="num">2,755</td>
+            <td class="num">74</td>
+            <td class="num">2.69%</td>
+            <td class="num">71,788원</td>
+            <td class="num">970원</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-ink">파워링크 광고</span></td>
+            <td class="name-cell">노원역필라테스</td>
+            <td class="num">781</td>
+            <td class="num">15</td>
+            <td class="num">1.92%</td>
+            <td class="num">5,615원</td>
+            <td class="num">374원</td>
+            <td class="num">2.78위</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-ink">파워링크 광고</span></td>
+            <td class="name-cell">상계동필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(8/31 신규)</span></td>
+            <td class="num">97</td>
+            <td class="num">2</td>
+            <td class="num">2.06%</td>
+            <td class="num">1,243원</td>
+            <td class="num">622원</td>
+            <td class="num">2.24위</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-ink">파워링크 광고</span></td>
+            <td class="name-cell">노원키즈필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/2 신규)</span></td>
+            <td class="num">55</td>
+            <td class="num">0</td>
+            <td class="num">0.00%</td>
+            <td class="num">0원</td>
+            <td class="num">—</td>
+            <td class="num">2.04위</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-ink">파워링크 광고</span></td>
+            <td class="name-cell">노원산전필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/2 신규)</span></td>
+            <td class="num">51</td>
+            <td class="num">1</td>
+            <td class="num">1.96%</td>
+            <td class="num">683원</td>
+            <td class="num">683원</td>
+            <td class="num">1.90위</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:10px;">※ 평균순위는 파워링크 광고에만 적용되는 지표입니다. 플레이스 광고는 별도의 노출 순위 개념을 사용하지 않습니다. 노원필라테스(파워링크) 그룹은 8/26 이후 노출이 미미(클릭 0)하여 데이터에서 제외했습니다.</div>
+    </div>
+    <div class="card" style="margin-top:12px;padding-bottom:20px;">
+      <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:4px;">클릭당 비용(CPC) 비교 — 예산 효율</div>
+      <div class="note" style="margin-bottom:14px;">같은 1클릭을 데려오는 데 드는 비용. 낮을수록 효율이 좋음.</div>
+      <div style="overflow-x:auto;" class="wide-table">
+      <table>
+        <thead>
+          <tr>
+            <th>광고</th>
+            <th class="num">클릭</th>
+            <th class="num">광고비</th>
+            <th class="num">CPC</th>
+            <th class="num">예산 비중</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-cell"><span class="tag tag-mint">플레이스</span> 새로필라테스</td>
+            <td class="num">74</td>
+            <td class="num">71,788원</td>
+            <td class="num">970원</td>
+            <td class="num">90.5%</td>
+          </tr>
+          <tr>
+            <td class="name-cell"><span class="tag tag-ink">파워링크</span> 노원역필라테스</td>
+            <td class="num">15</td>
+            <td class="num">5,615원</td>
+            <td class="num ctr-high">374원</td>
+            <td class="num">7.1%</td>
+          </tr>
+          <tr>
+            <td class="name-cell"><span class="tag tag-ink">파워링크</span> 상계동필라테스</td>
+            <td class="num">2</td>
+            <td class="num">1,243원</td>
+            <td class="num ctr-high">622원</td>
+            <td class="num">1.6%</td>
+          </tr>
+          <tr>
+            <td class="name-cell"><span class="tag tag-ink">파워링크</span> 노원산전필라테스</td>
+            <td class="num">1</td>
+            <td class="num">683원</td>
+            <td class="num ctr-high">683원</td>
+            <td class="num">0.9%</td>
+          </tr>
+          <tr>
+            <td class="name-cell"><span class="tag tag-ink">파워링크</span> 노원키즈필라테스</td>
+            <td class="num">0</td>
+            <td class="num">0원</td>
+            <td class="num">–</td>
+            <td class="num">0.0%</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="note-mint" style="margin-top:12px;">
+        → 파워링크 "노원역필라테스"는 클릭당 374원으로 플레이스(970원)의 <b>약 2.6배 저렴</b>. 그런데 예산의 90.5%는 플레이스에 쓰이고 있음.
+      </div>
+      <div class="note" style="margin-top:8px;">
+        다만 두 광고는 성격이 달라 CPC만으로 우열을 가리기는 어려움 — 플레이스는 매장명·지도 검색에서 노출돼 방문 의도가 더 뚜렷한 유입일 수 있고, 파워링크는 저렴한 대신 아직 클릭 절대량이 적음(전체 92클릭 중 18건). 파워링크 키워드를 늘려가며 클릭량이 유지되는지 지켜본 뒤 예산 비중 조정을 검토하는 게 안전해 보임.
+      </div>
+    </div>
+  </div>
+
   <!-- Section 5: media -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">05</span>
       <span class="section-title">매체 · 기기별 분포</span>
-      <span class="section-desc">모바일이 노출의 82% 차지 (노원필라테스 제외)</span>
+      <span class="section-desc">모바일이 노출의 82% 차지</span>
     </div>
     <div class="grid-2">
       <div class="card">
@@ -611,7 +664,7 @@
           <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#45ceb3;display:inline-block;"></span>플레이스 광고</span>
           <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#1c2b2a;display:inline-block;"></span>파워링크 광고</span>
         </div>
-        <canvas id="mediaChart" height="200"></canvas>
+        <div style="height:240px;"><canvas id="mediaChart"></canvas></div>
       </div>
       <div class="card">
         <div style="height:260px;">
@@ -625,16 +678,16 @@
   <div class="section">
     <div class="section-head">
       <span class="section-num">06</span>
-      <span class="section-title">파워링크 노출순위 추이</span>
+      <span class="section-title">파워링크 키워드 노출순위 추이</span>
       <span class="section-desc">평균 2.78위 · 낮을수록 상단 노출</span>
     </div>
     <div class="grid-2">
       <div class="card">
-        <canvas id="rankChart" height="200"></canvas>
+        <div style="height:240px;"><canvas id="rankChart"></canvas></div>
       </div>
       <div class="card" style="padding-bottom:14px;">
         <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;">키워드 매칭 방식별 비교 (파워링크)</div>
-        <div style="overflow-x:auto;">
+        <div style="overflow-x:auto;" class="wide-table">
         <table>
           <thead>
             <tr>
@@ -672,78 +725,36 @@
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
         <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">상계동필라테스 <span style="color:var(--mint-dark);font-weight:700;">(8/31 등록, 5일차)</span></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">노출수</div>
-          <div style="font-size:19px;font-weight:800;">97</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">클릭수</div>
-          <div style="font-size:19px;font-weight:800;">2</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">평균순위</div>
-          <div style="font-size:19px;font-weight:800;color:var(--mint-dark);">2.24위</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">총비용</div>
-          <div style="font-size:19px;font-weight:800;">1,243원</div>
-        </div>
+      <div style="display:flex;align-items:baseline;gap:10px;">
+        <div style="font-size:11px;color:var(--ink-soft);">평균노출순위</div>
+        <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">2.24위</div>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:14px;">
-        5일치 데이터, "노원역필라테스"(2.78위)보다 상위 순위(2.24위) 유지 중. 9/4엔 신규 노출·클릭이 없었음 — 절반 정도(약 10일)까지 조금 더 지켜본 뒤 별도 추이 그래프로 승격 검토.
+      <div class="note" style="margin-top:12px;">
+        5일차. "노원역필라테스"(2.78위)보다 상위 순위 유지 중. 9/4엔 신규 노출·클릭 없었음 — 10일 전후로 별도 추이 그래프 승격 검토. (노출·클릭·비용은 04번 표 참고)
       </div>
     </div>
     <div class="card" style="margin-top:12px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
         <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">노원키즈필라테스 <span style="color:var(--mint-dark);font-weight:700;">(9/2 등록, 3일차)</span></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">노출수</div>
-          <div style="font-size:19px;font-weight:800;">55</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">클릭수</div>
-          <div style="font-size:19px;font-weight:800;">0</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">평균순위</div>
-          <div style="font-size:19px;font-weight:800;color:var(--mint-dark);">2.04위</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">총비용</div>
-          <div style="font-size:19px;font-weight:800;">0원</div>
-        </div>
+      <div style="display:flex;align-items:baseline;gap:10px;">
+        <div style="font-size:11px;color:var(--ink-soft);">평균노출순위</div>
+        <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">2.04위</div>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:14px;">
-        3일치 데이터, 노출은 꾸준히 늘고 있으나(27→55) 아직 클릭은 0건. 순위 자체는 2위대로 양호한 편이라 조금 더 지켜본 뒤 입찰가 조정 여부 판단.
+      <div class="note" style="margin-top:12px;">
+        3일차. 순위는 2위대로 양호하나 노출이 늘어도(27→55) 아직 클릭 0건 — 조금 더 지켜본 뒤 입찰가 조정 여부 판단. (노출·클릭·비용은 04번 표 참고)
       </div>
     </div>
     <div class="card" style="margin-top:12px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
         <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">노원산전필라테스 <span style="color:var(--mint-dark);font-weight:700;">(9/2 등록, 3일차)</span></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">노출수</div>
-          <div style="font-size:19px;font-weight:800;">51</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">클릭수</div>
-          <div style="font-size:19px;font-weight:800;">1</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">평균순위</div>
-          <div style="font-size:19px;font-weight:800;color:var(--mint-dark);">1.90위</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">총비용</div>
-          <div style="font-size:19px;font-weight:800;">683원</div>
-        </div>
+      <div style="display:flex;align-items:baseline;gap:10px;">
+        <div style="font-size:11px;color:var(--ink-soft);">평균노출순위</div>
+        <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">1.90위</div>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:14px;">
-        3일치 데이터, 4개 키워드 중 평균순위가 가장 좋음(1.90위). 클릭은 9/2 이후 아직 추가되지 않았지만 순위가 안정적으로 상단권 유지 중.
+      <div class="note" style="margin-top:12px;">
+        3일차. 파워링크 4개 키워드 중 평균순위가 가장 좋음. 클릭은 9/2 이후 추가되지 않았지만 순위는 안정적으로 상단권 유지. (노출·클릭·비용은 04번 표 참고)
       </div>
     </div>
   </div>
@@ -753,11 +764,11 @@
     <div class="section-head">
       <span class="section-num">07</span>
       <span class="section-title">실제 검색어 분석</span>
-      <span class="section-desc">'필라테스' 단독 검색어가 두 번째로 큰 비중</span>
+      <span class="section-desc">'필라테스' 단독 검색어가 클릭수 1위</span>
     </div>
     <div class="grid-2-07">
       <div class="card" style="padding-bottom:20px;">
-        <div style="overflow-x:auto;">
+        <div style="overflow-x:auto;" class="wide-table">
         <table>
           <thead>
             <tr>
@@ -776,7 +787,7 @@
               <td><span class="tag tag-mint">일치</span></td>
               <td class="num">480</td>
               <td class="num">22</td>
-              <td class="num" style="color:var(--mint-dark);font-weight:800;">4.58%</td>
+              <td class="num ctr-high">4.58%</td>
               <td class="num">888원</td>
               <td class="num">19,534원</td>
             </tr>
@@ -794,7 +805,7 @@
               <td><span class="tag tag-mint">일치</span></td>
               <td class="num">140</td>
               <td class="num">12</td>
-              <td class="num" style="color:var(--mint-dark);font-weight:800;">8.57%</td>
+              <td class="num ctr-high">8.57%</td>
               <td class="num">1,003원</td>
               <td class="num">12,039원</td>
             </tr>
@@ -803,7 +814,7 @@
               <td><span class="tag tag-mint">일치</span></td>
               <td class="num">41</td>
               <td class="num">6</td>
-              <td class="num" style="color:var(--mint-dark);font-weight:800;">14.63%</td>
+              <td class="num ctr-high">14.63%</td>
               <td class="num">882원</td>
               <td class="num">5,290원</td>
             </tr>
@@ -821,7 +832,7 @@
               <td><span class="tag tag-mint">일치</span></td>
               <td class="num">61</td>
               <td class="num">3</td>
-              <td class="num" style="color:var(--mint-dark);font-weight:800;">4.92%</td>
+              <td class="num ctr-high">4.92%</td>
               <td class="num">1,220원</td>
               <td class="num">3,660원</td>
             </tr>
@@ -848,7 +859,7 @@
               <td><span class="tag tag-ink">확장</span></td>
               <td class="num">7</td>
               <td class="num">2</td>
-              <td class="num" style="color:var(--mint-dark);font-weight:800;">28.57%</td>
+              <td class="num ctr-high">28.57%</td>
               <td class="num">410원</td>
               <td class="num">820원</td>
             </tr>
@@ -873,6 +884,15 @@
             노원구필라테스(147회/1,280원) · 필라테스노원역(4회/482원) · 노원산전필라테스(2회/480원) · 노원운동(11회/1,354원) · 운동(38회/1,198원) · 스포츠(13회/1,215원) · 노원역필라테스1:1비용(1회/256원) · 새로필라테스노원(1회/518원) · 노원1:1필라테스(1회/683원) · 노원필라테스시니어(1회/415원) · 자세교정노원역(1회/329원)
           </div>
         </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);">
+          <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">노출은 있으나 클릭 0건인 검색어 <span style="font-weight:400;">(노출 5회 이상만)</span></div>
+          <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
+            노원역근처필라테스(150회) · 노원구인근필라테스(45회) · 나다운필라테스(44회) · 노원구근처필라테스(30회) · 노원새로필라테스(26회) · 마들필라테스(26회) · 상계필라테스(24회) · 근처필라테스(18회) · 새로오픈(18회) · 노원어린이체험(10회) · 창동역운동(9회) · 중계동은행사거리필라테스(8회) · 노원역5번출구(7회) · 노원시니어운동(7회) · 노원역지도(7회) · 필라테스인노원(7회) · 노원역아기랑(6회) · 은행사거리필라테스(6회) · 필라테스노원(6회)
+          </div>
+          <div class="note" style="margin-top:8px;">
+            이 검색어들은 비용이 발생하지 않았지만(클릭 0), 노출만 반복되는 패턴이 이어지면 소재·순위를 점검하거나 제외 키워드 등록을 검토할 근거가 됨. 클릭 0인 검색어 전체는 150개·노출 658회.
+          </div>
+        </div>
       </div>
       <div class="card" style="padding-bottom:14px;">
         <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;">신규 키워드 등록 후보</div>
@@ -885,9 +905,9 @@
           <span class="tag tag-mint">마들역필라테스</span>
         </div>
         <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin-bottom:10px;">
-          ✓ "상계동필라테스"(8/31), "노원키즈필라테스"·"노원산전필라테스"(9/2)는 후보로 추천 후 실제 등록되어 집행 중 (03·06번 섹션 참고)
+          ✓ "상계동필라테스"(8/31), "노원키즈필라테스"·"노원산전필라테스"(9/2)는 후보로 추천 후 실제 등록되어 집행 중 (04·06번 섹션 참고)
         </div>
-        <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;">
+        <div class="note">
           확장매칭·인접 지역 검색으로 이미 클릭이 발생 중인 검색어들. 직접 키워드로 등록하면 입찰가·순위를 개별 관리할 수 있음. "필라테스"(노출480·클릭22)와 "노원역필라테스"(노출570·클릭21)가 이번 주 클릭 1·2위 — "노원필라테스"(노출140·클릭12·CTR 8.57%)도 여전히 미등록 상태에서 최상위권 성과 유지 중.
         </div>
         <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:10px;">
@@ -897,7 +917,7 @@
     </div>
     <div class="card" style="margin-top:12px; padding-bottom:20px;">
       <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;">경쟁사 브랜드명 검색어</div>
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" class="wide-table">
       <table>
         <thead>
           <tr>
@@ -969,7 +989,7 @@
         </tbody>
       </table>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin-top:12px;">
+      <div class="note" style="margin-top:12px;">
         경쟁사·타 스튜디오 브랜드명으로 추정되는 검색어 목록. 기존 6곳 모두 노원구·도봉구 인근 실제 업체로 확인됨. 젠필라테스·와우필라테스는 실제 클릭까지 발생 — 비교 검토 중인 잠재고객 유입으로 볼 수 있음.
       </div>
     </div>
@@ -978,12 +998,12 @@
   <!-- Section 8: detailed region analysis -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num n4">08</span>
+      <span class="section-num">08</span>
       <span class="section-title">상세지역 분석</span>
       <span class="section-desc">타겟 지역(노원·도봉·강북·중랑·성북) 비중 59%</span>
     </div>
     <div class="card" style="padding-bottom:20px;">
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" class="wide-table">
       <table>
         <thead>
           <tr>
@@ -1057,8 +1077,17 @@
         </tbody>
       </table>
       </div>
-      <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin-top:12px;">
-        → 노원구 단독으로 전체 노출의 41%·클릭의 48% 차지 — 상권 핵심 지역에 정확히 도달 중
+      <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px;">
+        <div class="sub-head" style="margin:0 0 6px;">TOP 10 외 지역 중 클릭 발생분 <span style="font-weight:400;color:var(--ink-soft);">(12개 지역·클릭 18건)</span></div>
+        <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
+          성동구(노출48·클릭4) · 중랑구(노출31·클릭2) · 종로구(노출25·클릭2) · 양주시(노출14·클릭2) · 서초구(노출26·클릭1) · 파주시(노출21·클릭1) · 동작구(노출14·클릭1) · 인천 검단구(노출13·클릭1) · 고양시 일산동구(노출13·클릭1) · 구리시(노출11·클릭1) · 안산시 상록구(노출6·클릭1) · 부산 연제구(노출2·클릭1)
+        </div>
+        <div class="note" style="margin-top:8px;">
+          이 외 클릭 0인 163개 지역에서 노출 834회 발생. TOP 10 + 위 목록으로 전체 클릭 92건이 모두 표시됨.<br>※ 이 섹션의 노출 합계는 3,745회로 상단 KPI(3,739회)와 6회 차이가 있음 — 상세지역 보고서에는 광고그룹 구분이 없어 종료된 "노원필라테스" 그룹이 분리되지 않기 때문. 비중 계산도 3,745 기준.
+        </div>
+      </div>
+      <div class="note-mint" style="margin-top:12px;">
+        → 노원구 단독으로 전체 노출의 41%·클릭의 48% 차지 — 상권 핵심 지역에 정확히 도달 중. 타겟 지역 5곳 중 중랑구는 TOP 10 밖이라 위 목록에 있음.
       </div>
     </div>
   </div>
@@ -1066,11 +1095,12 @@
   <!-- Section 9: hourly analysis -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num n4">09</span>
+      <span class="section-num">09</span>
       <span class="section-title">시간대별 분석</span>
       <span class="section-desc">13~14시대 클릭 최다 — 상시 문의 대응 전략과 부합</span>
     </div>
     <div class="card">
+      <div class="scroll-hint">← 좌우로 밀어서 전체 시간대 보기</div>
       <div style="overflow-x:auto;">
         <div style="height:280px; min-width:650px;">
           <canvas id="hourlyChart"></canvas>
@@ -1078,6 +1108,9 @@
       </div>
       <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin:12px 0;">
         → 심야(22시~09시)에도 노출 750회·클릭 23회(전체 클릭의 25%)·비용 15,032원 발생. 매장 운영시간 외에도 카카오톡·네이버톡톡으로 상시 문의 대응이 가능해, 24시간 유입을 놓치지 않는 전략과 맞아떨어짐.
+      </div>
+      <div class="note" style="margin-bottom:12px;">
+        ※ 이 섹션의 노출 합계는 3,745회로 상단 KPI(3,739회)와 6회 차이가 있음 — 시간대별 보고서에는 광고그룹 구분이 없어 종료된 "노원필라테스" 그룹이 분리되지 않기 때문.
       </div>
     </div>
   </div>
@@ -1129,7 +1162,7 @@
       <span class="section-desc">이번 주 데이터 기준 확인·검토 항목</span>
     </div>
     <div class="card" style="padding:6px 0 6px;">
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" class="wide-table">
       <table>
         <tbody>
           <tr>
@@ -1175,6 +1208,17 @@
         </tbody>
       </table>
       </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:34px;padding-bottom:18px;">
+    <div class="sub-head" style="margin-top:0;">집계 기준</div>
+    <div class="note">
+      · <b>집계 기간</b>: 개업일(2026.08.26)부터 누적. 매주 새 데이터가 더해지는 방식이며, 특정 주만 잘라 보는 방식이 아님<br>
+      · <b>제외 규칙</b>: 종료된 파워링크 광고그룹 "노원필라테스"는 8/26 이후 노출이 미미(클릭 0)하여 KPI·01~07·10번 집계에서 제외함. 단 08·09번은 원본 보고서에 광고그룹 구분이 없어 포함된 값(노출 3,745회)을 사용 — 6회 차이<br>
+      · <b>평균노출순위</b>: 단순 평균이 아니라 <b>노출수 가중평균</b>으로 계산함(노출이 많은 날에 더 큰 가중치). 네이버 광고시스템 화면의 단순 평균값과 다를 수 있음<br>
+      · <b>타겟 지역</b>: 노원·도봉·강북·중랑·성북구 5개 자치구 합산 기준<br>
+      · <b>클릭률 강조</b>: 07번 표에서 클릭률 4% 이상인 행만 진한 민트색으로 표시
     </div>
   </div>
 
@@ -1273,6 +1317,7 @@ new Chart(document.getElementById('groupChart'), {
     ]
   },
   options: {
+    maintainAspectRatio:false,
     indexAxis:'y',
     responsive:true,
     layout:{ padding:{right:36} },
@@ -1309,6 +1354,7 @@ new Chart(document.getElementById('costPie'), {
     }]
   },
   options: {
+    maintainAspectRatio:false,
     responsive:true,
     plugins:{
       legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
@@ -1343,6 +1389,7 @@ new Chart(document.getElementById('mediaChart'), {
     }]
   },
   options: {
+    maintainAspectRatio:false,
     indexAxis:'y',
     responsive:true,
     plugins:{
@@ -1410,6 +1457,7 @@ new Chart(document.getElementById('rankChart'), {
     }]
   },
   options: {
+    maintainAspectRatio:false,
     responsive:true,
     plugins:{
       legend:{display:false},
