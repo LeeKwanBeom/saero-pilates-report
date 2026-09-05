@@ -122,12 +122,12 @@
   /* 클릭률 4% 이상 강조 — 인라인 스타일 대신 이 클래스만 사용할 것 */
   .ctr-high{color:var(--mint-dark);font-weight:800;}
   /* 반복되는 보조 설명 문단 */
-  .note{font-size:11.5px;color:var(--ink-soft);line-height:1.7;}
-  .note-mint{font-size:11.5px;color:var(--mint-dark);font-weight:600;line-height:1.7;}
-  .sub-head{font-size:11.5px;font-weight:700;color:var(--ink);margin:18px 0 8px;}
+  .note{font-size:11.5px;color:var(--ink-soft);line-height:1.55;}
+  .note-mint{font-size:11.5px;color:var(--mint-dark);font-weight:600;line-height:1.55;}
+  .sub-head{font-size:11.5px;font-weight:700;color:var(--ink);margin:12px 0 6px;}
   /* 요약카드 숫자 그리드 */
   .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  .stat-grid .k{font-size:11px;color:var(--ink-soft);margin-bottom:4px;}
+  .stat-grid .k{font-size:11px;color:var(--ink-soft);margin-bottom:2px;}
   .stat-grid .v{font-size:19px;font-weight:800;}
   /* 가로 스크롤 차트 wrapper + 힌트 */
   .scroll-x{overflow-x:auto;}
@@ -180,7 +180,7 @@
     .card{padding:16px 14px 6px;}
 
     table{font-size:12px;}
-    th, td{padding:8px 6px;}
+    th, td{padding:6px 6px;}
     .insight{flex-direction:column;padding:18px 16px;}
 
     .footer{flex-direction:column;gap:4px;}
@@ -323,31 +323,31 @@
       </div>
 
       <div class="sub-head">② 플레이스 광고 평균노출순위 <span style="font-weight:400;color:var(--ink-soft);">(06번의 파워링크 키워드 순위와는 다른 지표)</span></div>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:6px;">
         <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">8/31</div>
-          <div style="font-size:16px;font-weight:800;">3.34위</div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">8/31</div>
+          <div style="font-size:15px;font-weight:800;">3.34위</div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">9/1</div>
-          <div style="font-size:16px;font-weight:800;color:var(--mint-dark);">2.61위</div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">9/1</div>
+          <div style="font-size:15px;font-weight:800;color:var(--mint-dark);">2.61위</div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">9/2</div>
-          <div style="font-size:16px;font-weight:800;color:var(--mint-dark);">2.52위</div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">9/2</div>
+          <div style="font-size:15px;font-weight:800;color:var(--mint-dark);">2.52위</div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">9/3</div>
-          <div style="font-size:16px;font-weight:800;">3.24위</div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">9/3</div>
+          <div style="font-size:15px;font-weight:800;">3.24위</div>
         </div>
         <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:4px;">9/4</div>
-          <div style="font-size:16px;font-weight:800;color:var(--mint-dark);">2.82위</div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">9/4</div>
+          <div style="font-size:15px;font-weight:800;color:var(--mint-dark);">2.82위</div>
         </div>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;">순위는 8/31 이후로 계속 2위대~3위대를 오가며 등락 중 — 노출 증감과 뚜렷한 1:1 관계는 보이지 않음. 노출 자체는 순위 외에 다른 요인(경쟁 입찰 강도, 콘텐츠 지면 물량 등)의 영향을 더 받는 것으로 보임.</div>
+      <div class="note">순위는 8/31 이후로 계속 2위대~3위대를 오가며 등락 중 — 노출 증감과 뚜렷한 1:1 관계는 보이지 않음. 노출 자체는 순위 외에 다른 요인(경쟁 입찰 강도, 콘텐츠 지면 물량 등)의 영향을 더 받는 것으로 보임.</div>
 
-      <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;line-height:1.7;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);">
+      <div class="note-mint" style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line);">
         → 지난주 "노출이 계속 줄고 있다"는 관찰은, 9/4 하루치를 더해보니 완전한 하락 추세는 아니었던 것으로 보임 — 콘텐츠 지면 노출이 다시 늘며 부분적으로 반등함. 다만 CTR은 여전히 예전(2%대)보다 높은 3%대를 유지 중이라, "클릭 가능성 높은 사용자 위주로 노출이 재편되고 있다"는 가설 자체는 아직 유효해 보임. 노출 총량과 타겟팅 정교화가 동시에 진행 중인 그림으로 해석됨. 데이터가 더 쌓이면 이 패턴이 안정적인 추세인지, 일시적 변동인지 다음 주에 다시 확인 예정.
       </div>
     </div>
@@ -614,7 +614,7 @@
     </div>
     <div class="grid-2">
       <div class="card">
-        <div style="display:flex;gap:16px;font-size:11.5px;color:var(--ink-soft);margin-bottom:2px;">
+        <div style="display:flex;gap:16px;font-size:11.5px;color:var(--ink-soft);margin-bottom:4px;">
           <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#45ceb3;display:inline-block;"></span>플레이스 광고</span>
           <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:50%;background:#1c2b2a;display:inline-block;"></span>파워링크 광고</span>
         </div>
