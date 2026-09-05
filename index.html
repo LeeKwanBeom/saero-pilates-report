@@ -138,8 +138,7 @@
     background:var(--mint-pale);border:1px solid #bfe9de;
     padding:4px 10px;border-radius:999px;letter-spacing:-0.01em;
   }
-  /* 표가 잘려 있음을 시각적으로 알리는 오른쪽 페이드.
-     .scroll-x(차트)에는 적용하지 않음 — 차트는 잘린 게 눈에 보이므로 */
+  /* 내용이 오른쪽으로 이어짐을 알리는 페이드 (표·차트 공통) */
   .scroll-fade{position:relative;}
   .scroll-fade::after{
     content:"";position:absolute;top:0;right:0;width:38px;height:100%;
@@ -1572,7 +1571,6 @@ if ('serviceWorker' in navigator) {
   function sync(){
     document.querySelectorAll('.wide-table, .scroll-x').forEach(function(box){
       var needs = box.scrollWidth > box.clientWidth + 4;
-      var isTable = box.classList.contains('wide-table');
 
       // 1) 안내 뱃지
       var anchor = (box.parentNode && box.parentNode.classList.contains('scroll-fade'))
@@ -1588,15 +1586,15 @@ if ('serviceWorker' in navigator) {
         prev.remove();
       }
 
-      // 2) 오른쪽 페이드 (표에만 적용)
-      if (isTable && needs) {
+      // 2) 오른쪽 페이드 (표·차트 공통)
+      if (needs) {
         var wrapper = wrap(box);
         updateEnd(box, wrapper);
         if (!box.dataset.fadeBound) {
           box.dataset.fadeBound = '1';
           box.addEventListener('scroll', function(){ updateEnd(box, wrapper); }, {passive:true});
         }
-      } else if (isTable && !needs && box.parentNode.classList.contains('scroll-fade')) {
+      } else if (!needs && box.parentNode.classList.contains('scroll-fade')) {
         box.parentNode.classList.add('at-end'); // 페이드 숨김
       }
     });
