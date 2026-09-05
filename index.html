@@ -131,7 +131,22 @@
   .stat-grid .v{font-size:19px;font-weight:800;}
   /* 가로 스크롤 차트 wrapper + 힌트 */
   .scroll-x{overflow-x:auto;}
-  .scroll-hint{font-size:11px;color:var(--ink-soft);margin-bottom:6px;}
+  /* 스크롤 안내 뱃지 — 스크립트가 자동 삽입/제거함 */
+  .scroll-hint{
+    display:inline-block;margin-bottom:8px;
+    font-size:11px;font-weight:700;color:var(--mint-dark);
+    background:var(--mint-pale);border:1px solid #bfe9de;
+    padding:4px 10px;border-radius:999px;letter-spacing:-0.01em;
+  }
+  /* 표가 잘려 있음을 시각적으로 알리는 오른쪽 페이드.
+     .scroll-x(차트)에는 적용하지 않음 — 차트는 잘린 게 눈에 보이므로 */
+  .scroll-fade{position:relative;}
+  .scroll-fade::after{
+    content:"";position:absolute;top:0;right:0;width:38px;height:100%;
+    background:linear-gradient(to right, rgba(255,255,255,0), var(--card) 85%);
+    pointer-events:none;opacity:1;transition:opacity .15s ease;
+  }
+  .scroll-fade.at-end::after{opacity:0;}
 
   /* Insight callout */
   .insight{
@@ -1532,25 +1547,61 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <script>
-// 가로 스크롤이 실제로 필요한 영역에만 안내 문구를 자동으로 붙임.
+// 가로 스크롤이 실제로 필요한 영역에만 안내 뱃지 + 오른쪽 페이드를 자동으로 붙임.
 // 표에 컬럼이 늘거나 화면 크기가 바뀌어도 알아서 맞춰지므로,
-// 새 표를 추가할 때 안내 문구를 수동으로 넣을 필요 없음 (wrapper에 .wide-table 또는 .scroll-x만 주면 됨)
+// 새 표를 추가할 때 안내를 수동으로 넣을 필요 없음 (wrapper에 .wide-table 또는 .scroll-x만 주면 됨)
 (function(){
+
+  // 스크롤 컨테이너를 .scroll-fade 래퍼로 감싼다(페이드를 고정 위치에 그리기 위해).
+  // 컨테이너 자신에 ::after를 주면 내용과 같이 스크롤돼 오른쪽 끝에 고정되지 않음.
+  function wrap(box){
+    var p = box.parentNode;
+    if (p && p.classList && p.classList.contains('scroll-fade')) return p;
+    var w = document.createElement('div');
+    w.className = 'scroll-fade';
+    p.insertBefore(w, box);
+    w.appendChild(box);
+    return w;
+  }
+
+  function updateEnd(box, wrapper){
+    var atEnd = box.scrollLeft + box.clientWidth >= box.scrollWidth - 2;
+    wrapper.classList.toggle('at-end', atEnd);
+  }
+
   function sync(){
     document.querySelectorAll('.wide-table, .scroll-x').forEach(function(box){
       var needs = box.scrollWidth > box.clientWidth + 4;
-      var prev = box.previousElementSibling;
+      var isTable = box.classList.contains('wide-table');
+
+      // 1) 안내 뱃지
+      var anchor = (box.parentNode && box.parentNode.classList.contains('scroll-fade'))
+                 ? box.parentNode : box;
+      var prev = anchor.previousElementSibling;
       var has = prev && prev.classList && prev.classList.contains('scroll-hint');
       if (needs && !has) {
         var hint = document.createElement('div');
         hint.className = 'scroll-hint';
         hint.textContent = '← 좌우로 밀어서 전체 보기';
-        box.parentNode.insertBefore(hint, box);
+        anchor.parentNode.insertBefore(hint, anchor);
       } else if (!needs && has) {
         prev.remove();
       }
+
+      // 2) 오른쪽 페이드 (표에만 적용)
+      if (isTable && needs) {
+        var wrapper = wrap(box);
+        updateEnd(box, wrapper);
+        if (!box.dataset.fadeBound) {
+          box.dataset.fadeBound = '1';
+          box.addEventListener('scroll', function(){ updateEnd(box, wrapper); }, {passive:true});
+        }
+      } else if (isTable && !needs && box.parentNode.classList.contains('scroll-fade')) {
+        box.parentNode.classList.add('at-end'); // 페이드 숨김
+      }
     });
   }
+
   window.addEventListener('load', sync);
   var t;
   window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(sync, 200); });
