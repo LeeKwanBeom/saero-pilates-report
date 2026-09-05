@@ -187,6 +187,10 @@
   }
 
   /* horizontal scroll safety for wide tables on very small screens */
+  /* 넓은 표는 좁은 화면에서 찌그러지지 않도록 최소 너비를 주고 가로 스크롤 */
+  .wide-table table{min-width:560px;}
+  .wide-table.mw-md table{min-width:660px;}
+  .wide-table.mw-lg table{min-width:720px;}
   @media (max-width: 420px){
     .wide-table table{white-space:nowrap;}
   }
@@ -252,7 +256,7 @@
       <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;">노출은 9/1 이후 521 → 334 → 230까지 줄었다가, 9/4엔 297로 소폭 반등함. 완전히 원래 수준으로 돌아온 건 아니지만, 지난주 관찰했던 "계속 줄어드는" 패턴이 9/4엔 일단 멈춘 모습. 클릭 수·비용은 이 구간 내내 유지·증가 추세를 유지 중.</div>
 
       <div class="sub-head" style="margin-top:0;">① 일별 지표 — 노출 감소 구간의 CTR·지면 변화</div>
-      <div style="overflow-x:auto;" class="wide-table">
+      <div style="overflow-x:auto;" class="wide-table mw-md">
       <table>
         <thead>
           <tr>
@@ -374,7 +378,7 @@
       <span class="section-desc">9/3(목) 광고비 최고치</span>
     </div>
     <div class="card" style="padding-bottom:20px;">
-      <div style="overflow-x:auto;" class="wide-table">
+      <div style="overflow-x:auto;" class="wide-table mw-lg">
       <table>
         <thead>
           <tr>
@@ -517,7 +521,7 @@
       <span class="section-desc">신규 키워드 3개 등록 후 관찰 지속 중</span>
     </div>
     <div class="card" style="padding-bottom:20px;">
-      <div style="overflow-x:auto;" class="wide-table">
+      <div style="overflow-x:auto;" class="wide-table mw-lg">
       <table>
         <thead>
           <tr>
@@ -718,7 +722,7 @@
     </div>
     <div class="grid-2-07">
       <div class="card" style="padding-bottom:20px;">
-        <div style="overflow-x:auto;" class="wide-table">
+        <div style="overflow-x:auto;" class="wide-table mw-md">
         <table>
           <thead>
             <tr>
@@ -1111,7 +1115,7 @@
       <span class="section-desc">이번 주 데이터 기준 확인·검토 항목</span>
     </div>
     <div class="card" style="padding:6px 0 6px;">
-      <div style="overflow-x:auto;" class="wide-table">
+      <div style="overflow-x:auto;">
       <table>
         <tbody>
           <tr>
