@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="report-layout" content="r2026-10-B">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새로필라테스 네이버 광고 리포트</title>
 <meta property="og:type" content="website">
@@ -211,6 +212,11 @@
     min-width:100%;      /* 내용이 좁으면 컨테이너를 채움 */
     white-space:nowrap;  /* 셀이 줄바꿈으로 찌그러지는 것 방지 */
   }
+  /* 접기(레이아웃 판 r2026-10-B, 2026-10-06) — details.fold(태그 이름을 꺾쇠로 쓰지 말 것: validate 태그 짝이 셈): 03 이전 날짜 · 07 클릭 1건·클릭 0 목록 · 07 경쟁사표 · 08 TOP 10 밖.
+     기본 닫힘. 펼치면 아래 스크립트가 가로 스크롤 안내를 다시 맞추고, 인쇄할 때는 전부 펼쳤다가 되돌린다(css-and-layout.md "접기 안내") */
+  .fold > summary{cursor:pointer;}
+  .fold-more{font-size:12px;font-weight:700;color:var(--mint-dark);}
+  .fold[open] > .fold-more{margin-bottom:8px;}
 </style>
 </head>
 <body>
@@ -409,395 +415,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="name-cell">8/26(수)</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">497원</td>
-            <td class="num">1</td>
-            <td class="num">497원</td>
-            <td class="num">497원</td>
+          <tr style="font-weight:800;">
+            <td class="name-cell">합계</td>
+            <td class="num">406,474원</td>
+            <td class="num">306</td>
+            <td class="num">1,328원</td>
+            <td class="num">36,910원</td>
+            <td class="num">83</td>
+            <td class="num">445원</td>
+            <td class="num">443,384원</td>
           </tr>
           <tr>
-            <td class="name-cell">8/27(목)</td>
-            <td class="num">3,827원</td>
-            <td class="num">8</td>
-            <td class="num">478원</td>
-            <td class="num">732원</td>
-            <td class="num">2</td>
-            <td class="num">366원</td>
-            <td class="num">4,559원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">8/28(금)</td>
-            <td class="num">8,196원</td>
-            <td class="num">11</td>
-            <td class="num">745원</td>
-            <td class="num">304원</td>
-            <td class="num">1</td>
-            <td class="num">304원</td>
-            <td class="num">8,500원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">8/29(토)</td>
-            <td class="num">4,763원</td>
+            <td class="name-cell">10/5(월)</td>
+            <td class="num">6,803원</td>
             <td class="num">5</td>
-            <td class="num">953원</td>
-            <td class="num">329원</td>
+            <td class="num">1,361원</td>
+            <td class="num">319원</td>
             <td class="num">1</td>
-            <td class="num">329원</td>
-            <td class="num">5,092원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">8/30(일)</td>
-            <td class="num">7,412원</td>
-            <td class="num">8</td>
-            <td class="num">926원</td>
-            <td class="num">1,164원</td>
-            <td class="num">3</td>
-            <td class="num">388원</td>
-            <td class="num">8,576원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">8/31(월)</td>
-            <td class="num">8,693원</td>
-            <td class="num">9</td>
-            <td class="num">966원</td>
-            <td class="num">480원</td>
-            <td class="num">1</td>
-            <td class="num">480원</td>
-            <td class="num">9,173원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/1(화)</td>
-            <td class="num">9,571원</td>
-            <td class="num">8</td>
-            <td class="num">1,196원</td>
-            <td class="num">1,211원</td>
-            <td class="num">3</td>
-            <td class="num">404원</td>
-            <td class="num">10,782원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/2(수)</td>
-            <td class="num">10,341원</td>
-            <td class="num">9</td>
-            <td class="num">1,149원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">10,341원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/3(목)</td>
-            <td class="num">9,396원</td>
-            <td class="num">8</td>
-            <td class="num">1,174원</td>
-            <td class="num">1,938원</td>
-            <td class="num">4</td>
-            <td class="num">484원</td>
-            <td class="num">11,334원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/4(금)</td>
-            <td class="num">9,589원</td>
-            <td class="num">8</td>
-            <td class="num">1,199원</td>
-            <td class="num">886원</td>
-            <td class="num">2</td>
-            <td class="num">443원</td>
-            <td class="num">10,475원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/5(토)</td>
-            <td class="num">8,525원</td>
-            <td class="num">7</td>
-            <td class="num">1,218원</td>
-            <td class="num">242원</td>
-            <td class="num">1</td>
-            <td class="num">242원</td>
-            <td class="num">8,767원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/6(일)</td>
-            <td class="num">9,530원</td>
-            <td class="num">8</td>
-            <td class="num">1,191원</td>
-            <td class="num">383원</td>
-            <td class="num">2</td>
-            <td class="num">192원</td>
-            <td class="num">9,913원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/7(월)</td>
-            <td class="num">8,832원</td>
-            <td class="num">7</td>
-            <td class="num">1,262원</td>
-            <td class="num">2,305원</td>
-            <td class="num">6</td>
-            <td class="num">384원</td>
-            <td class="num">11,137원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/8(화)</td>
-            <td class="num">5,784원</td>
-            <td class="num">5</td>
-            <td class="num">1,157원</td>
-            <td class="num">1,137원</td>
-            <td class="num">3</td>
-            <td class="num">379원</td>
-            <td class="num">6,921원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/9(수)</td>
-            <td class="num">10,041원</td>
-            <td class="num">7</td>
-            <td class="num">1,434원</td>
-            <td class="num">1,817원</td>
-            <td class="num">3</td>
-            <td class="num">606원</td>
-            <td class="num">11,858원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/10(목)</td>
-            <td class="num">9,453원</td>
-            <td class="num">6</td>
-            <td class="num">1,576원</td>
-            <td class="num">346원</td>
-            <td class="num">1</td>
-            <td class="num">346원</td>
-            <td class="num">9,799원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/11(금)</td>
-            <td class="num">9,785원</td>
-            <td class="num">6</td>
-            <td class="num">1,631원</td>
-            <td class="num">361원</td>
-            <td class="num">1</td>
-            <td class="num">361원</td>
-            <td class="num">10,146원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/12(토)</td>
-            <td class="num">11,483원</td>
-            <td class="num">7</td>
-            <td class="num">1,640원</td>
-            <td class="num">785원</td>
-            <td class="num">2</td>
-            <td class="num">392원</td>
-            <td class="num">12,268원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/13(일)</td>
-            <td class="num">9,751원</td>
-            <td class="num">6</td>
-            <td class="num">1,625원</td>
-            <td class="num">2,752원</td>
-            <td class="num">7</td>
-            <td class="num">393원</td>
-            <td class="num">12,503원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/14(월)</td>
-            <td class="num">12,714원</td>
-            <td class="num">8</td>
-            <td class="num">1,589원</td>
-            <td class="num">698원</td>
-            <td class="num">1</td>
-            <td class="num">698원</td>
-            <td class="num">13,412원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/15(화)</td>
-            <td class="num">10,112원</td>
-            <td class="num">8</td>
-            <td class="num">1,264원</td>
-            <td class="num">1,177원</td>
-            <td class="num">2</td>
-            <td class="num">588원</td>
-            <td class="num">11,289원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/16(수)</td>
-            <td class="num">9,617원</td>
-            <td class="num">7</td>
-            <td class="num">1,374원</td>
-            <td class="num">288원</td>
-            <td class="num">1</td>
-            <td class="num">288원</td>
-            <td class="num">9,905원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/17(목)</td>
-            <td class="num">20,312원</td>
-            <td class="num">14</td>
-            <td class="num">1,451원</td>
-            <td class="num">461원</td>
-            <td class="num">1</td>
-            <td class="num">461원</td>
-            <td class="num">20,773원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/18(금)</td>
-            <td class="num">18,459원</td>
-            <td class="num">12</td>
-            <td class="num">1,538원</td>
-            <td class="num">297원</td>
-            <td class="num">1</td>
-            <td class="num">297원</td>
-            <td class="num">18,756원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/19(토)</td>
-            <td class="num">6,443원</td>
-            <td class="num">4</td>
-            <td class="num">1,611원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">6,443원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/20(일)</td>
-            <td class="num">14,951원</td>
-            <td class="num">10</td>
-            <td class="num">1,495원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">14,951원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/21(월)</td>
-            <td class="num">12,471원</td>
-            <td class="num">8</td>
-            <td class="num">1,559원</td>
-            <td class="num">1,239원</td>
-            <td class="num">3</td>
-            <td class="num">413원</td>
-            <td class="num">13,710원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/22(화)</td>
-            <td class="num">21,314원</td>
-            <td class="num">14</td>
-            <td class="num">1,522원</td>
-            <td class="num">1,283원</td>
-            <td class="num">3</td>
-            <td class="num">428원</td>
-            <td class="num">22,597원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/23(수)</td>
-            <td class="num">7,096원</td>
-            <td class="num">5</td>
-            <td class="num">1,419원</td>
-            <td class="num">742원</td>
-            <td class="num">1</td>
-            <td class="num">742원</td>
-            <td class="num">7,838원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/24(목)</td>
-            <td class="num">13,406원</td>
-            <td class="num">9</td>
-            <td class="num">1,490원</td>
-            <td class="num">462원</td>
-            <td class="num">1</td>
-            <td class="num">462원</td>
-            <td class="num">13,868원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/25(금)</td>
-            <td class="num">12,014원</td>
-            <td class="num">8</td>
-            <td class="num">1,502원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">12,014원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/26(토)</td>
-            <td class="num">6,077원</td>
-            <td class="num">4</td>
-            <td class="num">1,519원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">6,077원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/27(일)</td>
-            <td class="num">6,087원</td>
-            <td class="num">5</td>
-            <td class="num">1,217원</td>
-            <td class="num">938원</td>
-            <td class="num">2</td>
-            <td class="num">469원</td>
-            <td class="num">7,025원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/28(월)</td>
-            <td class="num">20,128원</td>
-            <td class="num">14</td>
-            <td class="num">1,438원</td>
-            <td class="num">1,322원</td>
-            <td class="num">3</td>
-            <td class="num">441원</td>
-            <td class="num">21,450원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/29(화)</td>
-            <td class="num">5,423원</td>
-            <td class="num">4</td>
-            <td class="num">1,356원</td>
-            <td class="num">2,564원</td>
-            <td class="num">4</td>
-            <td class="num">641원</td>
-            <td class="num">7,987원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">9/30(수)</td>
-            <td class="num">19,246원</td>
-            <td class="num">12</td>
-            <td class="num">1,604원</td>
-            <td class="num">2,881원</td>
-            <td class="num">5</td>
-            <td class="num">576원</td>
-            <td class="num">22,127원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">10/1(목)</td>
-            <td class="num">10,958원</td>
-            <td class="num">8</td>
-            <td class="num">1,370원</td>
-            <td class="num">1,959원</td>
-            <td class="num">5</td>
-            <td class="num">392원</td>
-            <td class="num">12,917원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">10/2(금)</td>
-            <td class="num">8,949원</td>
-            <td class="num">8</td>
-            <td class="num">1,119원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">8,949원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">10/3(토)</td>
-            <td class="num">4,845원</td>
-            <td class="num">3</td>
-            <td class="num">1,615원</td>
-            <td class="num">462원</td>
-            <td class="num">1</td>
-            <td class="num">462원</td>
-            <td class="num">5,307원</td>
+            <td class="num">319원</td>
+            <td class="num">7,122원</td>
           </tr>
           <tr>
             <td class="name-cell">10/4(일)</td>
@@ -810,28 +446,423 @@
             <td class="num">6,226원</td>
           </tr>
           <tr>
-            <td class="name-cell">10/5(월)</td>
-            <td class="num">6,803원</td>
-            <td class="num">5</td>
-            <td class="num">1,361원</td>
-            <td class="num">319원</td>
+            <td class="name-cell">10/3(토)</td>
+            <td class="num">4,845원</td>
+            <td class="num">3</td>
+            <td class="num">1,615원</td>
+            <td class="num">462원</td>
             <td class="num">1</td>
-            <td class="num">319원</td>
-            <td class="num">7,122원</td>
+            <td class="num">462원</td>
+            <td class="num">5,307원</td>
           </tr>
-          <tr style="font-weight:800;">
-            <td class="name-cell">합계</td>
-            <td class="num">406,474원</td>
-            <td class="num">306</td>
-            <td class="num">1,328원</td>
-            <td class="num">36,910원</td>
-            <td class="num">83</td>
-            <td class="num">445원</td>
-            <td class="num">443,384원</td>
+          <tr>
+            <td class="name-cell">10/2(금)</td>
+            <td class="num">8,949원</td>
+            <td class="num">8</td>
+            <td class="num">1,119원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">8,949원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">10/1(목)</td>
+            <td class="num">10,958원</td>
+            <td class="num">8</td>
+            <td class="num">1,370원</td>
+            <td class="num">1,959원</td>
+            <td class="num">5</td>
+            <td class="num">392원</td>
+            <td class="num">12,917원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/30(수)</td>
+            <td class="num">19,246원</td>
+            <td class="num">12</td>
+            <td class="num">1,604원</td>
+            <td class="num">2,881원</td>
+            <td class="num">5</td>
+            <td class="num">576원</td>
+            <td class="num">22,127원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/29(화)</td>
+            <td class="num">5,423원</td>
+            <td class="num">4</td>
+            <td class="num">1,356원</td>
+            <td class="num">2,564원</td>
+            <td class="num">4</td>
+            <td class="num">641원</td>
+            <td class="num">7,987원</td>
           </tr>
         </tbody>
       </table>
       </div>
+      <details class="fold" style="margin-top:10px;">
+        <summary class="fold-more">이전 34일(8/26~9/28) 펼치기</summary>
+        <div style="overflow-x:auto;" class="wide-table">
+        <table>
+          <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align:bottom;">날짜</th>
+            <th colspan="3" style="text-align:center;"><span class="tag tag-mint">플레이스</span></th>
+            <th colspan="3" style="text-align:center;"><span class="tag tag-ink">파워링크</span></th>
+            <th rowspan="2" class="num" style="vertical-align:bottom;">합계</th>
+          </tr>
+          <tr>
+            <th class="num">광고비</th>
+            <th class="num">클릭</th>
+            <th class="num">CPC</th>
+            <th class="num">광고비</th>
+            <th class="num">클릭</th>
+            <th class="num">CPC</th>
+          </tr>
+        </thead>
+          <tbody>
+          <tr>
+            <td class="name-cell">9/28(월)</td>
+            <td class="num">20,128원</td>
+            <td class="num">14</td>
+            <td class="num">1,438원</td>
+            <td class="num">1,322원</td>
+            <td class="num">3</td>
+            <td class="num">441원</td>
+            <td class="num">21,450원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/27(일)</td>
+            <td class="num">6,087원</td>
+            <td class="num">5</td>
+            <td class="num">1,217원</td>
+            <td class="num">938원</td>
+            <td class="num">2</td>
+            <td class="num">469원</td>
+            <td class="num">7,025원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/26(토)</td>
+            <td class="num">6,077원</td>
+            <td class="num">4</td>
+            <td class="num">1,519원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">6,077원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/25(금)</td>
+            <td class="num">12,014원</td>
+            <td class="num">8</td>
+            <td class="num">1,502원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">12,014원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/24(목)</td>
+            <td class="num">13,406원</td>
+            <td class="num">9</td>
+            <td class="num">1,490원</td>
+            <td class="num">462원</td>
+            <td class="num">1</td>
+            <td class="num">462원</td>
+            <td class="num">13,868원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/23(수)</td>
+            <td class="num">7,096원</td>
+            <td class="num">5</td>
+            <td class="num">1,419원</td>
+            <td class="num">742원</td>
+            <td class="num">1</td>
+            <td class="num">742원</td>
+            <td class="num">7,838원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/22(화)</td>
+            <td class="num">21,314원</td>
+            <td class="num">14</td>
+            <td class="num">1,522원</td>
+            <td class="num">1,283원</td>
+            <td class="num">3</td>
+            <td class="num">428원</td>
+            <td class="num">22,597원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/21(월)</td>
+            <td class="num">12,471원</td>
+            <td class="num">8</td>
+            <td class="num">1,559원</td>
+            <td class="num">1,239원</td>
+            <td class="num">3</td>
+            <td class="num">413원</td>
+            <td class="num">13,710원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/20(일)</td>
+            <td class="num">14,951원</td>
+            <td class="num">10</td>
+            <td class="num">1,495원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">14,951원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/19(토)</td>
+            <td class="num">6,443원</td>
+            <td class="num">4</td>
+            <td class="num">1,611원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">6,443원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/18(금)</td>
+            <td class="num">18,459원</td>
+            <td class="num">12</td>
+            <td class="num">1,538원</td>
+            <td class="num">297원</td>
+            <td class="num">1</td>
+            <td class="num">297원</td>
+            <td class="num">18,756원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/17(목)</td>
+            <td class="num">20,312원</td>
+            <td class="num">14</td>
+            <td class="num">1,451원</td>
+            <td class="num">461원</td>
+            <td class="num">1</td>
+            <td class="num">461원</td>
+            <td class="num">20,773원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/16(수)</td>
+            <td class="num">9,617원</td>
+            <td class="num">7</td>
+            <td class="num">1,374원</td>
+            <td class="num">288원</td>
+            <td class="num">1</td>
+            <td class="num">288원</td>
+            <td class="num">9,905원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/15(화)</td>
+            <td class="num">10,112원</td>
+            <td class="num">8</td>
+            <td class="num">1,264원</td>
+            <td class="num">1,177원</td>
+            <td class="num">2</td>
+            <td class="num">588원</td>
+            <td class="num">11,289원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/14(월)</td>
+            <td class="num">12,714원</td>
+            <td class="num">8</td>
+            <td class="num">1,589원</td>
+            <td class="num">698원</td>
+            <td class="num">1</td>
+            <td class="num">698원</td>
+            <td class="num">13,412원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/13(일)</td>
+            <td class="num">9,751원</td>
+            <td class="num">6</td>
+            <td class="num">1,625원</td>
+            <td class="num">2,752원</td>
+            <td class="num">7</td>
+            <td class="num">393원</td>
+            <td class="num">12,503원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/12(토)</td>
+            <td class="num">11,483원</td>
+            <td class="num">7</td>
+            <td class="num">1,640원</td>
+            <td class="num">785원</td>
+            <td class="num">2</td>
+            <td class="num">392원</td>
+            <td class="num">12,268원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/11(금)</td>
+            <td class="num">9,785원</td>
+            <td class="num">6</td>
+            <td class="num">1,631원</td>
+            <td class="num">361원</td>
+            <td class="num">1</td>
+            <td class="num">361원</td>
+            <td class="num">10,146원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/10(목)</td>
+            <td class="num">9,453원</td>
+            <td class="num">6</td>
+            <td class="num">1,576원</td>
+            <td class="num">346원</td>
+            <td class="num">1</td>
+            <td class="num">346원</td>
+            <td class="num">9,799원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/9(수)</td>
+            <td class="num">10,041원</td>
+            <td class="num">7</td>
+            <td class="num">1,434원</td>
+            <td class="num">1,817원</td>
+            <td class="num">3</td>
+            <td class="num">606원</td>
+            <td class="num">11,858원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/8(화)</td>
+            <td class="num">5,784원</td>
+            <td class="num">5</td>
+            <td class="num">1,157원</td>
+            <td class="num">1,137원</td>
+            <td class="num">3</td>
+            <td class="num">379원</td>
+            <td class="num">6,921원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/7(월)</td>
+            <td class="num">8,832원</td>
+            <td class="num">7</td>
+            <td class="num">1,262원</td>
+            <td class="num">2,305원</td>
+            <td class="num">6</td>
+            <td class="num">384원</td>
+            <td class="num">11,137원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/6(일)</td>
+            <td class="num">9,530원</td>
+            <td class="num">8</td>
+            <td class="num">1,191원</td>
+            <td class="num">383원</td>
+            <td class="num">2</td>
+            <td class="num">192원</td>
+            <td class="num">9,913원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/5(토)</td>
+            <td class="num">8,525원</td>
+            <td class="num">7</td>
+            <td class="num">1,218원</td>
+            <td class="num">242원</td>
+            <td class="num">1</td>
+            <td class="num">242원</td>
+            <td class="num">8,767원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/4(금)</td>
+            <td class="num">9,589원</td>
+            <td class="num">8</td>
+            <td class="num">1,199원</td>
+            <td class="num">886원</td>
+            <td class="num">2</td>
+            <td class="num">443원</td>
+            <td class="num">10,475원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/3(목)</td>
+            <td class="num">9,396원</td>
+            <td class="num">8</td>
+            <td class="num">1,174원</td>
+            <td class="num">1,938원</td>
+            <td class="num">4</td>
+            <td class="num">484원</td>
+            <td class="num">11,334원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/2(수)</td>
+            <td class="num">10,341원</td>
+            <td class="num">9</td>
+            <td class="num">1,149원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">10,341원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">9/1(화)</td>
+            <td class="num">9,571원</td>
+            <td class="num">8</td>
+            <td class="num">1,196원</td>
+            <td class="num">1,211원</td>
+            <td class="num">3</td>
+            <td class="num">404원</td>
+            <td class="num">10,782원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/31(월)</td>
+            <td class="num">8,693원</td>
+            <td class="num">9</td>
+            <td class="num">966원</td>
+            <td class="num">480원</td>
+            <td class="num">1</td>
+            <td class="num">480원</td>
+            <td class="num">9,173원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/30(일)</td>
+            <td class="num">7,412원</td>
+            <td class="num">8</td>
+            <td class="num">926원</td>
+            <td class="num">1,164원</td>
+            <td class="num">3</td>
+            <td class="num">388원</td>
+            <td class="num">8,576원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/29(토)</td>
+            <td class="num">4,763원</td>
+            <td class="num">5</td>
+            <td class="num">953원</td>
+            <td class="num">329원</td>
+            <td class="num">1</td>
+            <td class="num">329원</td>
+            <td class="num">5,092원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/28(금)</td>
+            <td class="num">8,196원</td>
+            <td class="num">11</td>
+            <td class="num">745원</td>
+            <td class="num">304원</td>
+            <td class="num">1</td>
+            <td class="num">304원</td>
+            <td class="num">8,500원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/27(목)</td>
+            <td class="num">3,827원</td>
+            <td class="num">8</td>
+            <td class="num">478원</td>
+            <td class="num">732원</td>
+            <td class="num">2</td>
+            <td class="num">366원</td>
+            <td class="num">4,559원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">8/26(수)</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">497원</td>
+            <td class="num">1</td>
+            <td class="num">497원</td>
+            <td class="num">497원</td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -1274,16 +1305,20 @@
           <!-- n:07-legend:고정 --><span style="color:var(--mint-dark);font-weight:800;">진한 민트색 클릭률</span> = 4% 이상 (일반적인 검색광고 "양호" 기준인 2%의 2배 이상)<!-- /n -->
         </div>
         <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);">
-          <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">클릭 1건 검색어</div>
+          <details class="fold">
+          <summary style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">클릭 1건 검색어 <span style="font-weight:400;">(35개 · 펼치기)</span></summary>
           <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
             스포츠(54회/1,215원) · 은행사거리필라테스(51회/1,730원) · 창동역운동(48회/1,562원) · 상계역운동(35회/1,760원) · 노원역아기랑(32회/242원) · 마들역운동(19회/1,760원) · 노원필라테스가격(18회/462원) · 노원산전필라테스(14회/480원) · 벨필라테스(12회/1,560원) · 노원그룹필라테스(9회/682원) · 노원M필라테스(6회/522원) · 노원역그룹필라테스(6회/462원) · 노원필라테스추천(6회/572원) · 노원1:1필라테스(4회/683원) · 토브필라테스(4회/1,392원) · 노원필라테스오픈(3회/715원) · 새로필라테스노원(3회/518원) · 맨즈필라테스노원(2회/484원) · 노원필라테스시니어(2회/415원) · 하계필라테스(2회/77원) · 노원구필라테스추천(2회/1,123원) · 노원3:1필라테스(2회/552원) · 상계필라테스고요(1회/684원) · 새로필라테스가격(1회/492원) · 노원재활필라테스가격(1회/462원) · 노원그룹필라테스추천(1회/373원) · 노원시니어헬스(1회/368원) · 새벽필라테스노원(1회/352원) · 시니어필라테스노원(1회/346원) · 자세교정노원역(1회/329원) · 노원역필라테스1:1비용(1회/256원) · 노원역5번출구근처필라테스(1회/462원) · 시니어새로필라테스(1회/404원) · 노원구역필라테스가격(1회/322원) · 노원1:1필라테스체험(1회/319원)
           </div>
+          </details>
         </div>
         <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);">
-          <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">노출은 있으나 클릭 0건인 검색어 <span style="font-weight:400;">(노출 5회 이상만)</span></div>
+          <details class="fold">
+          <summary style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">노출은 있으나 클릭 0건인 검색어 <span style="font-weight:400;">(노출 5회 이상 77개 · 펼치기)</span></summary>
           <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
             노원역근처필라테스(150회) · 노원아기랑(61회) · 나다운필라테스(57회) · 노원역운동(53회) · 노원구인근필라테스(45회) · 노원구아기랑(45회) · 노원역카페(35회) · 노원구근처필라테스(30회) · 노원역9번출구(28회) · 노원임산부필라테스(23회) · 노원역주차장(21회) · 노원우동(19회) · 노원키즈(18회) · 노원역지도(18회) · 새로오픈(18회) · 모든날필라테스(17회) · 노원역헬스(17회) · 라이프스포츠(17회) · 중계동은행사거리필라테스(17회) · 노원배드민턴레슨(16회) · 노원구운동(16회) · 노원어린이체험(15회) · 봉스포츠(15회) · 노원시니어운동(14회) · 노원스포츠(14회) · 노원필라테스안(12회) · 노원구임산부필라테스(11회) · 노원역5번출구(10회) · 나래스포츠(10회) · 노원10월행사(10회) · 노원역주차(9회) · 노원스텝핑(9회) · 노원역추석(9회) · 건영스포츠(9회) · 봉운동(9회) · 퀸즈필라테스(9회) · 노원구노해로필라테스(9회) · 노원역체험(8회) · 노원체험(8회) · 노원구어린이(8회) · 노원그룹운동(8회) · 노원시니어(8회) · 보람상가필라테스(8회) · 라임필라테스(8회) · 수정역필라테스(7회) · 내근처필라테스(7회) · 노원구어린이체험(7회) · 노원역데이트(7회) · 노원역배스킨라빈스(7회) · 노원역출구(7회) · 노원역2번출구(7회) · 노원역6번출구(7회) · 아이원스포츠(7회) · 노원재활필라테스(7회) · 노원키즈체험(7회) · 노원노원구필라테스(7회) · 노원역아기(6회) · 노원새로오픈맛집(6회) · 노원아기랑체험(6회) · 노원역키즈(6회) · 노원체인지필라테스(6회) · 에반더필라테스상계역점(6회) · 노원어린이(5회) · 노원새로오픈(5회) · 노원산전요가(5회) · 노원당구레슨(5회) · 노원역8번출구(5회) · 노원역까페(5회) · 상계동필라테스예약(5회) · 트리니티필라테스(5회) · 노원역10번출구(5회) · 노원임산부운동(5회) · 상계필라테스가격(5회) · 노원역새로(5회) · 비비필라테스(5회) · 플로우필라테스(5회) · 노원역어린이(5회)
           </div>
+          </details>
           <div class="note" style="margin-top:8px;">
             <!-- n:07-notes:매회차 -->② 제외 검색어: 10/6 등록 10개 · 확인 30/30 · 실패 0(10/7부터 판정) · 10/5 등록 10개는 10/6부터 판정 · 9/20~10/4 등록분은 10/5까지 재노출 0.<br>③ 클릭 0인 검색어 전체는 743개·노출 2,236회(경쟁사 포함 · 지난 회차 720개·2,179회) · 행 단위 확장·클릭 0 노출은 10/3 45회 → 10/4 31회 → 10/5 <b>68회</b>(36개 검색어).<!-- /n -->
           </div>
@@ -1306,6 +1341,8 @@
     </div>
     <div class="card" style="margin-top:12px; padding-bottom:20px;">
       <div style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:12px;">경쟁사 브랜드명 검색어</div>
+      <details class="fold">
+      <summary class="fold-more">표 40행 · 펼치기</summary>
       <div style="overflow-x:auto;" class="wide-table">
       <table>
         <thead>
@@ -1643,6 +1680,7 @@
         </tbody>
       </table>
       </div>
+      </details>
       <div class="note" style="margin-top:12px;">
         <!-- n:07-comp:매회차 -->① 경쟁사 판정(10/6): "토브필라테스"는 사장님 확인으로 경쟁사 아님 — 클릭 1건 목록에 둠 · 부티필라테스 변형 "노원부티필라테스" 행 추가(표 39 → 40행).<br>경쟁사·타 스튜디오 브랜드명으로 추정되는 검색어(노원·도봉구 인근 실제 업체 확인분). 젠필라테스 119회가 가장 크고 표 안 경쟁사는 대부분 클릭 0·비용 0원 — 채택·제외·종결 이력은 스킬 기록(경쟁사 판정 이력 표)에 둠.<!-- /n -->
       </div>
@@ -1732,10 +1770,12 @@
       </table>
       </div>
       <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px;">
-        <div class="sub-head" style="margin:0 0 6px;">TOP 10 외 지역 중 클릭 발생분 <span style="font-weight:400;color:var(--ink-soft);">(39개 지역·클릭 104건)</span></div>
+        <details class="fold">
+        <summary class="sub-head" style="margin:0 0 6px;">TOP 10 외 지역 중 클릭 발생분 <span style="font-weight:400;color:var(--ink-soft);">(39개 지역·클릭 104건)</span> · 펼치기</summary>
         <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
             성동구(노출136·클릭9) · 중랑구(노출136·클릭9) · 광진구(노출83·클릭8) · 서초구(노출94·클릭7) · 종로구(노출89·클릭6) · 양주시(노출80·클릭6) · 의정부시(노출162·클릭5) · 송파구(노출143·클릭5) · 서대문구(노출54·클릭4) · 마포구(노출65·클릭3) · 화성시 동탄구(노출15·클릭3) · 동대문구(노출64·클릭2) · 용산구(노출57·클릭2) · 파주시(노출55·클릭2) · 강서구(노출37·클릭2) · 구리시(노출36·클릭2) · 동작구(노출34·클릭2) · 인천 검단구(노출30·클릭2) · 대한민국외(노출29·클릭2) · 부산 부산진구(노출18·클릭2) · 광주 북구(노출18·클릭2) · 가평군(노출9·클릭2) · 대전광역시 중구(노출33·클릭1) · 포천시(노출24·클릭1) · 고양시 덕양구(노출22·클릭1) · 하남시(노출21·클릭1) · 용인시 수지구(노출20·클릭1) · 관악구(노출20·클릭1) · 세종시(노출19·클릭1) · 고양시 일산동구(노출17·클릭1) · 인천 서해구(노출16·클릭1) · 경주시(노출12·클릭1) · 인천 영종구(노출12·클릭1) · 오산시(노출10·클릭1) · 이천시(노출10·클릭1) · 수원시 권선구(노출7·클릭1) · 안산시 상록구(노출6·클릭1) · 화성시 만세구(노출4·클릭1) · 부산 연제구(노출2·클릭1)
           </div>
+        </details>
         <div class="note" style="margin-top:8px;">
           <!-- n:08-note:매회차 -->이 외 클릭 0인 150개 지역에서 노출 1,255회 발생. TOP 10 + 위 목록으로 10/5까지 전체 클릭 389건이 모두 표시됨.<br>※ 이 섹션의 노출 합계는 12,228회로 상단 KPI(12,222회)와 6회 차이 — 상세지역 보고서에는 광고그룹 구분이 없어 OFF 그룹이 섞임(비중 계산도 12,228 기준).<!-- /n -->
         </div>
@@ -2317,6 +2357,14 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', sync);
   var t;
   window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(sync, 200); });
+  // 접기(details — 레이아웃 판 r2026-10-B): 펼칠 때 안쪽 표의 안내·페이드를 다시 맞추고, 인쇄할 때는 닫힌 것을 전부 펼쳤다가 원래대로
+  document.querySelectorAll('details').forEach(function(d){ d.addEventListener('toggle', sync); });
+  var folded = [];
+  window.addEventListener('beforeprint', function(){
+    folded = Array.prototype.filter.call(document.querySelectorAll('details'), function(d){ return !d.open; });
+    folded.forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){ folded.forEach(function(d){ d.open = false; }); folded = []; });
 })();
 </script>
 </body>
