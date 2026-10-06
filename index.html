@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="report-layout" content="r2026-10-B">
+<meta name="report-layout" content="r2026-10-C">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새로필라테스 네이버 광고 리포트</title>
 <meta property="og:type" content="website">
@@ -217,6 +217,14 @@
   .fold > summary{cursor:pointer;}
   .fold-more{font-size:12px;font-weight:700;color:var(--mint-dark);}
   .fold[open] > .fold-more{margin-bottom:8px;}
+  /* 왼쪽 페이드(레이아웃 판 r2026-10-C, 2026-10-06) — PC 01·06 차트는 최신 쪽(오른쪽 끝)에서 시작하므로 왼쪽으로 이전 날짜가 이어짐을 알린다.
+     맨 왼쪽(.at-start)이면 숨김 — 아래 안내 스크립트가 at-end 와 같이 맞춘다(css-and-layout.md "가로 스크롤 안내 자동화"). 모바일 가로 막대는 넘침이 없어 페이드가 없다 */
+  .scroll-fade::before{
+    content:"";position:absolute;top:0;left:0;width:38px;height:100%;
+    background:linear-gradient(to left, rgba(255,255,255,0), var(--card) 85%);
+    pointer-events:none;opacity:1;transition:opacity .15s ease;
+  }
+  .scroll-fade.at-start::before{opacity:0;}
 </style>
 </head>
 <body>
@@ -1963,9 +1971,10 @@ Chart.register(ChartDataLabels);
 Chart.defaults.set('plugins.datalabels', { display: false });
 
 // 1. Daily trend - combo
-new Chart(document.getElementById('dailyChart'), {
-  type: 'bar',
-  data: {
+/* saero:mobile-branch 01 */
+(function(){  // 판 C: PC 는 세로 콤보 그대로 · 화면 폭 ≤ M.maxPx 이면 차트 스크립트 끝 분기 도우미가 같은 data 로 가로 막대(날짜 세로축·최신 위)를 다시 만든다
+  var canvas = document.getElementById('dailyChart');
+  var data = {
     labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)'],
     datasets: [
       {
@@ -1974,17 +1983,7 @@ new Chart(document.getElementById('dailyChart'), {
         data: [150, 315, 526, 384, 493, 489, 521, 334, 230, 297, 957, 216, 242, 260, 350, 179, 201, 142, 183, 195, 251, 298, 284, 209, 225, 293, 318, 318, 248, 217, 194, 212, 254, 361, 315, 342, 320, 276, 204, 200, 219],
         backgroundColor: '#cdeee7',
         borderRadius: 6,
-        yAxisID: 'y',
-        order: 1,
-        datalabels: {
-          display: true,
-          anchor: 'start',
-          align: 'top',
-          offset: 4,
-          color: ink,
-          font: {size:11, weight:'700'},
-          formatter: (v) => v.toLocaleString()
-        }
+        order: 1
       },
       {
         type: 'line',
@@ -1992,40 +1991,76 @@ new Chart(document.getElementById('dailyChart'), {
         data: [497, 4559, 8500, 5092, 8576, 9173, 10782, 10341, 11334, 10475, 8767, 9913, 11137, 6921, 11858, 9799, 10146, 12268, 12503, 13412, 11289, 9905, 20773, 18756, 6443, 14951, 13710, 22597, 7838, 13868, 12014, 6077, 7025, 21450, 7987, 22127, 12917, 8949, 5307, 6226, 7122],
         borderColor: mintDark,
         backgroundColor: mintDark,
-        borderWidth: 3,
         tension: 0.35,
-        pointRadius: 5,
         pointBackgroundColor: mintDark,
-        yAxisID: 'y1',
-        order: 0,
-        datalabels: {
-          display: true,
-          align: 'top',
-          anchor: 'end',
-          offset: 8,
-          clip: false,
-          color: ink,
-          font: {size:11, weight:'600'},
-          formatter: (v) => v.toLocaleString() + '원'
-        }
+        order: 0
       }
     ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: {mode:'index', intersect:false},
-    layout: { padding: {top: 24} },
-    plugins: {
-      legend: {position:'bottom', labels:{usePointStyle:true, boxWidth:8}},
-    },
-    scales: {
-      x: {grid:{display:false}, ticks:{font:{size:10.5}, maxRotation:0, autoSkip:false}},
-      y: {position:'left', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:11}}},
-      y1:{position:'right', grid:{display:false}, title:{display:true,text:'비용(원)',font:{size:11}}}
-    }
+  };
+  function axes(key, ids){ data.datasets.forEach(function(d, i){ delete d.xAxisID; delete d.yAxisID; d[key] = ids[i]; }); }
+  function pc(){
+    axes('yAxisID', ['y', 'y1']);
+    data.datasets[0].datalabels = {display: true, anchor: 'start', align: 'top', offset: 4, color: ink, font: {size:11, weight:'700'}, formatter: (v) => v.toLocaleString()};
+    data.datasets[1].borderWidth = 3;
+    data.datasets[1].pointRadius = 5;
+    data.datasets[1].datalabels = {display: true, align: 'top', anchor: 'end', offset: 8, clip: false, color: ink, font: {size:11, weight:'600'}, formatter: (v) => v.toLocaleString() + '원'};
+    return {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {mode:'index', intersect:false},
+        layout: { padding: {top: 24} },
+        plugins: {
+          legend: {position:'bottom', labels:{usePointStyle:true, boxWidth:8}},
+        },
+        scales: {
+          x: {grid:{display:false}, ticks:{font:{size:10.5}, maxRotation:0, autoSkip:false}},
+          y: {position:'left', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:11}}},
+          y1:{position:'right', grid:{display:false}, title:{display:true,text:'비용(원)',font:{size:11}}}
+        }
+      }
+    };
   }
-});
+  function costGap(ctx){  // 모바일 비용 라벨 간격 — 점이 같은 행의 노출 라벨(막대 시작 쪽) 안쪽이면 그 라벨 상자 오른쪽 끝 + 4px 뒤에서 시작(글자 겹침 0)
+    var ch = ctx.chart, bs = ch.scales.x, cs = ch.scales.x1, i = ctx.dataIndex, c2 = ch.ctx;
+    if (!bs || !cs) return 8;
+    c2.save(); c2.font = '700 11px ' + Chart.defaults.font.family;
+    var w = c2.measureText(Number(data.datasets[0].data[i]).toLocaleString()).width;
+    c2.restore();
+    return Math.max(8, bs.getPixelForValue(0) + 4 + w + 8 + 4 - cs.getPixelForValue(data.datasets[1].data[i]));
+  }
+  function mobile(){
+    axes('xAxisID', ['x', 'x1']);
+    data.datasets[0].datalabels = {display: true, anchor: 'start', align: 'right', offset: 4, color: ink, font: {size:11, weight:'700'}, formatter: (v) => v.toLocaleString()};
+    data.datasets[1].borderWidth = 2;
+    data.datasets[1].pointRadius = 4;
+    data.datasets[1].datalabels = {display: true, anchor: 'center', align: 'right', offset: costGap, clip: false, color: ink, font: {size:11, weight:'600'}, formatter: (v) => v.toLocaleString() + '원'};
+    return {
+      type: 'bar',
+      data: data,
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {mode:'index', intersect:false},
+        layout: { padding: {right: 64} },
+        plugins: {
+          legend: {position:'bottom', labels:{usePointStyle:true, boxWidth:8}},
+        },
+        scales: {
+          y: {reverse:true, grid:{display:false}, ticks:{font:{size:10.5}, autoSkip:false}},
+          x: {position:'top', grid:{color:grid}, title:{display:true,text:'노출수',font:{size:11}}},
+          x1:{position:'bottom', grid:{display:false}, title:{display:true,text:'비용(원)',font:{size:11}}}
+        }
+      }
+    };
+  }
+  var ch = null;
+  try { ch = new Chart(canvas, pc()); } catch (e) {}
+  (window.__saeroMobileQ = window.__saeroMobileQ || []).push({key: '01', canvas: canvas, data: data, pc: pc, mobile: mobile, chart: ch});
+})();
 
 // 2. Campaign-type bar (single shared axis, real values labeled at bar end)
 new Chart(document.getElementById('groupChart'), {
@@ -2161,9 +2196,10 @@ new Chart(document.getElementById('deviceChart'), {
 });
 
 // 6. Rank trend (lower = better, so reverse y axis)
-new Chart(document.getElementById('rankChart'), {
-  type: 'line',
-  data: {
+/* saero:mobile-branch 06 */
+(function(){  // 판 C: PC 는 그대로 · 화면 폭 ≤ M.maxPx 이면 가로(날짜 세로축·최신 위, 순위축 1 이 오른쪽)에 순위 라벨 — 정의·전 기간 배열 그대로
+  var canvas = document.getElementById('rankChart');
+  var data = {
     labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)'],
     datasets: [{
       label: '평균노출순위',
@@ -2172,24 +2208,57 @@ new Chart(document.getElementById('rankChart'), {
       backgroundColor: 'rgba(69,206,179,0.12)',
       borderWidth: 3,
       tension: 0.35,
-      pointRadius: 5,
       pointBackgroundColor: mintDark,
       fill: true
     }]
-  },
-  options: {
-    maintainAspectRatio:false,
-    responsive:true,
-    plugins:{
-      legend:{display:false},
-      title:{display:true, text:'파워링크(노원역필라테스) 일별 평균순위 · 낮을수록 상단', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}
-    },
-    scales:{
-      y:{reverse:true, min:1, grid:{color:grid}, title:{display:true,text:'순위',font:{size:11}}, ticks:{stepSize:1}},
-      x:{grid:{display:false}}
-    }
+  };
+  function title(){ return {display:true, text:'파워링크(노원역필라테스) 일별 평균순위 · 낮을수록 상단', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}}; }
+  function pc(){
+    delete data.datasets[0].datalabels;
+    data.datasets[0].pointRadius = 5;
+    return {
+      type: 'line',
+      data: data,
+      options: {
+        maintainAspectRatio:false,
+        responsive:true,
+        plugins:{
+          legend:{display:false},
+          title: title()
+        },
+        scales:{
+          y:{reverse:true, min:1, grid:{color:grid}, title:{display:true,text:'순위',font:{size:11}}, ticks:{stepSize:1}},
+          x:{grid:{display:false}, ticks:{autoSkip:false}}
+        }
+      }
+    };
   }
-});
+  function mobile(){
+    data.datasets[0].pointRadius = 4;
+    data.datasets[0].datalabels = {display: true, anchor: 'center', align: 'right', offset: 8, color: ink, font: {size:10.5, weight:'600'}, formatter: (v) => v.toFixed(2)};
+    return {
+      type: 'line',
+      data: data,
+      options: {
+        indexAxis: 'y',
+        maintainAspectRatio:false,
+        responsive:true,
+        layout: { padding: {right: 40} },
+        plugins:{
+          legend:{display:false},
+          title: title()
+        },
+        scales:{
+          x:{reverse:true, min:1, position:'top', grid:{color:grid}, title:{display:true,text:'순위',font:{size:11}}, ticks:{stepSize:1}},
+          y:{reverse:true, offset:true, grid:{display:false}, ticks:{font:{size:10.5}, autoSkip:false}}
+        }
+      }
+    };
+  }
+  var ch = null;
+  try { ch = new Chart(canvas, pc()); } catch (e) {}
+  (window.__saeroMobileQ = window.__saeroMobileQ || []).push({key: '06', canvas: canvas, data: data, pc: pc, mobile: mobile, chart: ch});
+})();
 
 // 7b. Hourly click pattern (night hours highlighted)
 new Chart(document.getElementById('hourlyChart'), {
@@ -2291,6 +2360,78 @@ new Chart(document.getElementById('placementChart'), {
     }
   }
 });
+
+/* saero:mobile-helper — 판 C(r2026-10-C, 2026-10-06) 01·06 분기 도우미(차트 스크립트 끝, 한 번).
+   위 01·06 블록은 제자리에서 PC 모양으로 만들고 큐(window.__saeroMobileQ)에 넣기만 한다 — 한 스크립트 안 직렬 실행이라 이 도우미는 그 뒤에 정의된다.
+   화면 폭 ≤ M.maxPx(= 배포본 CSS 모바일 경계)이면 같은 data 로 가로 막대를 다시 만들고(컨테이너 높이 = 날짜 수 × M.row + M.pad, 원래 min-width·height 는 보관했다가 PC 복귀 때 복원),
+   회전·창 크기(matchMedia change)에 다시 판정한다(상태 비교 · 동기 · 안내 sync 직접 · PC 면 최신 쪽 스크롤). 인쇄 중에는 판정을 잠그고,
+   모바일이면 01·06 높이를 M.printMaxH 이하로 줄여 한 쪽 안에 찍은 뒤(afterprint) 되돌린다. M 줄은 apply 가 매 회차 config report_layout.mobile 로 다시 쓴다(기계 자리). */
+(function(){
+  var M = {maxPx: 640, printMaxH: 1000, row: {"01": 26, "06": 22}, pad: {"01": 90, "06": 70}};
+  var mqOk = ('matchMedia' in window);
+  var mq = mqOk ? window.matchMedia('(max-width: ' + M.maxPx + 'px)') : null;
+  var items = [], state = {mobile: false, printing: false};
+  function restore(b){ if (b.dataset.minwidth !== undefined) { b.style.minWidth = b.dataset.minwidth; b.style.height = b.dataset.height; } }
+  function build(it, toMobile){
+    var b = it.canvas.parentElement;
+    try {
+      if (it.chart) { it.chart.destroy(); it.chart = null; }
+      if (toMobile) {
+        if (b.dataset.minwidth === undefined) { b.dataset.minwidth = b.style.minWidth; b.dataset.height = b.style.height; }
+        b.style.minWidth = '0';
+        b.style.height = (it.data.labels.length * M.row[it.key] + M.pad[it.key]) + 'px';
+        it.chart = new Chart(it.canvas, it.mobile());
+      } else {
+        restore(b);
+        it.chart = new Chart(it.canvas, it.pc());
+      }
+    } catch (e) {
+      it.chart = null;
+      try { var s = Chart.getChart(it.canvas); if (s) s.destroy(); restore(b); it.chart = new Chart(it.canvas, it.pc()); } catch (e2) {}
+    }
+  }
+  function scrollEnd(){
+    if (state.mobile) return;
+    items.forEach(function(it){
+      var s = it.canvas.closest ? it.canvas.closest('.scroll-x') : null;
+      if (!s) return;
+      s.scrollLeft = s.scrollWidth;
+      try { s.dispatchEvent(new Event('scroll')); } catch (e) {}
+    });
+  }
+  function judge(){
+    var m = !!(mqOk && mq.matches);
+    if (state.printing || m === state.mobile) return;
+    state.mobile = m;
+    items.forEach(function(it){ build(it, m); });
+    try { if (window.__saeroSync) window.__saeroSync(); } catch (e) {}
+    if (!m) scrollEnd();
+  }
+  window.addEventListener('beforeprint', function(){
+    state.printing = true;
+    if (!state.mobile) return;
+    items.forEach(function(it){
+      try {
+        var b = it.canvas.parentElement;
+        it.printH = b.style.height;
+        b.style.height = Math.min(parseFloat(b.style.height) || b.clientHeight, M.printMaxH) + 'px';
+        if (it.chart) { it.chart.resize(); it.chart.update('none'); }
+      } catch (e) {}
+    });
+  });
+  window.addEventListener('afterprint', function(){
+    if (state.mobile) items.forEach(function(it){
+      try {
+        if (it.printH !== undefined) { it.canvas.parentElement.style.height = it.printH; delete it.printH; }
+        if (it.chart) { it.chart.resize(); it.chart.update('none'); }
+      } catch (e) {}
+    });
+    state.printing = false;
+  });
+  window.__saeroMobile = {M: M, items: items, state: state, build: build, judge: judge, scrollEnd: scrollEnd};
+  (window.__saeroMobileQ || []).forEach(function(it){ items.push(it); if (mqOk && mq.matches) build(it, true); }); window.__saeroMobileQ = []; state.mobile = !!(mqOk && mq.matches);
+  if (mqOk) { if (mq.addEventListener) mq.addEventListener('change', judge); else if (mq.addListener) mq.addListener(judge); }
+})();
 </script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -2320,6 +2461,7 @@ if ('serviceWorker' in navigator) {
   function updateEnd(box, wrapper){
     var atEnd = box.scrollLeft + box.clientWidth >= box.scrollWidth - 2;
     wrapper.classList.toggle('at-end', atEnd);
+    wrapper.classList.toggle('at-start', box.scrollLeft <= 2);
   }
 
   function sync(){
@@ -2349,7 +2491,7 @@ if ('serviceWorker' in navigator) {
           box.addEventListener('scroll', function(){ updateEnd(box, wrapper); }, {passive:true});
         }
       } else if (!needs && box.parentNode.classList.contains('scroll-fade')) {
-        box.parentNode.classList.add('at-end'); // 페이드 숨김
+        box.parentNode.classList.add('at-end', 'at-start'); // 페이드 둘 다 숨김
       }
     });
   }
@@ -2365,6 +2507,8 @@ if ('serviceWorker' in navigator) {
     folded.forEach(function(d){ d.open = true; });
   });
   window.addEventListener('afterprint', function(){ folded.forEach(function(d){ d.open = false; }); folded = []; });
+  window.__saeroSync = sync; // 판 C: 01·06 분기 도우미(차트 스크립트 끝)가 회전 뒤 안내·페이드를 바로 다시 맞춘다
+  window.addEventListener('load', function(){ setTimeout(function(){ if (window.__saeroMobile) window.__saeroMobile.scrollEnd(); }, 0); }); // 판 C: PC 01·06 은 최신 쪽(오른쪽 끝)에서 시작 — load 의 sync(래퍼 감싸기) 뒤
 })();
 </script>
 </body>
