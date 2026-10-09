@@ -2,12 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="report-layout" content="r2026-10-E">
+<meta name="report-layout" content="r2026-10-F">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새로필라테스 네이버 광고 리포트</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="새로필라테스 네이버 광고 리포트">
-<meta property="og:description" content="8/26~10/8 주간 성과 요약">
+<meta property="og:description" content="8/26~10/9 주간 성과 요약">
 <meta property="og:url" content="https://leekwanbeom.github.io/saero-pilates-report/">
 <meta property="og:image" content="https://leekwanbeom.github.io/saero-pilates-report/og-image.png">
 <meta property="og:image:width" content="1500">
@@ -228,6 +228,9 @@
   /* 01·06 모바일 펼치기 버튼(레이아웃 판 r2026-10-D, 2026-10-07) — 차트 스크립트 끝 분기 도우미가 모바일에서만 차트 카드 아래에 만든다(HTML 에는 없음).
      글꼴·색은 03 접기 summary 와 같은 .fold-more 를 같이 달고, 여기서는 버튼 기본 모양(테두리·배경·안쪽 여백·글꼴 묶음)만 지운다 — 새 색 0 */
   .chart-fold{display:block;width:100%;margin:2px 0 0;padding:6px 0;border:0;background:none;font-family:inherit;line-height:1.5;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none;}
+  /* 광고비 잔액 카드(레이아웃 판 r2026-10-F, 2026-10-09) — KPI 카드 넷 아래 한 줄 전체(데스크톱 4칸·모바일 2칸 모두 grid-column 1 / -1). 모양·색은 .kpi 그대로 — 새 색 0.
+     값·보조 줄(data-balance)은 scripts/apply.py 가 매 회차 compute.json 의 잔액(scripts/balance.py 가 읽은 비즈머니)으로 쓴다(기계 자리) */
+  .kpi-wide{grid-column:1 / -1;}
 </style>
 </head>
 <body>
@@ -239,7 +242,7 @@
       <div class="title">네이버 검색광고 주간 리포트</div>
     </div>
     <div class="period">
-      집계 기간<b>2026.08.26 — 10.08 (44일)</b>
+      집계 기간<b>2026.08.26 — 10.09 (45일)</b>
     </div>
   </div>
 
@@ -248,26 +251,32 @@
     <div class="kpi" style="--accent:#45ceb3;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
       <div class="label">총 노출수</div>
-      <div class="value">13,233<span class="unit">회</span></div>
-      <div class="sub">일 평균 300.8회</div>
+      <div class="value">13,466<span class="unit">회</span></div>
+      <div class="sub">일 평균 299.2회</div>
     </div>
     <div class="kpi" style="--accent:#2ea88f;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9l10.5-3-3 10.5L13 13l-4 4-3-3 4-4z"/></svg></div>
       <div class="label">총 클릭수</div>
-      <div class="value">420<span class="unit">회</span></div>
-      <div class="sub">일 평균 9.5회</div>
+      <div class="value">425<span class="unit">회</span></div>
+      <div class="sub">일 평균 9.4회</div>
     </div>
     <div class="kpi" style="--accent:#1a5c4d;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 5-6"/></svg></div>
       <div class="label">평균 클릭률</div>
-      <div class="value">3.17<span class="unit">%</span></div>
+      <div class="value">3.16<span class="unit">%</span></div>
       <div class="sub">업종 평균 수준</div>
     </div>
     <div class="kpi" style="--accent:#1c2b2a;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5.9 2.5 2.2c0 2.8-5 1.6-5 4.4 0 1.3 1.1 2.4 2.5 2.4s2.5-1.1 2.5-2.5"/></svg></div>
       <div class="label">총 광고비</div>
-      <div class="value">479,054<span class="unit">원</span></div>
-      <div class="sub">클릭당 평균 1,141원</div>
+      <div class="value">483,113<span class="unit">원</span></div>
+      <div class="sub">클릭당 평균 1,137원</div>
+    </div>
+    <div class="kpi kpi-wide" style="--accent:#1c2b2a;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v3"/><path d="M3 6v12a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M21 12h-4a2 2 0 0 0 0 4h4z"/></svg></div>
+      <div class="label">광고비 잔액</div>
+      <div class="value" data-balance="value">216,885<span class="unit">원</span></div>
+      <div class="sub" data-balance="sub">10/10(토) 02:24 기준 · 약 26일분</div>
     </div>
   </div>
 
@@ -276,11 +285,11 @@
     <div class="section-head">
       <span class="section-num">01</span>
       <span class="section-title">일별 추이</span>
-      <span class="section-desc"><!-- n:01-desc:매회차 -->10/8(목) 노출 277회·클릭 8건·CTR 2.89% — 이틀 연속 감소, 누적 CTR 3.18 → 3.17%<!-- /n --></span>
+      <span class="section-desc"><!-- n:01-desc:매회차 -->10/9(금) 노출 233회·클릭 5건·CTR 2.15% — 사흘 연속 감소, 누적 CTR 3.17 → 3.16%<!-- /n --></span>
     </div>
     <div class="card">
       <div class="scroll-x" style="overflow-x:auto;">
-        <div style="height:280px; min-width:3520px;">
+        <div style="height:280px; min-width:3600px;">
           <canvas id="dailyChart"></canvas>
         </div>
       </div>
@@ -302,15 +311,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="name-cell">10/4(일)</td>
-            <td class="num">200</td>
-            <td class="num">200</td>
-            <td class="num">0</td>
-            <td class="num">7</td>
-            <td class="num">3.50%</td>
-            <td class="num">889원</td>
-          </tr>
           <tr>
             <td class="name-cell">10/5(월)</td>
             <td class="num">219</td>
@@ -347,16 +347,21 @@
             <td class="num">2.89%</td>
             <td class="num">859원</td>
           </tr>
+          <tr>
+            <td class="name-cell">10/9(금)</td>
+            <td class="num">233</td>
+            <td class="num">233</td>
+            <td class="num">0</td>
+            <td class="num">5</td>
+            <td class="num">2.15%</td>
+            <td class="num">812원</td>
+          </tr>
 </tbody>
       </table>
       </div>
 
       <div class="sub-head">② 플레이스 광고 평균노출순위 <span style="font-weight:400;color:var(--ink-soft);">(06번의 파워링크 키워드 순위와는 다른 지표)</span></div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:6px;">
-        <div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">10/4</div>
-          <div style="font-size:15px;font-weight:800;">3.76위</div>
-        </div>
         <div>
           <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">10/5</div>
           <div style="font-size:15px;font-weight:800;">4.18위</div>
@@ -373,11 +378,15 @@
           <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">10/8</div>
           <div style="font-size:15px;font-weight:800;">3.83위</div>
         </div>
+        <div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-bottom:2px;">10/9</div>
+          <div style="font-size:15px;font-weight:800;">2.98위</div>
+        </div>
       </div>
-      <div class="note"><!-- n:01-rank:매회차 -->닷새 3.76 → 4.18 → 2.97 → 2.88 → 3.83위(작을수록 상단) · 누적 가중평균은 3.11 → 3.12위 · 닷새 동안 순위와 하루 클릭(표 ①)이 같은 방향이었지만, 닷새치라 순위 하나로 설명하기는 어려워 보임.<!-- /n --></div>
+      <div class="note"><!-- n:01-rank:매회차 -->닷새 4.18 → 2.97 → 2.88 → 3.83 → 2.98위(작을수록 상단) · 누적 가중평균은 3.12 → 3.12위 · 닷새 사이 순위와 하루 클릭(표 ①)이 늘 같은 방향은 아니어서, 순위 하나로 클릭을 설명하기는 어려워 보임.<!-- /n --></div>
 
       <div class="note-mint" style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line);">
-<!-- n:01-mint:매회차 -->→ 콘텐츠 지면 없는 날 33일 · 누적 CTR <b>3.17%</b>. 검색 지면만 계산하면 <b>3.66%</b>(노출 11,487·클릭 420). 상향 뒤 하루 평균은 11,516원·클릭 8.0건·CPC 1,431원으로, 상향 전 9/1~9/16(하루 평균 9,658원·7.2건·CPC 1,344원)보다 하루 클릭이 많고 CPC는 1,600원 아래라 <b>상향 유지 결론 그대로</b>(재상정 조건 미달). 콘텐츠 노출 1,746회는 9/6 이후 늘지 않음.<!-- /n -->
+<!-- n:01-mint:매회차 -->→ 콘텐츠 지면 없는 날 34일 · 누적 CTR <b>3.16%</b>. 검색 지면만 계산하면 <b>3.63%</b>(노출 11,720·클릭 425). 상향 뒤 하루 평균은 11,160원·클릭 7.8건·CPC 1,426원으로, 상향 전 9/1~9/16(하루 평균 9,658원·7.2건·CPC 1,344원)보다 하루 클릭이 많고 CPC는 1,600원 아래라 <b>상향 유지 결론 그대로</b>(재상정 조건 미달). 콘텐츠 노출 1,746회는 9/6 이후 늘지 않음.<!-- /n -->
       </div>
     </div>
   </div>
@@ -387,7 +396,7 @@
     <div class="section-head">
       <span class="section-num">02</span>
       <span class="section-title">광고 유형별 성과 — 파워링크 vs 플레이스</span>
-      <span class="section-desc"><!-- n:02-desc:고정 -->플레이스 광고가 예산의 92.0% 사용<!-- /n --></span>
+      <span class="section-desc"><!-- n:02-desc:고정 -->플레이스 광고가 예산의 91.9% 사용<!-- /n --></span>
     </div>
     <div class="grid-2">
       <div class="card">
@@ -404,7 +413,7 @@
     <div class="section-head">
       <span class="section-num">03</span>
       <span class="section-title">일별 광고비 — 파워링크 vs 플레이스</span>
-      <span class="section-desc"><!-- n:03-desc:매회차 -->최고치 9/22(화) 22,597원 그대로 — 10/8(목)은 6,873원(플레이스 5,957원 + 파워링크 916원)<!-- /n --></span>
+      <span class="section-desc"><!-- n:03-desc:매회차 -->최고치 9/22(화) 22,597원 그대로 — 10/9(금)은 4,059원(플레이스 3,324원 + 파워링크 735원)<!-- /n --></span>
     </div>
     <div class="card" style="padding-bottom:20px;">
       <div style="overflow-x:auto;" class="wide-table">
@@ -428,13 +437,23 @@
         <tbody>
           <tr style="font-weight:800;">
             <td class="name-cell">합계</td>
-            <td class="num">440,766원</td>
-            <td class="num">333</td>
-            <td class="num">1,324원</td>
-            <td class="num">38,288원</td>
-            <td class="num">87</td>
-            <td class="num">440원</td>
-            <td class="num">479,054원</td>
+            <td class="num">444,090원</td>
+            <td class="num">336</td>
+            <td class="num">1,322원</td>
+            <td class="num">39,023원</td>
+            <td class="num">89</td>
+            <td class="num">438원</td>
+            <td class="num">483,113원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">10/9(금)</td>
+            <td class="num">3,324원</td>
+            <td class="num">3</td>
+            <td class="num">1,108원</td>
+            <td class="num">735원</td>
+            <td class="num">2</td>
+            <td class="num">368원</td>
+            <td class="num">4,059원</td>
           </tr>
           <tr>
             <td class="name-cell">10/8(목)</td>
@@ -496,21 +515,11 @@
             <td class="num">462원</td>
             <td class="num">5,307원</td>
           </tr>
-          <tr>
-            <td class="name-cell">10/2(금)</td>
-            <td class="num">8,949원</td>
-            <td class="num">8</td>
-            <td class="num">1,119원</td>
-            <td class="num">0원</td>
-            <td class="num">0</td>
-            <td class="num">–</td>
-            <td class="num">8,949원</td>
-          </tr>
         </tbody>
       </table>
       </div>
       <details class="fold" style="margin-top:10px;">
-        <summary class="fold-more">이전 37일(8/26~10/1) 펼치기</summary>
+        <summary class="fold-more">이전 38일(8/26~10/2) 펼치기</summary>
         <div style="overflow-x:auto;" class="wide-table">
         <table>
           <thead>
@@ -530,6 +539,16 @@
           </tr>
         </thead>
           <tbody>
+          <tr>
+            <td class="name-cell">10/2(금)</td>
+            <td class="num">8,949원</td>
+            <td class="num">8</td>
+            <td class="num">1,119원</td>
+            <td class="num">0원</td>
+            <td class="num">0</td>
+            <td class="num">–</td>
+            <td class="num">8,949원</td>
+          </tr>
           <tr>
             <td class="name-cell">10/1(목)</td>
             <td class="num">10,958원</td>
@@ -912,7 +931,7 @@
     <div class="section-head">
       <span class="section-num">04</span>
       <span class="section-title">캠페인 상세 지표</span>
-      <span class="section-desc"><!-- n:04-desc:매회차 -->파워링크 CPC가 플레이스의 1/3 이하 — 10/8까지 격차 3.53 → 3.56배, 벌어짐<!-- /n --></span>
+      <span class="section-desc"><!-- n:04-desc:매회차 -->파워링크 CPC가 플레이스의 1/3 이하 — 10/9까지 격차 3.56 → 3.55배, 줄어듦<!-- /n --></span>
     </div>
     <div class="card" style="padding-bottom:20px;">
       <div style="overflow-x:auto;" class="wide-table">
@@ -935,46 +954,46 @@
           <tr>
             <td><span class="tag tag-mint">플레이스 광고</span></td>
             <td class="name-cell">새로필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/17 일예산 10,000 → 20,000원 상향)</span></td>
-            <td class="num">9,176</td>
-            <td class="num">333</td>
-            <td class="num">3.63%</td>
-            <td class="num">440,766원</td>
-            <td class="num">1,324원</td>
-            <td class="num">92.0%</td>
+            <td class="num">9,317</td>
+            <td class="num">336</td>
+            <td class="num">3.61%</td>
+            <td class="num">444,090원</td>
+            <td class="num">1,322원</td>
+            <td class="num">91.9%</td>
             <td class="num">—</td>
           </tr>
           <tr>
             <td><span class="tag tag-ink">파워링크 광고</span></td>
             <td class="name-cell">노원역필라테스</td>
-            <td class="num">2,043</td>
+            <td class="num">2,079</td>
             <td class="num">46</td>
-            <td class="num">2.25%</td>
+            <td class="num">2.21%</td>
             <td class="num">17,098원</td>
             <td class="num">372원</td>
             <td class="num">3.6%</td>
-            <td class="num">2.45위</td>
+            <td class="num">2.43위</td>
           </tr>
           <tr>
             <td><span class="tag tag-ink">파워링크 광고</span></td>
             <td class="name-cell">노원산전필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(9/2 신규)</span></td>
-            <td class="num">972</td>
-            <td class="num">28</td>
-            <td class="num">2.88%</td>
-            <td class="num">14,844원</td>
-            <td class="num">530원</td>
-            <td class="num">3.1%</td>
+            <td class="num">993</td>
+            <td class="num">30</td>
+            <td class="num">3.02%</td>
+            <td class="num">15,579원</td>
+            <td class="num">519원</td>
+            <td class="num">3.2%</td>
             <td class="num">1.69위</td>
           </tr>
           <tr>
             <td><span class="tag tag-ink">파워링크 광고</span></td>
             <td class="name-cell">상계동필라테스 <span style="font-weight:400;color:var(--mint-dark);font-size:11px;">(8/31 신규)</span></td>
-            <td class="num">707</td>
+            <td class="num">742</td>
             <td class="num">5</td>
-            <td class="num">0.71%</td>
+            <td class="num">0.67%</td>
             <td class="num">3,323원</td>
             <td class="num">665원</td>
             <td class="num">0.7%</td>
-            <td class="num">2.57위</td>
+            <td class="num">2.55위</td>
           </tr>
           <tr>
             <td><span class="tag tag-ink">파워링크 광고</span></td>
@@ -992,10 +1011,10 @@
       </div>
       <div style="font-size:11px;color:var(--ink-soft);margin-top:10px;"><!-- n:04-foot:고정 -->※ 평균순위는 파워링크 전용 지표(플레이스는 —) · 파워링크 첫 광고그룹 "노원필라테스"는 OFF 상태(키워드 10개 등록, 집행만 멈춤)라 이 표와 KPI 집계에서 제외.<!-- /n --></div>
       <div class="note-mint" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);">
-        <!-- n:04-mint:매회차 -->→ 10/8까지 파워링크 "노원역필라테스" CPC 372원 vs 플레이스 1,324원 — 격차 3.53 → <b>3.56배</b> 벌어짐 · 예산의 92.0%가 플레이스(지난 회차 92.1%).<!-- /n -->
+        <!-- n:04-mint:매회차 -->→ 10/9까지 파워링크 "노원역필라테스" CPC 372원 vs 플레이스 1,322원 — 격차 3.56 → <b>3.55배</b> 줄어듦 · 예산의 91.9%가 플레이스(지난 회차 92.0%).<!-- /n -->
       </div>
       <div class="note" style="margin-top:8px;">
-        <!-- n:04-note:매회차 -->두 광고는 성격이 달라 CPC만으로 우열을 가리기는 어려움 — 플레이스는 매장명·지도 검색이라 방문 의도가 더 뚜렷할 수 있고, 파워링크는 저렴하지만 클릭 절대량이 적음(전체 420클릭 중 87건). 파워링크 10/8 광고비 916원·클릭 3건, 비중은 7.9 → 8.0%. 예산은 현행 유지(사용자 결정).<!-- /n -->
+        <!-- n:04-note:매회차 -->두 광고는 성격이 달라 CPC만으로 우열을 가리기는 어려움 — 플레이스는 매장명·지도 검색이라 방문 의도가 더 뚜렷할 수 있고, 파워링크는 저렴하지만 클릭 절대량이 적음(전체 425클릭 중 89건). 파워링크 10/9 광고비 735원·클릭 2건, 비중은 8.0 → 8.1%. 예산은 현행 유지(사용자 결정).<!-- /n -->
       </div>
     </div>
   </div>
@@ -1005,7 +1024,7 @@
     <div class="section-head">
       <span class="section-num">05</span>
       <span class="section-title">매체 · 기기별 분포</span>
-      <span class="section-desc"><!-- n:05-desc:고정 -->모바일이 노출의 79.9% 차지<!-- /n --></span>
+      <span class="section-desc"><!-- n:05-desc:고정 -->모바일이 노출의 80.0% 차지<!-- /n --></span>
     </div>
     <div class="grid-2">
       <div class="card">
@@ -1028,12 +1047,12 @@
     <div class="section-head">
       <span class="section-num">06</span>
       <span class="section-title">파워링크 키워드 노출순위 추이</span>
-      <span class="section-desc"><!-- n:06-desc:고정 -->노원역필라테스 평균 2.45위 · 낮을수록 상단 노출<!-- /n --></span>
+      <span class="section-desc"><!-- n:06-desc:고정 -->노원역필라테스 평균 2.43위 · 낮을수록 상단 노출<!-- /n --></span>
     </div>
     <div class="grid-2">
       <div class="card">
         <div class="scroll-x" style="overflow-x:auto;">
-          <div style="height:240px; min-width:3520px;"><canvas id="rankChart"></canvas></div>
+          <div style="height:240px; min-width:3600px;"><canvas id="rankChart"></canvas></div>
         </div>
       </div>
       <div class="card" style="padding-bottom:14px;">
@@ -1052,48 +1071,48 @@
           <tbody>
             <tr>
               <td class="name-cell">직접 등록 키워드<br><span style="font-weight:400;color:var(--ink-soft);font-size:11.5px;">4개 광고그룹 합산</span></td>
-              <td class="num">1,328</td>
+              <td class="num">1,340</td>
               <td class="num">24</td>
               <td class="num">2.9위</td>
               <td class="num">9,068원</td>
             </tr>
             <tr>
               <td class="name-cell">자동매칭( - )<br><span style="font-weight:400;color:var(--ink-soft);font-size:11.5px;">네이버가 유사어로 노출</span></td>
-              <td class="num">2,729</td>
-              <td class="num">63</td>
+              <td class="num">2,809</td>
+              <td class="num">65</td>
               <td class="num">1.9위</td>
-              <td class="num">29,220원</td>
+              <td class="num">29,955원</td>
             </tr>
           </tbody>
         </table>
         </div>
         <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin-top:12px;">
-          <!-- n:06-arrow:매회차 -->→ 노출 1,328 대 2,729·클릭 24건 대 63건으로 자동매칭 우위 28회차 연속 — 10/8 직접 20·자동 90회<!-- /n -->
+          <!-- n:06-arrow:매회차 -->→ 노출 1,340 대 2,809·클릭 24건 대 65건으로 자동매칭 우위 29회차 연속 — 10/9 직접 12·자동 80회<!-- /n -->
         </div>
       </div>
     </div>
     <div class="card" style="margin-top:12px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-        <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">상계동필라테스 <span style="color:var(--mint-dark);font-weight:700;">(8/31 등록, 39일차)</span></div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">상계동필라테스 <span style="color:var(--mint-dark);font-weight:700;">(8/31 등록, 40일차)</span></div>
       </div>
       <div style="display:flex;align-items:baseline;gap:10px;">
         <div style="font-size:11px;color:var(--ink-soft);">평균노출순위</div>
-        <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">2.57위</div>
+        <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">2.55위</div>
       </div>
       <div class="note" style="margin-top:12px;">
-        <!-- n:06-card-상계동필라테스:매회차 -->39일차 · 평균순위 2.58 → 2.57위 · 하루 노출 30회 이상인 날이 9/18·10/7·10/8 사흘로 승격 조건에 닿아 있음 → 이번 회차도 카드 그대로(12번 2번). (노출·클릭·비용은 04번 표 참고)<!-- /n -->
+        <!-- n:06-card-상계동필라테스:매회차 -->40일차 · 평균순위 2.57 → 2.55위 · 하루 노출 30회 이상인 날이 9/18·10/7·10/8·10/9 나흘로 승격 조건에 닿아 있음 → 이번 회차도 카드 그대로(12번 2번). (노출·클릭·비용은 04번 표 참고)<!-- /n -->
       </div>
     </div>
     <div class="card" style="margin-top:12px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-        <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">노원산전필라테스 <span style="color:var(--mint-dark);font-weight:700;">(9/2 등록, 37일차)</span></div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-soft);">노원산전필라테스 <span style="color:var(--mint-dark);font-weight:700;">(9/2 등록, 38일차)</span></div>
       </div>
       <div style="display:flex;align-items:baseline;gap:10px;">
         <div style="font-size:11px;color:var(--ink-soft);">평균노출순위</div>
         <div style="font-size:22px;font-weight:800;color:var(--mint-dark);">1.69위</div>
       </div>
       <div class="note" style="margin-top:12px;">
-        <!-- n:06-card-노원산전필라테스:매회차 -->37일차 · 평균순위 1.70 → 1.69위로 파워링크 4개 그룹 중 가장 좋음. (노출·클릭·비용은 04번 표 참고)<!-- /n -->
+        <!-- n:06-card-노원산전필라테스:매회차 -->38일차 · 평균순위 1.69위 그대로로 파워링크 4개 그룹 중 가장 좋음. (노출·클릭·비용은 04번 표 참고)<!-- /n -->
       </div>
     </div>
   </div>
@@ -1103,7 +1122,7 @@
     <div class="section-head">
       <span class="section-num">07</span>
       <span class="section-title">실제 검색어 분석</span>
-      <span class="section-desc"><!-- n:07-desc:고정 -->'필라테스'·'노원역필라테스'가 클릭의 45% 차지<!-- /n --></span>
+      <span class="section-desc"><!-- n:07-desc:고정 -->'필라테스'·'노원역필라테스'가 클릭의 44% 차지<!-- /n --></span>
     </div>
     <div class="grid-2-07">
       <div class="card" style="padding-bottom:20px;">
@@ -1126,45 +1145,45 @@
           <tr>
             <td class="name-cell">필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">1974</td>
-            <td class="num">102</td>
-            <td class="num ctr-high">5.17%</td>
-            <td class="num">1,224원</td>
-            <td class="num">124,845원</td>
+            <td class="num">2015</td>
+            <td class="num">103</td>
+            <td class="num ctr-high">5.11%</td>
+            <td class="num">1,221원</td>
+            <td class="num">125,777원</td>
           </tr>
           <tr>
             <td class="name-cell">노원역필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">1622</td>
-            <td class="num">85</td>
-            <td class="num ctr-high">5.24%</td>
-            <td class="num">1,112원</td>
-            <td class="num">94,518원</td>
+            <td class="num">1638</td>
+            <td class="num">86</td>
+            <td class="num ctr-high">5.25%</td>
+            <td class="num">1,116원</td>
+            <td class="num">95,946원</td>
           </tr>
           <tr>
             <td class="name-cell">노원필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">799</td>
+            <td class="num">809</td>
             <td class="num">66</td>
-            <td class="num ctr-high">8.26%</td>
+            <td class="num ctr-high">8.16%</td>
             <td class="num">1,417원</td>
             <td class="num">93,514원</td>
           </tr>
           <tr>
             <td class="name-cell">중계역필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">139</td>
+            <td class="num">142</td>
             <td class="num">17</td>
-            <td class="num ctr-high">12.23%</td>
+            <td class="num ctr-high">11.97%</td>
             <td class="num">1,044원</td>
             <td class="num">17,749원</td>
           </tr>
           <tr>
             <td class="name-cell">상계역필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">449</td>
+            <td class="num">451</td>
             <td class="num">14</td>
-            <td class="num">3.12%</td>
+            <td class="num">3.10%</td>
             <td class="num">1,126원</td>
             <td class="num">15,758원</td>
           </tr>
@@ -1180,45 +1199,45 @@
           <tr>
             <td class="name-cell">마들역필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">500</td>
+            <td class="num">534</td>
             <td class="num">10</td>
-            <td class="num">2.00%</td>
+            <td class="num">1.87%</td>
             <td class="num">1,511원</td>
             <td class="num">15,106원</td>
           </tr>
           <tr>
             <td class="name-cell">창동역필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">422</td>
+            <td class="num">431</td>
             <td class="num">9</td>
-            <td class="num">2.13%</td>
+            <td class="num">2.09%</td>
             <td class="num">1,415원</td>
             <td class="num">12,735원</td>
           </tr>
           <tr>
             <td class="name-cell">상계동필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">733</td>
+            <td class="num">744</td>
             <td class="num">8</td>
-            <td class="num">1.09%</td>
+            <td class="num">1.08%</td>
             <td class="num">1,191원</td>
             <td class="num">9,527원</td>
           </tr>
           <tr>
             <td class="name-cell">새로필라테스</td>
             <td><span class="tag tag-ink">확장</span></td>
-            <td class="num">498</td>
+            <td class="num">499</td>
             <td class="num">8</td>
-            <td class="num">1.61%</td>
+            <td class="num">1.60%</td>
             <td class="num">610원</td>
             <td class="num">4,880원</td>
           </tr>
           <tr>
             <td class="name-cell">운동</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">383</td>
+            <td class="num">390</td>
             <td class="num">6</td>
-            <td class="num">1.57%</td>
+            <td class="num">1.54%</td>
             <td class="num">1,261원</td>
             <td class="num">7,567원</td>
           </tr>
@@ -1234,18 +1253,18 @@
           <tr>
             <td class="name-cell">근처필라테스</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">123</td>
+            <td class="num">124</td>
             <td class="num">4</td>
-            <td class="num">3.25%</td>
+            <td class="num">3.23%</td>
             <td class="num">1,579원</td>
             <td class="num">6,315원</td>
           </tr>
           <tr>
             <td class="name-cell">노원운동</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">55</td>
+            <td class="num">57</td>
             <td class="num">4</td>
-            <td class="num ctr-high">7.27%</td>
+            <td class="num ctr-high">7.02%</td>
             <td class="num">1,555원</td>
             <td class="num">6,221원</td>
           </tr>
@@ -1288,9 +1307,9 @@
           <tr>
             <td class="name-cell">노원새로필라테스</td>
             <td><span class="tag tag-ink">확장</span></td>
-            <td class="num">83</td>
+            <td class="num">84</td>
             <td class="num">2</td>
-            <td class="num">2.41%</td>
+            <td class="num">2.38%</td>
             <td class="num">422원</td>
             <td class="num">845원</td>
           </tr>
@@ -1311,6 +1330,15 @@
             <td class="num ctr-high">12.50%</td>
             <td class="num">1,014원</td>
             <td class="num">2,028원</td>
+          </tr>
+          <tr>
+            <td class="name-cell">노원재활필라테스</td>
+            <td><span class="tag tag-ink">확장</span></td>
+            <td class="num">12</td>
+            <td class="num">2</td>
+            <td class="num ctr-high">16.67%</td>
+            <td class="num">368원</td>
+            <td class="num">735원</td>
           </tr>
           <tr>
             <td class="name-cell">노원키즈필라테스</td>
@@ -1358,7 +1386,7 @@
           <details class="fold">
           <summary style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">클릭 1건 검색어 <span style="font-weight:400;">(37개 · 펼치기)</span></summary>
           <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
-            노원역근처필라테스(158회/441원) · 은행사거리필라테스(62회/1,730원) · 스포츠(57회/1,215원) · 창동역운동(49회/1,562원) · 상계역운동(38회/1,760원) · 노원역아기랑(32회/242원) · 마들역운동(26회/1,760원) · 노원필라테스가격(21회/462원) · 노원산전필라테스(14회/480원) · 벨필라테스(13회/1,560원) · 노원그룹필라테스(9회/682원) · 노원필라테스추천(7회/572원) · 노원M필라테스(6회/522원) · 노원역그룹필라테스(6회/462원) · 노원1:1필라테스(4회/683원) · 토브필라테스(4회/1,392원) · 노원구필라테스추천(4회/1,123원) · 노원필라테스오픈(3회/715원) · 새로필라테스노원(3회/518원) · 맨즈필라테스노원(2회/484원) · 노원필라테스시니어(2회/415원) · 하계필라테스(2회/77원) · 노원3:1필라테스(2회/552원) · 상계필라테스고요(1회/684원) · 새로필라테스가격(1회/492원) · 노원재활필라테스가격(1회/462원) · 노원그룹필라테스추천(1회/373원) · 노원시니어헬스(1회/368원) · 새벽필라테스노원(1회/352원) · 시니어필라테스노원(1회/346원) · 자세교정노원역(1회/329원) · 노원역필라테스1:1비용(1회/256원) · 노원역5번출구근처필라테스(1회/462원) · 시니어새로필라테스(1회/404원) · 노원구역필라테스가격(1회/322원) · 노원1:1필라테스체험(1회/319원) · 노원역월9만9천원필라테스(1회/462원)
+            노원역근처필라테스(158회/441원) · 은행사거리필라테스(62회/1,730원) · 스포츠(59회/1,215원) · 창동역운동(49회/1,562원) · 상계역운동(39회/1,760원) · 노원역아기랑(32회/242원) · 마들역운동(27회/1,760원) · 노원필라테스가격(22회/462원) · 노원산전필라테스(14회/480원) · 벨필라테스(13회/1,560원) · 노원그룹필라테스(9회/682원) · 노원필라테스추천(7회/572원) · 노원M필라테스(6회/522원) · 노원역그룹필라테스(6회/462원) · 노원1:1필라테스(4회/683원) · 토브필라테스(4회/1,392원) · 노원구필라테스추천(4회/1,123원) · 노원필라테스오픈(3회/715원) · 새로필라테스노원(3회/518원) · 맨즈필라테스노원(2회/484원) · 노원필라테스시니어(2회/415원) · 하계필라테스(2회/77원) · 노원3:1필라테스(2회/552원) · 상계필라테스고요(1회/684원) · 새로필라테스가격(1회/492원) · 노원재활필라테스가격(1회/462원) · 노원그룹필라테스추천(1회/373원) · 노원시니어헬스(1회/368원) · 새벽필라테스노원(1회/352원) · 시니어필라테스노원(1회/346원) · 자세교정노원역(1회/329원) · 노원역필라테스1:1비용(1회/256원) · 노원역5번출구근처필라테스(1회/462원) · 시니어새로필라테스(1회/404원) · 노원구역필라테스가격(1회/322원) · 노원1:1필라테스체험(1회/319원) · 노원역월9만9천원필라테스(1회/462원)
           </div>
           </details>
         </div>
@@ -1366,11 +1394,11 @@
           <details class="fold">
           <summary style="font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:8px;">노출은 있으나 클릭 0건인 검색어 <span style="font-weight:400;">(노출 5회 이상 81개 · 펼치기)</span></summary>
           <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
-            노원아기랑(61회) · 노원역운동(59회) · 나다운필라테스(57회) · 노원구인근필라테스(45회) · 노원구아기랑(45회) · 노원역카페(35회) · 노원구근처필라테스(30회) · 노원역9번출구(28회) · 노원임산부필라테스(26회) · 노원역주차장(21회) · 중계동은행사거리필라테스(21회) · 노원우동(19회) · 노원키즈(18회) · 노원역지도(18회) · 새로오픈(18회) · 모든날필라테스(17회) · 노원역헬스(17회) · 라이프스포츠(17회) · 노원배드민턴레슨(16회) · 노원구운동(16회) · 봉운동(16회) · 노원어린이체험(15회) · 봉스포츠(15회) · 노원스포츠(15회) · 노원시니어운동(14회) · 노원필라테스안(13회) · 노원구임산부필라테스(12회) · 노원역5번출구(10회) · 나래스포츠(10회) · 노원10월행사(10회) · 노원구노해로필라테스(10회) · 노원역주차(9회) · 노원스텝핑(9회) · 노원역추석(9회) · 건영스포츠(9회) · 퀸즈필라테스(9회) · 노원노원구필라테스(9회) · 노원시니어(9회) · 노원재활필라테스(9회) · 노원역체험(8회) · 노원체험(8회) · 노원구어린이(8회) · 노원그룹운동(8회) · 보람상가필라테스(8회) · 라임필라테스(8회) · INTOPILATES(8회) · 수정역필라테스(7회) · 내근처필라테스(7회) · 노원구어린이체험(7회) · 노원역데이트(7회) · 노원역배스킨라빈스(7회) · 노원역출구(7회) · 노원역2번출구(7회) · 노원역6번출구(7회) · 아이원스포츠(7회) · 노원키즈체험(7회) · 노원체인지필라테스(7회) · 노원역아기(6회) · 노원새로오픈맛집(6회) · 노원아기랑체험(6회) · 노원역키즈(6회) · 에반더필라테스상계역점(6회) · 노원어린이(5회) · 노원새로오픈(5회) · 노원산전요가(5회) · 노원당구레슨(5회) · 노원역8번출구(5회) · 노원역까페(5회) · 상계동필라테스예약(5회) · 트리니티필라테스(5회) · 노원역10번출구(5회) · 노원임산부운동(5회) · 상계필라테스가격(5회) · 노원역새로(5회) · 비비필라테스(5회) · 플로우필라테스(5회) · 노원역어린이(5회) · 노원필라테스내돈내산(5회) · 산전필라테스가격(5회) · 노원기구필라테스(5회) · 필라테스고요상계(5회)
+            노원아기랑(61회) · 노원역운동(60회) · 나다운필라테스(57회) · 노원구인근필라테스(45회) · 노원구아기랑(45회) · 노원역카페(35회) · 노원구근처필라테스(30회) · 노원역9번출구(28회) · 노원임산부필라테스(27회) · 노원역주차장(21회) · 중계동은행사거리필라테스(21회) · 노원구운동(21회) · 노원우동(19회) · 노원키즈(18회) · 노원역지도(18회) · 새로오픈(18회) · 모든날필라테스(17회) · 노원역헬스(17회) · 라이프스포츠(17회) · 노원배드민턴레슨(16회) · 봉운동(16회) · 노원어린이체험(15회) · 봉스포츠(15회) · 노원스포츠(15회) · 노원시니어운동(14회) · 노원필라테스안(13회) · 노원구임산부필라테스(12회) · 나래스포츠(11회) · 노원구노해로필라테스(11회) · 노원역5번출구(10회) · 노원10월행사(10회) · 노원시니어(10회) · 노원역주차(9회) · 노원스텝핑(9회) · 노원역추석(9회) · 건영스포츠(9회) · 퀸즈필라테스(9회) · 노원노원구필라테스(9회) · INTOPILATES(9회) · 노원역체험(8회) · 노원체험(8회) · 노원구어린이(8회) · 노원그룹운동(8회) · 보람상가필라테스(8회) · 라임필라테스(8회) · 노원역구운(8회) · 수정역필라테스(7회) · 내근처필라테스(7회) · 노원구어린이체험(7회) · 노원역데이트(7회) · 노원역배스킨라빈스(7회) · 노원역출구(7회) · 노원역2번출구(7회) · 노원역6번출구(7회) · 아이원스포츠(7회) · 노원키즈체험(7회) · 노원체인지필라테스(7회) · 노원역아기(6회) · 노원새로오픈맛집(6회) · 노원아기랑체험(6회) · 노원역키즈(6회) · 에반더필라테스상계역점(6회) · 노원어린이(5회) · 노원새로오픈(5회) · 노원산전요가(5회) · 노원당구레슨(5회) · 노원역8번출구(5회) · 노원역까페(5회) · 상계동필라테스예약(5회) · 트리니티필라테스(5회) · 노원역10번출구(5회) · 노원임산부운동(5회) · 상계필라테스가격(5회) · 노원역새로(5회) · 비비필라테스(5회) · 플로우필라테스(5회) · 노원역어린이(5회) · 노원필라테스내돈내산(5회) · 산전필라테스가격(5회) · 노원기구필라테스(5회) · 필라테스고요상계(5회)
           </div>
           </details>
           <div class="note" style="margin-top:8px;">
-            <!-- n:07-notes:매회차 -->② 제외 검색어: 10/9 등록 44개 · 확인 132/132 · 실패 0(10/10부터 판정) · 10/8 등록 25개는 10/9부터 판정 · 9/20~10/7 등록분은 10/8까지 재노출 0.<br>③ 클릭 0인 검색어 전체는 852개·노출 2,325회(경쟁사 포함 · 지난 회차 801개·2,391회) · 행 단위 확장·클릭 0 노출은 10/6 96회 → 10/7 95회 → 10/8 <b>89회</b>(66개 검색어).<!-- /n -->
+            <!-- n:07-notes:매회차 -->② 제외 검색어: 10/10 등록 31개 · 확인 93/93 · 실패 0(10/11부터 판정) · 10/9 등록 44개는 10/10부터 판정 · 9/20~10/8 등록분은 10/9까지 재노출 0.<br>③ 클릭 0인 검색어 전체는 891개·노출 2,398회(경쟁사 포함 · 지난 회차 852개·2,325회) · 행 단위 확장·클릭 0 노출은 10/7 95회 → 10/8 89회 → 10/9 <b>77회</b>(59개 검색어).<!-- /n -->
           </div>
         </div>
       </div>
@@ -1385,7 +1413,7 @@
           <span class="tag tag-mint">마들역필라테스</span>
         </div>
         <div class="note">
-          <!-- n:07-right:매회차 -->확장매칭·인접 지역 검색으로 이미 클릭이 발생 중인 검색어들(관찰용 — 추가 등록 안 함, 사용자 결정). 10/8까지 "필라테스"(102건)·"노원역필라테스"(85건)가 전체 클릭 420건의 45%(지난 회차 45%) · 경쟁사명 검색 클릭은 비교 검토 유입일 수 있어 참고만(아래 표).<!-- /n -->
+          <!-- n:07-right:매회차 -->확장매칭·인접 지역 검색으로 이미 클릭이 발생 중인 검색어들(관찰용 — 추가 등록 안 함, 사용자 결정). 10/9까지 "필라테스"(103건)·"노원역필라테스"(86건)가 전체 클릭 425건의 44%(지난 회차 45%) · 경쟁사명 검색 클릭은 비교 검토 유입일 수 있어 참고만(아래 표).<!-- /n -->
         </div>
       </div>
     </div>
@@ -1411,15 +1439,15 @@
             <td class="name-cell">젠필라테스</td>
             <td>노원구</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">131</td>
-            <td class="num">2</td>
-            <td class="num">2,832원</td>
+            <td class="num">134</td>
+            <td class="num">3</td>
+            <td class="num">3,795원</td>
           </tr>
           <tr>
             <td class="name-cell">와우필라테스</td>
             <td>노원구</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">42</td>
+            <td class="num">44</td>
             <td class="num">2</td>
             <td class="num">2,799원</td>
           </tr>
@@ -1427,7 +1455,7 @@
             <td class="name-cell">오운필라테스</td>
             <td>노원구</td>
             <td><span class="tag tag-mint">일치</span></td>
-            <td class="num">39</td>
+            <td class="num">42</td>
             <td class="num">0</td>
             <td class="num">0원</td>
           </tr>
@@ -1440,18 +1468,18 @@
             <td class="num">0원</td>
           </tr>
           <tr>
-            <td class="name-cell">이레필라테스</td>
-            <td>도봉구</td>
-            <td><span class="tag tag-mint">일치</span></td>
+            <td class="name-cell">노원필라테스정원</td>
+            <td>노원구</td>
+            <td><span class="tag tag-ink">확장</span></td>
             <td class="num">18</td>
             <td class="num">0</td>
             <td class="num">0원</td>
           </tr>
           <tr>
-            <td class="name-cell">노원필라테스정원</td>
-            <td>노원구</td>
-            <td><span class="tag tag-ink">확장</span></td>
-            <td class="num">17</td>
+            <td class="name-cell">이레필라테스</td>
+            <td>도봉구</td>
+            <td><span class="tag tag-mint">일치</span></td>
+            <td class="num">18</td>
             <td class="num">0</td>
             <td class="num">0원</td>
           </tr>
@@ -1467,7 +1495,7 @@
             <td class="name-cell">노원필라테스인</td>
             <td>노원구</td>
             <td><span class="tag tag-ink">확장</span></td>
-            <td class="num">15</td>
+            <td class="num">16</td>
             <td class="num">0</td>
             <td class="num">0원</td>
           </tr>
@@ -1536,6 +1564,14 @@
             <td class="num">0원</td>
           </tr>
           <tr>
+            <td class="name-cell">노원필라테스시소</td>
+            <td>노원구</td>
+            <td><span class="tag tag-ink">확장</span></td>
+            <td class="num">4</td>
+            <td class="num">0</td>
+            <td class="num">0원</td>
+          </tr>
+          <tr>
             <td class="name-cell">퍼스트필라테스</td>
             <td>노원구</td>
             <td><span class="tag tag-mint">일치</span></td>
@@ -1577,14 +1613,6 @@
           </tr>
           <tr>
             <td class="name-cell">노원솔라필라테스</td>
-            <td>노원구</td>
-            <td><span class="tag tag-ink">확장</span></td>
-            <td class="num">2</td>
-            <td class="num">0</td>
-            <td class="num">0원</td>
-          </tr>
-          <tr>
-            <td class="name-cell">노원필라테스시소</td>
             <td>노원구</td>
             <td><span class="tag tag-ink">확장</span></td>
             <td class="num">2</td>
@@ -1748,7 +1776,7 @@
       </div>
       </details>
       <div class="note" style="margin-top:12px;">
-        <!-- n:07-comp:매회차 -->① 경쟁사 판정(10/9): 표기 변형 신규 0 · 10/6 처음 보인 "필라테스하는날"·"필라테스천국의계단"·"필라테스듀엣룸"은 두 회차 연속 0회라 종결 · "슈슈필라테스"·"인투필라테스"는 보류 유지(표 42행 그대로).<br>경쟁사·타 스튜디오 브랜드명으로 추정되는 검색어(노원·도봉구 인근 실제 업체 확인분). 젠필라테스 131회가 가장 크고 표 안 경쟁사는 대부분 클릭 0·비용 0원 — 채택·제외·종결 이력은 스킬 기록(경쟁사 판정 이력 표)에 둠.<!-- /n -->
+        <!-- n:07-comp:매회차 -->① 경쟁사 판정(10/10): 표기 변형 신규 0 · "슈슈필라테스"는 두 회차 연속 0회라 종결 · "인투필라테스"는 10/9 다시 1회라 보류 유지 · 새 상호형 "원필라테스노원" 2회는 소재지가 확인되지 않아 보류(표 42행 그대로).<br>경쟁사·타 스튜디오 브랜드명으로 추정되는 검색어(노원·도봉구 인근 실제 업체 확인분). 젠필라테스 134회가 가장 크고 표 안 경쟁사는 대부분 클릭 0·비용 0원 — 채택·제외·종결 이력은 스킬 기록(경쟁사 판정 이력 표)에 둠.<!-- /n -->
       </div>
     </div>
   </div>
@@ -1774,25 +1802,25 @@
         <tbody>
           <tr>
             <td class="name-cell">서울특별시 노원구</td>
-            <td class="num">6,008</td>
-            <td class="num">204</td>
-            <td class="num">238,050원</td>
+            <td class="num">6,101</td>
+            <td class="num">206</td>
+            <td class="num">239,356원</td>
           </tr>
           <tr>
             <td class="name-cell">서울특별시 도봉구</td>
-            <td class="num">1,392</td>
+            <td class="num">1,421</td>
             <td class="num">21</td>
             <td class="num">23,685원</td>
           </tr>
           <tr>
             <td class="name-cell">국내 - 상세 위치 확인불가</td>
-            <td class="num">702</td>
+            <td class="num">725</td>
             <td class="num">33</td>
             <td class="num">41,750원</td>
           </tr>
           <tr>
             <td class="name-cell">서울특별시 강남구</td>
-            <td class="num">380</td>
+            <td class="num">391</td>
             <td class="num">8</td>
             <td class="num">8,600원</td>
           </tr>
@@ -1804,7 +1832,7 @@
           </tr>
           <tr>
             <td class="name-cell">서울특별시 성북구</td>
-            <td class="num">310</td>
+            <td class="num">323</td>
             <td class="num">8</td>
             <td class="num">7,917원</td>
           </tr>
@@ -1816,38 +1844,38 @@
           </tr>
           <tr>
             <td class="name-cell">경기도 성남시 수정구</td>
-            <td class="num">238</td>
+            <td class="num">240</td>
             <td class="num">1</td>
             <td class="num">805원</td>
           </tr>
           <tr>
             <td class="name-cell">경기도 남양주시</td>
-            <td class="num">222</td>
-            <td class="num">18</td>
-            <td class="num">17,837원</td>
+            <td class="num">227</td>
+            <td class="num">19</td>
+            <td class="num">18,800원</td>
           </tr>
           <tr>
             <td class="name-cell">서울특별시 중구</td>
-            <td class="num">194</td>
-            <td class="num">7</td>
-            <td class="num">4,277원</td>
+            <td class="num">196</td>
+            <td class="num">8</td>
+            <td class="num">5,705원</td>
           </tr>
         </tbody>
       </table>
       </div>
       <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:12px;">
         <details class="fold">
-        <summary class="sub-head" style="margin:0 0 6px;">TOP 10 외 지역 중 클릭 발생분 <span style="font-weight:400;color:var(--ink-soft);">(40개 지역·클릭 113건)</span> · 펼치기</summary>
+        <summary class="sub-head" style="margin:0 0 6px;">TOP 10 외 지역 중 클릭 발생분 <span style="font-weight:400;color:var(--ink-soft);">(40개 지역·클릭 114건)</span> · 펼치기</summary>
         <div style="font-size:12.5px;color:var(--ink);line-height:1.9;">
-            광진구(노출97·클릭10) · 중랑구(노출147·클릭9) · 성동구(노출137·클릭9) · 서초구(노출106·클릭7) · 양주시(노출86·클릭7) · 종로구(노출92·클릭6) · 의정부시(노출168·클릭5) · 송파구(노출156·클릭5) · 동대문구(노출74·클릭4) · 서대문구(노출66·클릭4) · 대한민국외(노출33·클릭4) · 마포구(노출77·클릭3) · 동작구(노출35·클릭3) · 화성시 동탄구(노출17·클릭3) · 용산구(노출59·클릭2) · 파주시(노출58·클릭2) · 강서구(노출42·클릭2) · 구리시(노출39·클릭2) · 인천 검단구(노출30·클릭2) · 부산 부산진구(노출18·클릭2) · 광주 북구(노출18·클릭2) · 가평군(노출10·클릭2) · 대전광역시 중구(노출36·클릭1) · 고양시 덕양구(노출26·클릭1) · 포천시(노출24·클릭1) · 하남시(노출24·클릭1) · 관악구(노출22·클릭1) · 용인시 수지구(노출21·클릭1) · 세종시(노출20·클릭1) · 고양시 일산동구(노출19·클릭1) · 인천 서해구(노출18·클릭1) · 경주시(노출14·클릭1) · 인천 영종구(노출12·클릭1) · 이천시(노출11·클릭1) · 오산시(노출10·클릭1) · 수원시 권선구(노출7·클릭1) · 안산시 상록구(노출6·클릭1) · 화성시 만세구(노출5·클릭1) · 부산 연제구(노출5·클릭1) · 부천시 오정구(노출4·클릭1)
+            중랑구(노출148·클릭10) · 광진구(노출100·클릭10) · 성동구(노출137·클릭9) · 서초구(노출107·클릭7) · 양주시(노출86·클릭7) · 종로구(노출94·클릭6) · 의정부시(노출174·클릭5) · 송파구(노출158·클릭5) · 동대문구(노출74·클릭4) · 서대문구(노출66·클릭4) · 대한민국외(노출33·클릭4) · 마포구(노출77·클릭3) · 동작구(노출35·클릭3) · 화성시 동탄구(노출17·클릭3) · 용산구(노출59·클릭2) · 파주시(노출58·클릭2) · 강서구(노출42·클릭2) · 구리시(노출39·클릭2) · 인천 검단구(노출30·클릭2) · 부산 부산진구(노출18·클릭2) · 광주 북구(노출18·클릭2) · 가평군(노출14·클릭2) · 대전광역시 중구(노출36·클릭1) · 고양시 덕양구(노출27·클릭1) · 하남시(노출27·클릭1) · 포천시(노출25·클릭1) · 관악구(노출22·클릭1) · 용인시 수지구(노출21·클릭1) · 세종시(노출20·클릭1) · 인천 서해구(노출20·클릭1) · 고양시 일산동구(노출19·클릭1) · 경주시(노출15·클릭1) · 인천 영종구(노출12·클릭1) · 이천시(노출11·클릭1) · 오산시(노출10·클릭1) · 수원시 권선구(노출7·클릭1) · 안산시 상록구(노출6·클릭1) · 화성시 만세구(노출5·클릭1) · 부산 연제구(노출5·클릭1) · 부천시 오정구(노출4·클릭1)
           </div>
         </details>
         <div class="note" style="margin-top:8px;">
-          <!-- n:08-note:매회차 -->이 외 클릭 0인 155개 지역에서 노출 1,369회 발생. TOP 10 + 위 목록으로 10/8까지 전체 클릭 420건이 모두 표시됨.<br>※ 이 섹션의 노출 합계는 13,239회로 상단 KPI(13,233회)와 6회 차이 — 상세지역 보고서에는 광고그룹 구분이 없어 OFF 그룹이 섞임(비중 계산도 13,239 기준).<!-- /n -->
+          <!-- n:08-note:매회차 -->이 외 클릭 0인 156개 지역에서 노출 1,397회 발생. TOP 10 + 위 목록으로 10/9까지 전체 클릭 425건이 모두 표시됨.<br>※ 이 섹션의 노출 합계는 13,472회로 상단 KPI(13,466회)와 6회 차이 — 상세지역 보고서에는 광고그룹 구분이 없어 OFF 그룹이 섞임(비중 계산도 13,472 기준).<!-- /n -->
         </div>
       </div>
       <div class="note-mint" style="margin-top:12px;">
-        <!-- n:08-mint:매회차 -->→ 노원구 단독으로 전체 노출의 45%·클릭의 49%(지난 회차 45%·49%) 차지 · "국내 - 상세 위치 확인불가"는 노출 702·클릭 33·비용 41,750원 — 비용 비중이 8.8% → <b>8.7%</b>, CTR은 4.81% → 4.70% · 11위 의정부시는 10/8까지 168회·5건이 돼 10위 중구(194회) 바로 아래. 지역 설정 전국 유지 결론 그대로 — 타겟 밖 서울(노출 1,916·클릭 74)의 CTR 3.86%는 타겟 5개 구(3.00%)보다 높고, 재상정 조건인 서울·경기 밖 비용 비중 5%는 3.0 → 3.0%로 미달.<!-- /n -->
+        <!-- n:08-mint:매회차 -->→ 노원구 단독으로 전체 노출의 45%·클릭의 48%(지난 회차 45%·49%) 차지 · "국내 - 상세 위치 확인불가"는 노출 725·클릭 33·비용 41,750원 — 비용 비중이 8.7% → <b>8.6%</b>, CTR은 4.70% → 4.55% · 11위 의정부시는 10/9까지 174회·5건이 돼 10위 중구(196회) 바로 아래. 지역 설정 전국 유지 결론 그대로 — 타겟 밖 서울(노출 1,940·클릭 75)의 CTR 3.87%는 타겟 5개 구(2.99%)보다 높고, 재상정 조건인 서울·경기 밖 비용 비중 5%는 3.0 → 3.0%로 미달.<!-- /n -->
       </div>
     </div>
   </div>
@@ -1857,7 +1885,7 @@
     <div class="section-head">
       <span class="section-num">09</span>
       <span class="section-title">시간대별 분석</span>
-      <span class="section-desc"><!-- n:09-desc:매회차 -->15시대 클릭 최다(34회, 25회차 연속) — 상시 문의 대응 전략과 부합<!-- /n --></span>
+      <span class="section-desc"><!-- n:09-desc:매회차 -->15시대 클릭 최다(35회, 26회차 연속) — 상시 문의 대응 전략과 부합<!-- /n --></span>
     </div>
     <div class="card">
       <div class="scroll-x" style="overflow-x:auto;">
@@ -1866,10 +1894,10 @@
         </div>
       </div>
       <div style="font-size:11.5px;color:var(--mint-dark);font-weight:600;margin:12px 0;">
-        <!-- n:09-call:매회차 -->→ 심야(22시~09시)에도 노출 2,924회·클릭 94회(전체 클릭의 22%)·비용 91,549원 발생. 노출 비중은 22%, 클릭 비중은 22%로 낮 시간대와 비슷한 효율임(지난 회차 노출 22%·클릭 22%). 최다 클릭 시간대는 15시 34회, 2위는 20시 33회. 매장 운영시간 외에도 카카오톡·네이버톡톡으로 상시 문의 대응이 가능해, 늦은 밤 클릭까지 놓치지 않는 전략과 맞아떨어짐.<!-- /n -->
+        <!-- n:09-call:매회차 -->→ 심야(22시~09시)에도 노출 2,975회·클릭 96회(전체 클릭의 23%)·비용 92,843원 발생. 노출 비중은 22%, 클릭 비중은 23%로 낮 시간대와 비슷한 효율임(지난 회차 노출 22%·클릭 22%). 최다 클릭 시간대는 15시 35회, 2위는 20시 33회. 매장 운영시간 외에도 카카오톡·네이버톡톡으로 상시 문의 대응이 가능해, 늦은 밤 클릭까지 놓치지 않는 전략과 맞아떨어짐.<!-- /n -->
       </div>
       <div class="note" style="margin-bottom:12px;">
-        <!-- n:09-foot:고정 -->※ 이 섹션의 노출 합계는 13,239회로 상단 KPI(13,233회)와 6회 차이가 있음 — 시간대별 보고서에는 광고그룹 구분이 없어 OFF 상태인 "노원필라테스" 그룹이 분리되지 않기 때문.<!-- /n -->
+        <!-- n:09-foot:고정 -->※ 이 섹션의 노출 합계는 13,472회로 상단 KPI(13,466회)와 6회 차이가 있음 — 시간대별 보고서에는 광고그룹 구분이 없어 OFF 상태인 "노원필라테스" 그룹이 분리되지 않기 때문.<!-- /n -->
       </div>
     </div>
   </div>
@@ -1879,7 +1907,7 @@
     <div class="section-head">
       <span class="section-num">10</span>
       <span class="section-title">검색 지면 vs 콘텐츠 지면</span>
-      <span class="section-desc"><!-- n:10-desc:고정 -->콘텐츠 지면 33일 연속 0회 — 클릭 420건 중 418건이 네이버 검색 지면<!-- /n --></span>
+      <span class="section-desc"><!-- n:10-desc:고정 -->콘텐츠 지면 34일 연속 0회 — 클릭 425건 중 423건이 네이버 검색 지면<!-- /n --></span>
     </div>
     <div class="card" style="padding-bottom:20px;">
       <div style="height:220px;">
@@ -1903,9 +1931,9 @@
           <tr>
             <td class="name-cell">검색 지면 › 네이버 및 검색 포털</td>
             <td>네이버 플레이스 · 네이버 통합검색</td>
-            <td class="num">11,303</td>
-            <td class="num">418</td>
-            <td class="num">477,896원</td>
+            <td class="num">11,536</td>
+            <td class="num">423</td>
+            <td class="num">481,955원</td>
             <td><span class="tag tag-mint">유지</span></td>
           </tr>
           <tr>
@@ -1936,10 +1964,10 @@
       </table>
       </div>
       <div class="note-mint" style="margin-top:12px;">
-        <!-- n:10-mint:매회차 -->→ 10/8까지 클릭 420건 중 418건·광고비 479,054원 중 477,896원이 첫 줄(네이버 검색 지면)에서 나옴 — 나머지 세 줄은 노출만 있고 클릭은 거의 없음.<!-- /n -->
+        <!-- n:10-mint:매회차 -->→ 10/9까지 클릭 425건 중 423건·광고비 483,113원 중 481,955원이 첫 줄(네이버 검색 지면)에서 나옴 — 나머지 세 줄은 노출만 있고 클릭은 거의 없음.<!-- /n -->
       </div>
       <div class="note" style="margin-top:8px;">
-        <!-- n:10-note:매회차 -->9/6 매체 설정 변경(네이버 검색 지면만 남김) 뒤 콘텐츠 지면 33일 연속 0회(누적 1,746회에서 정지). 최근 7일 노출은 276·<wbr>204·<wbr>200·<wbr>219·<wbr>421·<wbr>313·<wbr>277회, 클릭은 8·<wbr>4·<wbr>7·<wbr>6·<wbr>9·<wbr>14·<wbr>8건(10/2~10/8) — 9/6 이후 33일 하루 평균 9.7건(44일 평균 9.5건). 클릭당 과금이라 예산 절감이 아니라 지표를 실제 성과에 맞춘 것.<br>파트너 매체(다음·네이트·Bing)는 "해제"인데도 누적 184회·클릭 2건 — 10/8는 2회(고객센터 답변 전까지 추적 안 함).<!-- /n -->
+        <!-- n:10-note:매회차 -->9/6 매체 설정 변경(네이버 검색 지면만 남김) 뒤 콘텐츠 지면 34일 연속 0회(누적 1,746회에서 정지). 최근 7일 노출은 204·<wbr>200·<wbr>219·<wbr>421·<wbr>313·<wbr>277·<wbr>233회, 클릭은 4·<wbr>7·<wbr>6·<wbr>9·<wbr>14·<wbr>8·<wbr>5건(10/3~10/9) — 9/6 이후 34일 하루 평균 9.6건(45일 평균 9.4건). 클릭당 과금이라 예산 절감이 아니라 지표를 실제 성과에 맞춘 것.<br>파트너 매체(다음·네이트·Bing)는 "해제"인데도 누적 184회·클릭 2건 — 10/9는 0회(고객센터 답변 전까지 추적 안 함).<!-- /n -->
       </div>
     </div>
   </div>
@@ -1953,18 +1981,18 @@
     <div class="insight">
       <div>
         <!-- n:11-list:매회차 --><ul>
-          <li><b>지난 회차 관찰이 뒤집힘 — 닷새 동안 플레이스 순위와 하루 클릭이 같은 방향으로 움직였음</b>(10/4~10/8 순위 3.76 → 4.18 → 2.97 → 2.88 → 3.83위 · 클릭 7·6·9·14·8건 — 닷새치라 순위 하나로 설명하기는 어려워 보임, 01번 참고)</li>
-          <li><b>노출이 이틀 연속 줄었음 — 10/8(목) 277회</b>(10/6 421회 → 10/7 313회 → 10/8 277회 · 같은 날 클릭 14 → 8건·CTR 2.89% · 누적 CTR 3.18 → 3.17%, 01번 참고)</li>
-          <li><b>플레이스 일예산 상향 유지 결론 그대로 — 재상정 조건 미달</b>(상향 뒤 하루 11,516원·8.0건·CPC 1,431원 vs 상향 전 9,658원·7.2건, 01·04번 참고)</li>
-          <li><b>파워링크 광고비 비중 7.9 → 8.0%, 누적 클릭 84 → 87건</b>(10/8 클릭 3건·916원, 04·06번 참고)</li>
-          <li><b>클릭 1건 목록 36 → 37개, 정식 표 24 → 25행</b>(상위 2개 검색어 클릭 비중 45%, 07번 참고)</li>
-          <li><b>제외 검색어 — 10/9 등록 44개 · 확인 132/132 · 실패 0(10/10부터 판정)</b>(10/8 등록 25개는 10/9부터 판정 · 9/20~10/7 등록분은 10/8까지 재노출 0, 07번 ②·12번 1번)</li>
-          <li><b>상계동필라테스 하루 노출 30회 이상인 날이 9/18·10/7·10/8 사흘로 늘었음</b>(승격 조건 도달 유지 — 이번 회차도 카드 그대로, 06번 카드·12번 2번)</li>
-          <li><b>변화 없음</b> — CPC 격차 3.56배 · 모바일 비중 79.9%(지난 회차 79.9%) · 최다 클릭 15시 34회 · 심야 노출 22%·클릭 22% · 자동매칭 클릭 63건 대 직접 24건 · 노원구 클릭 49%·타겟 5개 구 59% · 확인불가 비용 비중 8.8 → 8.7% · 콘텐츠 지면 33일 연속 0</li>
-          <li><b>(참고)</b> 경쟁사 — "필라테스하는날"·"천국의계단"·"듀엣룸" 종결 · "슈슈필라테스"·"인투필라테스" 보류 유지 · 표 42행 그대로(07번 ①)</li>
-          <li><b>(참고)</b> 클릭 0 검색어 852개·노출 2,325회(지난 회차 801개·2,391회, 07번 ③)</li>
+          <li><b>지난 회차 관찰이 뒤집힘 — 플레이스 순위와 하루 클릭이 다시 엇갈렸음</b>(10/9 순위 3.83 → 2.98위로 올랐는데 클릭은 8 → 5건 · 누적 가중평균 3.12위 그대로, 01번 참고)</li>
+          <li><b>노출이 사흘 연속 줄었음 — 10/9(금) 233회</b>(10/7 313회 → 10/8 277회 → 10/9 233회 · 같은 날 클릭 8 → 5건·CTR 2.15% · 누적 CTR 3.17 → 3.16%, 01번 참고)</li>
+          <li><b>플레이스 일예산 상향 유지 결론 그대로 — 재상정 조건 미달</b>(상향 뒤 하루 11,160원·7.8건·CPC 1,426원 vs 상향 전 9,658원·7.2건, 01·04번 참고)</li>
+          <li><b>파워링크 광고비 비중 8.0 → 8.1%, 누적 클릭 87 → 89건</b>(10/9 클릭 2건·735원, 04·06번 참고)</li>
+          <li><b>클릭 1건 목록 37 → 37개, 정식 표 25 → 26행</b>(상위 2개 검색어 클릭 비중 44%, 07번 참고)</li>
+          <li><b>제외 검색어 — 10/10 등록 31개 · 확인 93/93 · 실패 0(10/11부터 판정)</b>(10/9 등록 44개는 10/10부터 판정 · 9/20~10/8 등록분은 10/9까지 재노출 0, 07번 ②·12번 1번)</li>
+          <li><b>상계동필라테스 하루 노출 30회 이상인 날이 9/18·10/7·10/8·10/9 나흘로 늘었음</b>(승격 조건 도달 유지 — 이번 회차도 카드 그대로, 06번 카드·12번 2번)</li>
+          <li><b>변화 없음</b> — CPC 격차 3.55배 · 모바일 비중 80.0%(지난 회차 79.9%) · 최다 클릭 15시 35회 · 심야 노출 22%·클릭 23% · 자동매칭 클릭 65건 대 직접 24건 · 노원구 클릭 48%·타겟 5개 구 59% · 확인불가 비용 비중 8.7 → 8.6% · 콘텐츠 지면 34일 연속 0</li>
+          <li><b>(참고)</b> 경쟁사 — "슈슈필라테스" 종결 · "인투필라테스" 보류 유지 · "원필라테스노원" 새로 보류 · 표 42행 그대로(07번 ①)</li>
+          <li><b>(참고)</b> 클릭 0 검색어 891개·노출 2,398회(지난 회차 852개·2,325회, 07번 ③)</li>
         </ul><!-- /n -->
-        <div style="margin-top:12px;font-size:11.5px;line-height:1.55;color:#b8c7c3;"><!-- n:11-verdict:매회차 -->지난 회차 11번 8개 항목 판정: 유지 7 · 뒤집힘 1 · 근거 소멸 0 — 뒤집힌 항목(순위·클릭이 늘 같은 방향은 아님 → 닷새 같은 방향)을 맨 위에 올렸고, 이번 요약은 8개 + (참고) 2개.<!-- /n --></div>
+        <div style="margin-top:12px;font-size:11.5px;line-height:1.55;color:#b8c7c3;"><!-- n:11-verdict:매회차 -->지난 회차 11번 8개 항목 판정: 유지 7 · 뒤집힘 1 · 근거 소멸 0 — 뒤집힌 항목(닷새 같은 방향 → 10/9 순위는 오르고 클릭은 줄어 엇갈림)을 맨 위에 올렸고, 이번 요약은 8개 + (참고) 2개.<!-- /n --></div>
       </div>
     </div>
   </div>
@@ -1983,20 +2011,20 @@
         <tbody>
           <tr>
             <td style="width:36px;"><span class="tag tag-mint">1</span></td>
-            <td><!-- n:12-1:매회차 --><span class="tag tag-mint">상시</span> <b>제외 검색어 정기 점검 — 10/9 등록 44개 · 확인 132/132 · 실패 0(10/10부터 판정) · 10/8 등록 25개는 10/9부터 판정 · 9/20~10/7 등록분은 10/8까지 재노출 0</b> — 등록 여부는 스킬이 등록 목록(registry)으로 판정(사장님께 다시 묻지 않음)<div class="note" style="margin-top:4px;">다음 회차 판정: 10/8 등록분은 10/9부터, 10/9 등록분은 10/10부터 "확장" 행 재노출 여부 — 등록돼 있는데도 잡히면 이름·날짜·노출수를 채팅으로 알림</div><!-- /n --></td>
+            <td><!-- n:12-1:매회차 --><span class="tag tag-mint">상시</span> <b>제외 검색어 정기 점검 — 10/10 등록 31개 · 확인 93/93 · 실패 0(10/11부터 판정) · 10/9 등록 44개는 10/10부터 판정 · 9/20~10/8 등록분은 10/9까지 재노출 0</b> — 등록 여부는 스킬이 등록 목록(registry)으로 판정(사장님께 다시 묻지 않음)<div class="note" style="margin-top:4px;">다음 회차 판정: 10/9 등록분은 10/10부터, 10/10 등록분은 10/11부터 "확장" 행 재노출 여부 — 등록돼 있는데도 잡히면 이름·날짜·노출수를 채팅으로 알림</div><!-- /n --></td>
           </tr>
           <tr>
             <td><span class="tag tag-mint">2</span></td>
-            <td><!-- n:12-2:매회차 --><span class="tag tag-mint">조건 도달</span> <b>"상계동필라테스" 그래프 승격 — 하루 노출 30회 이상인 날 9/18·10/7·10/8 사흘(조건 이틀) → 이번 회차도 카드 그대로, 독립 라인 차트 전환은 별도 작업(사장님 결정)</b> — 비용 영향 0(표시 방식 문제)이라 맨 아래<div class="note" style="margin-top:4px;">다음 회차 판정: 사장님이 전환을 고르면 별도 작업으로 차트를 만들고, 아니면 요약 카드 유지</div><!-- /n --></td>
+            <td><!-- n:12-2:매회차 --><span class="tag tag-mint">조건 도달</span> <b>"상계동필라테스" 그래프 승격 — 하루 노출 30회 이상인 날 9/18·10/7·10/8·10/9 나흘(조건 이틀) → 이번 회차도 카드 그대로, 독립 라인 차트 전환은 별도 작업(사장님 결정)</b> — 비용 영향 0(표시 방식 문제)이라 맨 아래<div class="note" style="margin-top:4px;">다음 회차 판정: 사장님이 전환을 고르면 별도 작업으로 차트를 만들고, 아니면 요약 카드 유지</div><!-- /n --></td>
           </tr>
         </tbody>
       </table>
       </div>
       <div class="note" style="padding:8px 14px 4px;">
         <!-- n:12-note:매회차 -->· <b>정렬</b>: 1번은 사장님 지시로 올린 상시 항목이라 맨 위, 2번(상계동)은 비용 영향 0이라 그 아래<br>
-        · <b>이월 판정</b>: 지난 회차 12번 2개 항목 전부 판정 — 상시 유지 1(1번 · 9/20~10/7 등록분 10/8까지 재노출 0, 10/9 등록 44개 확인 132/132), 조건 도달 유지 1(2번 · 30회 이상인 날 9/18·10/7·10/8 사흘) · 철회 0 · 조용히 사라진 항목 없음<br>
-        · <b>신규 없음</b>: 플레이스 상향 뒤 CPC 1,431원은 재상정 조건(1,600원 초과) 미달 · 파워링크 예산은 사용자 결정(현행 유지)이라 항목으로 올리지 않음<br>
-        · <b>경쟁사는 액션 항목으로 올리지 않음</b>: "필라테스하는날"·"천국의계단"·"듀엣룸" 종결 · 표 42행 그대로(07번 ①)<!-- /n -->
+        · <b>이월 판정</b>: 지난 회차 12번 2개 항목 전부 판정 — 상시 유지 1(1번 · 9/20~10/8 등록분 10/9까지 재노출 0, 10/10 등록 31개 확인 93/93), 조건 도달 유지 1(2번 · 30회 이상인 날 9/18·10/7·10/8·10/9 나흘) · 철회 0 · 조용히 사라진 항목 없음<br>
+        · <b>신규 없음</b>: 플레이스 상향 뒤 CPC 1,426원은 재상정 조건(1,600원 초과) 미달 · 파워링크 예산은 사용자 결정(현행 유지)이라 항목으로 올리지 않음<br>
+        · <b>경쟁사는 액션 항목으로 올리지 않음</b>: "슈슈필라테스" 종결 · 표 42행 그대로(07번 ①)<!-- /n -->
       </div>
     </div>
   </div>
@@ -2034,12 +2062,12 @@ Chart.defaults.set('plugins.datalabels', { display: false });
 (function(){  // 판 C: PC 는 세로 콤보 그대로 · 화면 폭 ≤ M.maxPx 이면 차트 스크립트 끝 분기 도우미가 같은 data 로 가로 막대(날짜 세로축·최신 위)를 다시 만든다
   var canvas = document.getElementById('dailyChart');
   var data = {
-    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)','10/6(화)','10/7(수)','10/8(목)'],
+    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)','10/6(화)','10/7(수)','10/8(목)','10/9(금)'],
     datasets: [
       {
         type: 'bar',
         label: '노출수',
-        data: [150, 315, 526, 384, 493, 489, 521, 334, 230, 297, 957, 216, 242, 260, 350, 179, 201, 142, 183, 195, 251, 298, 284, 209, 225, 293, 318, 318, 248, 217, 194, 212, 254, 361, 315, 342, 320, 276, 204, 200, 219, 421, 313, 277],
+        data: [150, 315, 526, 384, 493, 489, 521, 334, 230, 297, 957, 216, 242, 260, 350, 179, 201, 142, 183, 195, 251, 298, 284, 209, 225, 293, 318, 318, 248, 217, 194, 212, 254, 361, 315, 342, 320, 276, 204, 200, 219, 421, 313, 277, 233],
         backgroundColor: '#cdeee7',
         borderRadius: 6,
         order: 1
@@ -2047,7 +2075,7 @@ Chart.defaults.set('plugins.datalabels', { display: false });
       {
         type: 'line',
         label: '총비용(원)',
-        data: [497, 4559, 8500, 5092, 8576, 9173, 10782, 10341, 11334, 10475, 8767, 9913, 11137, 6921, 11858, 9799, 10146, 12268, 12503, 13412, 11289, 9905, 20773, 18756, 6443, 14951, 13710, 22597, 7838, 13868, 12014, 6077, 7025, 21450, 7987, 22127, 12917, 8949, 5307, 6226, 7122, 11602, 17195, 6873],
+        data: [497, 4559, 8500, 5092, 8576, 9173, 10782, 10341, 11334, 10475, 8767, 9913, 11137, 6921, 11858, 9799, 10146, 12268, 12503, 13412, 11289, 9905, 20773, 18756, 6443, 14951, 13710, 22597, 7838, 13868, 12014, 6077, 7025, 21450, 7987, 22127, 12917, 8949, 5307, 6226, 7122, 11602, 17195, 6873, 4059],
         borderColor: mintDark,
         backgroundColor: mintDark,
         tension: 0.35,
@@ -2127,8 +2155,8 @@ new Chart(document.getElementById('groupChart'), {
   data: {
     labels: [['플레이스 광고','(새로필라테스)'],['파워링크 광고','(4개 키워드 합산)']],
     datasets: [
-      {label:'노출수', data:[9176, 4057], backgroundColor: mint, borderRadius:6, barThickness: 22},
-      {label:'클릭수', data:[333, 87], backgroundColor: ink, borderRadius:6, barThickness: 22}
+      {label:'노출수', data:[9317, 4149], backgroundColor: mint, borderRadius:6, barThickness: 22},
+      {label:'클릭수', data:[336, 89], backgroundColor: ink, borderRadius:6, barThickness: 22}
     ]
   },
   options: {
@@ -2162,7 +2190,7 @@ new Chart(document.getElementById('costPie'), {
   data: {
     labels: ['플레이스 광고','파워링크 광고'],
     datasets: [{
-      data: [440766, 38288],
+      data: [444090, 39023],
       backgroundColor: [mint, ink],
       borderWidth: 3,
       borderColor: '#fff'
@@ -2173,7 +2201,7 @@ new Chart(document.getElementById('costPie'), {
     responsive:true,
     plugins:{
       legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:8, font:{size:11}}},
-      title:{display:true, text:'광고비 비중 (총 479,054원)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}},
+      title:{display:true, text:'광고비 비중 (총 483,113원)', align:'start', font:{size:12,weight:'600'}, color: ink, padding:{bottom:14}},
       datalabels:{
         display:true,
         color:'#fff',
@@ -2197,7 +2225,7 @@ new Chart(document.getElementById('mediaChart'), {
     labels: [['네이버 플레이스','모바일'],['네이버 통합검색','모바일'],['네이버 플레이스','PC'],['MLB파크','모바일'],['네이버 통합검색','PC']],
     datasets: [{
       label:'노출수',
-      data:[5814, 3145, 1558, 828, 749],
+      data:[5942, 3220, 1571, 828, 766],
       backgroundColor: [mint, ink, mint, mint, ink],
       borderRadius:6,
       barThickness: 20
@@ -2221,7 +2249,7 @@ new Chart(document.getElementById('deviceChart'), {
   data: {
     labels: ['플레이스 · 모바일','플레이스 · PC','파워링크 · 모바일','파워링크 · PC'],
     datasets: [{
-      data: [7357, 1819, 3218, 839],
+      data: [7485, 1832, 3293, 856],
       backgroundColor: [mint, mintDark, ink, '#5b6b6a'],
       borderWidth: 3,
       borderColor: '#fff',
@@ -2259,10 +2287,10 @@ new Chart(document.getElementById('deviceChart'), {
 (function(){  // 판 C: PC 는 그대로 · 화면 폭 ≤ M.maxPx 이면 가로(날짜 세로축·최신 위, 순위축 1 이 오른쪽)에 순위 라벨 — 정의·전 기간 배열 그대로
   var canvas = document.getElementById('rankChart');
   var data = {
-    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)','10/6(화)','10/7(수)','10/8(목)'],
+    labels: ['8/26(수)','8/27(목)','8/28(금)','8/29(토)','8/30(일)','8/31(월)','9/1(화)','9/2(수)','9/3(목)','9/4(금)','9/5(토)','9/6(일)','9/7(월)','9/8(화)','9/9(수)','9/10(목)','9/11(금)','9/12(토)','9/13(일)','9/14(월)','9/15(화)','9/16(수)','9/17(목)','9/18(금)','9/19(토)','9/20(일)','9/21(월)','9/22(화)','9/23(수)','9/24(목)','9/25(금)','9/26(토)','9/27(일)','9/28(월)','9/29(화)','9/30(수)','10/1(목)','10/2(금)','10/3(토)','10/4(일)','10/5(월)','10/6(화)','10/7(수)','10/8(목)','10/9(금)'],
     datasets: [{
       label: '평균노출순위',
-      data: [2.49, 2.88, 3.11, 2.84, 2.76, 2.90, 2.93, 2.75, 2.79, 1.75, 2.59, 2.03, 2.92, 2.17, 2.23, 2.50, 2.77, 2.00, 2.18, 2.79, 2.65, 2.59, 2.52, 1.91, 1.91, 2.02, 1.81, 2.10, 2.96, 2.14, 2.42, 2.52, 2.09, 2.06, 2.08, 1.38, 2.30, 2.02, 2.24, 1.77, 1.78, 1.52, 2.24, 2.17],
+      data: [2.49, 2.88, 3.11, 2.84, 2.76, 2.90, 2.93, 2.75, 2.79, 1.75, 2.59, 2.03, 2.92, 2.17, 2.23, 2.50, 2.77, 2.00, 2.18, 2.79, 2.65, 2.59, 2.52, 1.91, 1.91, 2.02, 1.81, 2.10, 2.96, 2.14, 2.42, 2.52, 2.09, 2.06, 2.08, 1.38, 2.30, 2.02, 2.24, 1.77, 1.78, 1.52, 2.24, 2.17, 1.56],
       borderColor: mintDark,
       backgroundColor: 'rgba(69,206,179,0.12)',
       borderWidth: 3,
@@ -2328,7 +2356,7 @@ new Chart(document.getElementById('hourlyChart'), {
       {
         type: 'bar',
         label: '노출수',
-        data: [155, 72, 35, 27, 24, 46, 260, 392, 630, 593, 781, 754, 751, 856, 959, 890, 855, 827, 774, 711, 787, 777, 731, 552],
+        data: [157, 72, 35, 28, 24, 46, 269, 393, 636, 606, 790, 763, 770, 871, 965, 903, 889, 849, 784, 722, 798, 787, 748, 567],
         backgroundColor: '#cdeee7',
         borderRadius: 5,
         yAxisID: 'y',
@@ -2347,7 +2375,7 @@ new Chart(document.getElementById('hourlyChart'), {
       {
         type: 'line',
         label: '클릭수',
-        data: [7, 4, 2, 1, 2, 1, 6, 13, 20, 30, 24, 22, 22, 31, 30, 34, 21, 25, 16, 13, 33, 25, 23, 15],
+        data: [7, 4, 2, 1, 2, 1, 6, 13, 21, 31, 24, 22, 22, 31, 30, 35, 22, 25, 16, 13, 33, 25, 23, 16],
         borderColor: mintDark,
         backgroundColor: mintDark,
         borderWidth: 2.5,
@@ -2392,8 +2420,8 @@ new Chart(document.getElementById('placementChart'), {
   data: {
     labels: ['검색 지면','콘텐츠 지면'],
     datasets: [
-      {label:'노출수', data:[11487, 1746], backgroundColor: mint, borderRadius:6, maxBarThickness: 34},
-      {label:'클릭수', data:[420, 0], backgroundColor: ink, borderRadius:6, maxBarThickness: 34}
+      {label:'노출수', data:[11720, 1746], backgroundColor: mint, borderRadius:6, maxBarThickness: 34},
+      {label:'클릭수', data:[425, 0], backgroundColor: ink, borderRadius:6, maxBarThickness: 34}
     ]
   },
   options: {
