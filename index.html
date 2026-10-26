@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="report-layout" content="r2026-10-J">
+<meta name="report-layout" content="r2026-10-K">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새로필라테스 네이버 광고 리포트</title>
 <meta property="og:type" content="website">
@@ -274,8 +274,8 @@
     <div class="kpi kpi-wide" style="--accent:#1c2b2a;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v3"/><path d="M3 6v12a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M21 12h-4a2 2 0 0 0 0 4h4z"/></svg></div>
       <div class="label">광고비 잔액</div>
-      <div class="value" data-balance="value">500,629<span class="unit">원</span></div>
-      <div class="sub" data-balance="sub">10/26(월) 08:43 기준 · 약 34일분</div>
+      <div class="value" data-balance="value">483,628<span class="unit">원</span></div>
+      <div class="sub" data-balance="sub">10/26(월) 23:34 기준 · 약 33일분</div>
     </div>
   </div>
 
@@ -291,6 +291,13 @@
         <div style="height:280px; min-width:4880px;">
           <canvas id="dailyChart"></canvas>
         </div>
+      </div>
+    </div>
+    <div class="card" data-weekday="card" style="margin-top:12px;">
+      <div class="sub-head" style="margin-top:0;">요일별 하루 평균</div>
+      <div class="note" data-weekday="sub">검색 지면 · 8/26~10/25 · 요일마다 8~9일</div>
+      <div style="height:200px;margin-top:8px;">
+        <canvas id="weekdayChart"></canvas>
       </div>
     </div>
     <div class="card" style="margin-top:12px; padding-bottom:20px;">
@@ -2464,7 +2471,7 @@
     <div class="insight">
       <div>
         <!-- n:11-list:매회차 --><ul>
-          <li><b>지난 회차 관찰이 뒤집힘 — 10/24 12건이던 클릭이 10/25(일) 6건으로 줄었고, 노출도 232회로 나흘 연속 감소</b>(지난 일요일 10/18도 5건이라 일요일 영향일 수 있음, 01번 참고)</li>
+          <li><b>지난 회차 관찰이 뒤집힘 — 10/24 12건이던 클릭이 10/25(일) 6건(일요일 하루 평균 9.2건)으로 줄었고, 노출도 232회로 나흘 연속 감소</b>(01번 요일 카드 참고)</li>
           <li><b>지난 회차 관찰이 뒤집힘 — 10/23·10/24 이어지던 파워링크 클릭이 10/25 0건·광고비 0원</b>(10/22에 이어 다시 0 — 하루치인지는 아직 알 수 없음, 03·04번 참고)</li>
           <li><b>10/25까지 변화 없음</b> — 모바일 비중·최다 클릭 시간대(20시)·심야 비중·자동매칭 우위·지역 비중·상계동 카드·파워링크 총비용 1위 그룹(04·05·06·08·09번)</li>
         </ul><!-- /n -->
@@ -3001,6 +3008,41 @@ new Chart(document.getElementById('hourlyChart'), {
   window.__saeroMobile = {M: M, items: items, state: state, build: build, judge: judge, scrollEnd: scrollEnd};
   (window.__saeroMobileQ || []).forEach(function(it){ it.open = false; items.push(it); if (mqOk && mq.matches) build(it, true); }); window.__saeroMobileQ = []; state.mobile = !!(mqOk && mq.matches);
   if (mqOk) { if (mq.addEventListener) mq.addEventListener('change', judge); else if (mq.addListener) mq.addListener(judge); }
+})();
+// 8. Weekday average(판 K — 01 요일별 하루 평균 · 검색 지면): 막대 = 하루 평균 노출(라벨 막대 하단) · 막대 위 = 하루 평균 클릭(clicks — null 이면 빈칸).
+//    PC·모바일 같은 모양(7칸) · 강조색·범례 없음 · 스크립트 맨 끝(이 블록의 예외가 위 차트 7개·분기 도우미를 막지 않게 — try 로 한 번 더 감쌈)
+(function(){
+  try {
+    new Chart(document.getElementById('weekdayChart'), {
+      type: 'bar',
+      data: {
+        labels: ['월','화','수','목','금','토','일'],
+        datasets: [{
+          label: '하루 평균 노출',
+          data: [277, 322, 289, 264, 249, 206, 238],
+          clicks: [11.8, 10.2, 10.7, 10.6, 9.7, 6.9, 9.2],
+          backgroundColor: '#cdeee7',
+          borderRadius: 6,
+          maxBarThickness: 56,
+          datalabels: {labels: {
+            imp: {display: true, anchor: 'start', align: 'top', offset: 4, color: ink, font: {size:11, weight:'700'}, formatter: (v) => v.toLocaleString()},
+            clk: {display: (ctx) => ctx.dataset.clicks[ctx.dataIndex] !== null, anchor: 'end', align: 'top', offset: 2, clip: false, color: ink, font: {size:11, weight:'700'},
+                  formatter: (v, ctx) => Number(ctx.dataset.clicks[ctx.dataIndex]).toFixed(1) + '건'}
+          }}
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: {top: 22} },
+        plugins: { legend: {display: false} },
+        scales: {
+          x: {grid:{display:false}, ticks:{font:{size:11}}},
+          y: {beginAtZero: true, grid:{color:grid}, ticks:{font:{size:10}}}
+        }
+      }
+    });
+  } catch (e) {}
 })();
 </script>
 <script>
