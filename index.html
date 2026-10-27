@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="report-layout" content="r2026-10-K">
+<meta name="report-layout" content="r2026-10-L">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새로필라테스 네이버 광고 리포트</title>
 <meta property="og:type" content="website">
@@ -231,6 +231,10 @@
   /* 광고비 잔액 카드(레이아웃 판 r2026-10-F, 2026-10-09) — KPI 카드 넷 아래 한 줄 전체(데스크톱 4칸·모바일 2칸 모두 grid-column 1 / -1). 모양·색은 .kpi 그대로 — 새 색 0.
      값·보조 줄(data-balance)은 scripts/apply.py 가 매 회차 compute.json 의 잔액(scripts/balance.py 가 읽은 비즈머니)으로 쓴다(기계 자리) */
   .kpi-wide{grid-column:1 / -1;}
+  /* 하루예산 카드(레이아웃 판 r2026-10-L, 2026-10-27) — 잔액 카드 아래 한 줄 전체(.kpi-wide) · 접기는 03 과 같은 .fold·.fold-more(인쇄 때 펼침 = 접기 스크립트).
+     카드 안 접기를 장식 원(.kpi::after) 위로 · 목록 줄 = 시각 왼쪽 · 설정 값 오른쪽(좁으면 줄바꿈). 값·보조 줄·summary·목록은 scripts/apply.py 가 매 회차 compute.json 의 예산으로 쓴다 */
+  .kpi .budget-fold{margin-top:8px;position:relative;}
+  .budget-stops > div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 12px;padding:4px 0;border-top:1px solid var(--line);font-size:12px;color:var(--ink);}
 </style>
 </head>
 <body>
@@ -274,8 +278,26 @@
     <div class="kpi kpi-wide" style="--accent:#1c2b2a;">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v3"/><path d="M3 6v12a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M21 12h-4a2 2 0 0 0 0 4h4z"/></svg></div>
       <div class="label">광고비 잔액</div>
-      <div class="value" data-balance="value">483,628<span class="unit">원</span></div>
-      <div class="sub" data-balance="sub">10/27(화) 01:12 기준 · 약 31일분</div>
+      <div class="value" data-balance="value">476,260<span class="unit">원</span></div>
+      <div class="sub" data-balance="sub">10/27(화) 12:30 기준 · 약 30일분</div>
+    </div>
+    <div class="kpi kpi-wide" data-budget="card" style="--accent:#1c2b2a;">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.5 17a8.5 8.5 0 0 1 17 0"/><path d="M12 17l4.5-5.5"/><circle cx="12" cy="17" r="1.2"/></svg></div>
+      <div class="label">하루예산 · 예산 도달 멈춤</div>
+      <div class="value" data-budget="value">플레이스 20,000<span class="unit">원 · 최근 7일 1번 멈춤</span></div>
+      <div class="sub" data-budget="sub">파워링크 30,000원(그룹마다 15,000원) · 멈춤 0번</div>
+      <details class="fold budget-fold" data-budget="fold">
+        <summary class="fold-more" data-budget="summary">9/17 뒤 40일 중 7번 멈춤(9/18~10/26) 펼치기</summary>
+        <div class="budget-stops" data-budget="list">
+          <div><span>10/26(월) 20:19</span><span>하루예산 20,000원</span></div>
+          <div><span>10/12(월) 18:02</span><span>하루예산 20,000원</span></div>
+          <div><span>9/30(수) 22:46</span><span>하루예산 20,000원</span></div>
+          <div><span>9/28(월) 21:06</span><span>하루예산 20,000원</span></div>
+          <div><span>9/22(화) 21:58</span><span>하루예산 20,000원</span></div>
+          <div><span>9/18(금) 13:27</span><span>하루예산 20,000원</span></div>
+          <div><span>9/18(금) 00:02</span><span>하루예산 20,000원</span></div>
+        </div>
+      </details>
     </div>
   </div>
 
